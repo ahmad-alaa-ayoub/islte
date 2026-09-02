@@ -14,10 +14,12 @@ import {
 import ProductDetail from './ProductDetail';
 import ProductsPage from './ProductsPage';
 import { partnerLogos } from './data/productLogos';
+import { useNavigationType } from 'react-router-dom';
 
 
 function ScrollManager() {
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, key } = useLocation();
+  const navigationType = useNavigationType();
 
   useLayoutEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -26,12 +28,20 @@ function ScrollManager() {
 
     const targetId = decodeURIComponent(hash.slice(1));
     const target = targetId ? document.getElementById(targetId) : null;
-    target?.scrollIntoView({ block: 'start' });
 
-    if (!target) {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    if (target) {
+      target.scrollIntoView({ block: 'start' });
+    } else if (navigationType === 'POP') {
+      const saved = sessionStorage.getItem(`scroll:${key}`);
+      window.scrollTo(0, saved ? parseInt(saved, 10) : 0);
+    } else {
+      window.scrollTo(0, 0);
     }
-  }, [pathname, hash]);
+
+    return () => {
+      sessionStorage.setItem(`scroll:${key}`, String(window.scrollY));
+    };
+  }, [pathname, hash, key, navigationType]);
 
   return null;
 }
