@@ -1,3 +1,112 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    :root {
+        --site-navy: #0f172a;
+        --site-text: #1e293b;
+        --site-muted: #64748b;
+    }
+
+    html,
+    body,
+    #root {
+        min-height: 100%;
+    }
+
+    body {
+        color: var(--site-text);
+        font-family: "Trebuchet MS", Verdana, sans-serif;
+        background: #0f172a;
+    }
+}
+
+.site-shell {
+    background-image: var(--site-background-image);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: transparent !important;
+}
+
+.site-shell>section,
+.site-shell>section.bg-white,
+.site-shell>section.bg-slate-50,
+.site-shell>div>section.bg-white,
+.site-shell>div>section.bg-slate-50,
+.site-shell>div.bg-white,
+.site-shell>div.bg-slate-50 {
+    background-color: transparent !important;
+}
+
+.site-shell .bg-white {
+    background-color: rgb(255 255 255 / 0.92) !important;
+}
+
+.site-shell .bg-slate-50 {
+    background-color: rgb(248 250 252 / 0.92) !important;
+}
+
+.site-shell .bg-slate-100 {
+    background-color: rgb(241 245 249 / 0.92) !important;
+}
+
+.product-detail-panel .bg-slate-50,
+.product-detail-panel .bg-slate-100 {
+    background-color: #0f172a !important;
+    border-color: rgb(148 163 184 / 0.35) !important;
+}
+
+.product-detail-panel .bg-blue-50 {
+    background-color: #334155 !important;
+}
+
+.product-detail-panel h2,
+.product-detail-panel h3,
+.product-detail-panel p,
+.product-detail-panel span {
+    color: #cbd5e1;
+}
+
+.product-detail-panel h2,
+.product-detail-panel h3 {
+    color: #f8fafc;
+}
+
+@layer components {
+    .product-logo-frame {
+        height: 14rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-logo-frame img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .product-detail-logo {
+        height: 12rem;
+        width: 100%;
+        object-fit: contain;
+        object-position: left center;
+    }
+
+    .product-category-frame {
+        height: 10rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-category-frame img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+}

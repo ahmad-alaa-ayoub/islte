@@ -5,7 +5,7 @@ const assetUrl = (fileName: string) => {
 
 export const partnerLogos = [
   { id: 'jireh', name: 'JIREH', url: assetUrl('JIREH.jpg') },
-  { id: 'fuji', name: 'FUJI FILM', url: assetUrl('fuji.png') },
+  { id: 'fuji', name: 'FujiFilm', url: assetUrl('fuji.png') },
   { id: '3e-ndt', name: '3E NDT', url: assetUrl('logo4.png') },
   { id: 'durr-ndt', name: 'DURR NDT', url: assetUrl('DUR.jpg') },
   { id: 'danatronics', name: 'DANATRONICS', url: assetUrl('logo.jpg') },

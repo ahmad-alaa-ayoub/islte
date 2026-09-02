@@ -576,7 +576,7 @@ export default function ProductDetail() {
   // Reusable Card Component
   const ProductCard = ({ title, desc, img, link, note }: { title: string, desc: string, img?: string, link: string, note?: string }) => (
 
-    <div className="group overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-4 transition-all hover:shadow-lg flex flex-col">
+    <div className="group overflow-hidden rounded-3xl border border-[#0F172A] bg-[#0F172A] p-4 transition-all hover:shadow-lg flex flex-col">
       <a href={link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-3xl mb-4 bg-white">
         {img ? (
           <img src={img} alt={title} className="h-56 w-full object-contain transition-transform group-hover:scale-105" />
@@ -587,8 +587,8 @@ export default function ProductDetail() {
         )}
       </a>
       <div className="flex flex-col flex-grow">
-        <h3 className="text-xl font-bold text-[#003349] mb-3">{title}</h3>
-        <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-grow whitespace-pre-line">{desc}</p>
+        <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
+        <p className="text-sm text-slate-300 leading-relaxed mb-6 flex-grow whitespace-pre-line">{desc}</p>
         <a href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-[#0f6fff] px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-white transition hover:brightness-110 w-fit">
           Read More
         </a>
@@ -597,16 +597,15 @@ export default function ProductDetail() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-32 pb-20 px-6">
+    <div className="min-h-screen bg-slate-50 pt-64 pb-20 px-6">
       <div className="max-w-7xl mx-auto">
-        <Link to="/" className="flex items-center gap-2 text-slate-500 hover:text-black mb-8 transition-colors font-bold uppercase text-sm tracking-widest">
-          <ChevronLeft size={20} /> Back to Home
+        <Link to="/products" className="flex items-center gap-2 text-slate-400 hover:text-white mb-8 transition-colors font-bold uppercase text-sm tracking-widest">
+          <ChevronLeft size={20} /> Back to Products
         </Link>
 
-        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100">
-          <img src={product.logo} alt={product.name} className={`${product.id === 'spectro' || product.id === 'vallen-systeme' ? 'h-32 md:h-40' : product.id === 'fuji' ? 'h-40 md:h-48' : 'h-80 md:h-96'} object-contain mb-8`} />
-          <h1 className="text-5xl font-black mb-6 text-[#003349] tracking-tighter">{product.name}</h1>
-          <p className="text-xl text-slate-600 leading-relaxed mb-10 whitespace-pre-line">
+        <div className="product-detail-panel bg-[#0F172A] rounded-3xl p-8 md:p-12 shadow-sm border border-[#0F172A]">
+          <img src={product.logo} alt={product.name} className="product-detail-logo mb-8" />
+          <p className="text-xl text-slate-300 leading-relaxed mb-10 whitespace-pre-line">
             {product.description}
           </p>
 
@@ -668,7 +667,7 @@ export default function ProductDetail() {
                     className={`group rounded-2xl border-2 transition-all duration-300 ${jirehEntered ? 'p-3' : 'p-6'} ${jirehCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'
                       }`}
                   >
-                    <div className={`transition-all duration-500 flex items-center justify-center ${jirehEntered ? 'h-20 mb-3' : 'h-40 mb-4'}`}>
+                    <div className={`product-category-frame transition-all duration-500 ${jirehEntered ? 'h-20 mb-3' : 'h-40 mb-4'}`}>
                       <img src={cat.icon} alt={cat.name} className="max-w-full max-h-full object-contain" />
                     </div>
                     <div className={`text-center font-black uppercase transition-all duration-500 ${jirehEntered ? 'text-[10px]' : 'text-sm'}`}>
@@ -718,7 +717,7 @@ export default function ProductDetail() {
                     className={`group rounded-2xl border-2 transition-all duration-300 ${durrEntered ? 'p-3' : 'p-6'} ${durrCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'
                       }`}
                   >
-                    <div className={`transition-all duration-500 flex items-center justify-center ${durrEntered ? 'h-16 mb-2' : 'h-40 mb-4'}`}>
+                    <div className={`product-category-frame transition-all duration-500 ${durrEntered ? 'h-20 mb-2' : 'h-40 mb-4'}`}>
                       <img src={cat.icon} alt={cat.name} className="max-w-full max-h-full object-contain" />
                     </div>
                     <div className={`text-center font-black uppercase transition-all duration-500 ${durrEntered ? 'text-[10px]' : 'text-sm'}`}>
@@ -784,7 +783,7 @@ export default function ProductDetail() {
                     className={`group rounded-2xl border-2 transition-all duration-300 ${spectroEntered ? 'p-3' : 'p-6'} ${spectroCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'
                       }`}
                   >
-                    <div className={`transition-all duration-500 flex items-center justify-center ${spectroEntered ? 'h-16 mb-3' : 'h-32 mb-4'}`}>
+                    <div className={`product-category-frame transition-all duration-500 ${spectroEntered ? 'h-20 mb-3' : 'h-32 mb-4'}`}>
                       {cat.icon ? (
                         <img src={cat.icon} alt={cat.name} className="max-w-full max-h-full object-contain" />
                       ) : (
@@ -1208,7 +1207,7 @@ export default function ProductDetail() {
                       : 'border-slate-100 bg-slate-50 hover:bg-slate-100'
                       } ${balteauEntered ? 'p-3' : 'p-6'}`}
                   >
-                    <div className={`transition-all duration-500 flex items-center justify-center ${balteauEntered ? 'h-20 mb-3' : 'h-40 mb-4'
+                    <div className={`product-category-frame transition-all duration-500 ${balteauEntered ? 'h-20 mb-3' : 'h-40 mb-4'
                       }`}>
                       <img
                         src={cat.icon}
@@ -1369,7 +1368,7 @@ export default function ProductDetail() {
                       : 'border-slate-100 bg-slate-50 hover:bg-slate-100'
                       } ${echoEntered ? 'p-3' : 'p-6'}`}
                   >
-                    <div className={`transition-all duration-500 flex items-center justify-center ${echoEntered ? 'h-16 mb-3' : 'h-44 mb-4'
+                    <div className={`product-category-frame transition-all duration-500 ${echoEntered ? 'h-20 mb-3' : 'h-40 mb-4'
                       }`}>
                       <img
                         src={cat.icon}
@@ -1440,7 +1439,7 @@ export default function ProductDetail() {
                     className={`group rounded-2xl border-2 transition-all duration-300 ${mitcorpCategory ? 'p-1' : 'p-6'} ${mitcorpCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'
                       }`}
                   >
-                    <div className={`${mitcorpCategory ? 'h-20 mb-1' : 'h-44 mb-4'} flex items-center justify-center`}>
+                    <div className={`product-category-frame ${mitcorpCategory ? 'h-20 mb-1' : 'h-40 mb-4'}`}>
                       <img src={cat.icon} alt={cat.name} className="max-w-full max-h-full object-contain" />
                     </div>
                     <div className={`text-center font-black uppercase ${mitcorpCategory ? 'text-[8px]' : 'text-sm'}`}>{cat.name}</div>
@@ -1582,7 +1581,7 @@ export default function ProductDetail() {
                   className={`group rounded-2xl border-2 transition-all duration-300 ${wohlerMainCat === 'MEASURING' ? 'border-[#0f6fff] bg-blue-50 shadow-sm p-2' : 'border-slate-100 bg-slate-50 p-6'
                     }`}
                 >
-                  <div className={`transition-all duration-500 flex items-center justify-center ${wohlerMainCat ? 'h-10 mb-1' : 'h-36 mb-4'}`}>
+                  <div className={`product-category-frame transition-all duration-500 ${wohlerMainCat ? 'h-20 mb-1' : 'h-36 mb-4'}`}>
                     <img src={wohlerMeasuringIcon} alt="Measuring Instruments" className="max-w-full max-h-full object-contain" />
                   </div>
                   <span className={`block text-center font-black uppercase transition-all ${wohlerMainCat ? 'text-[8px]' : 'text-sm'}`}>
@@ -1594,7 +1593,7 @@ export default function ProductDetail() {
                   className={`group rounded-2xl border-2 transition-all duration-300 ${wohlerMainCat === 'INSPECTION' ? 'border-[#0f6fff] bg-blue-50 shadow-sm p-2' : 'border-slate-100 bg-slate-50 p-6'
                     }`}
                 >
-                  <div className={`transition-all duration-500 flex items-center justify-center ${wohlerMainCat ? 'h-10 mb-1' : 'h-36 mb-4'}`}>
+                  <div className={`product-category-frame transition-all duration-500 ${wohlerMainCat ? 'h-20 mb-1' : 'h-36 mb-4'}`}>
                     <img src={wohlerInspectionIcon} alt="Inspection Systems" className="max-w-full max-h-full object-contain" />
                   </div>
                   <span className={`block text-center font-black uppercase transition-all ${wohlerMainCat ? 'text-[8px]' : 'text-sm'}`}>
@@ -1606,7 +1605,7 @@ export default function ProductDetail() {
                   className={`group rounded-2xl border-2 transition-all duration-300 ${wohlerMainCat === 'CLEANING' ? 'border-[#0f6fff] bg-blue-50 shadow-sm p-2' : 'border-slate-100 bg-slate-50 p-6'
                     }`}
                 >
-                  <div className={`transition-all duration-500 flex items-center justify-center ${wohlerMainCat ? 'h-10 mb-1' : 'h-36 mb-4'}`}>
+                  <div className={`product-category-frame transition-all duration-500 ${wohlerMainCat ? 'h-20 mb-1' : 'h-36 mb-4'}`}>
                     <img src={cleaningIcon} alt="Cleaning Tools" className="max-w-full max-h-full object-contain" />
                   </div>
                   <span className={`block text-center font-black uppercase transition-all ${wohlerMainCat ? 'text-[8px]' : 'text-sm'}`}>

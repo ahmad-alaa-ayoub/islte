@@ -4,8 +4,7 @@ import {
   Route,
   Link,
   useNavigate,
-  useLocation,
-  useNavigationType
+  useLocation
 } from 'react-router-dom';
 
 import {
@@ -18,26 +17,32 @@ import { partnerLogos } from './data/productLogos';
 
 
 function ScrollManager() {
-  const { pathname } = useLocation();
-  const navType = useNavigationType();
+  const { pathname, hash } = useLocation();
 
   useLayoutEffect(() => {
-    // ????? ???? ??????? ???????? ???? ??????
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
 
-    // ??? ??? ???? ???? ?????? ???? ?????? ?????
-    if (navType === 'PUSH') {
-      window.scrollTo(0, 0);
+    const targetId = decodeURIComponent(hash.slice(1));
+    const target = targetId ? document.getElementById(targetId) : null;
+    target?.scrollIntoView({ block: 'start' });
+
+    if (!target) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     }
-  }, [pathname, navType]);
+  }, [pathname, hash]);
 
   return null;
 }
 
 
 const HERO_BG = new URL('./public/unnamed.jpg', import.meta.url).href;
+const BACKGROUND_IMAGES = [
+  HERO_BG,
+  new URL('./public/sunset.jpg', import.meta.url).href,
+  new URL('./public/IMG_20230916_142015-scaled.jpg', import.meta.url).href,
+];
 const ISL_LOGO_NEW = new URL('./public/logo-removebg-preview.png', import.meta.url).href;
 const TECHCAL_LOGO = new URL('./public/techcal-logo-high-resolution.png', import.meta.url).href;
 const ABOUT_IMAGE = new URL('./public/IMG_20230916_142015-scaled.jpg', import.meta.url).href;
@@ -56,16 +61,17 @@ const OFFICE_IMAGES = [
 
 const navItems = [
   { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about' },
   { label: 'After Sale Services', href: '/after-sale-services' },
   { label: 'News', href: '/#news' },
-  { label: 'Contact Us', href: '/contact' },
-  { label: 'Career', href: '/career' }
+  { label: 'About Us', href: '/about' },
+  { label: 'Career', href: '/career' },
+  { label: 'Contact Us', href: '/contact' }
+
 ];
 
 const productMenu = [
   { id: 'trm_0_7_mhz.jpg', label: 'Spectro', href: '/product/spectro', subcategories: ['Radiometers', 'Aerospace', 'NDT Supplies'] },
-  { id: 'fuji', label: 'FUJI FILM', href: '/product/fuji', subcategories: ['Flaw Detectors', 'Portable Hardness Tester'] },
+  { id: 'fuji', label: 'FujiFilm', href: '/product/fuji', subcategories: ['Flaw Detectors', 'Portable Hardness Tester'] },
   { id: 'jireh', label: 'JIREH', href: '/product/jireh', subcategories: ['Manual Weld & Corrosion Scanning', 'Automated Crawlers'] },
   { id: '3e-ndt', label: '3E NDT', href: '/product/3e-ndt', subcategories: [] },
   { id: 'durr-ndt', label: 'DURR NDT', href: '/product/durr-ndt', subcategories: ['Computed Radiography', 'Direct Digital Radiography', 'NDT Software', 'Conventional Radiography'] },
@@ -78,7 +84,7 @@ const productMenu = [
   { id: 'echo', label: 'ECHO Ultrasonics', href: '/product/echo', subcategories: ['High Temperature', 'Intermediate & Low Temp', 'Specialty Application'] },
   { id: 'danatronics', label: 'DANATRONICS', href: '/product/danatronics', subcategories: ['Flaw Detectors', 'Corrosion Thickness Gage', 'Precision Thickness Gage', 'Hall Effect Gage', 'Transducers'] },
   { id: 'dolphitech', label: 'Dolphitech', href: '/product/dolphitech', subcategories: ['MAUT Core Units', 'MAUT Transducers (TRMs)', 'Accessories', 'Scanning Tools'] },
-  { id: 'Ekoscan', label: 'Ekoscan', href: '/product/Ekoscan', subcategories: [] },
+  { id: 'Ekoscan', label: 'Ekoscan', href: '/product/ekoscan', subcategories: [] },
   { id: 'balteau', label: 'BALTEAU NDT', href: '/product/balteau', subcategories: ['BALTOSPOT', 'BALTOGRAPH', 'BALTOMATIC', 'BALTOSCOPE', 'ACCESSORIES'] },
   { id: 'proceq', label: 'proceq', href: '/product/proceq', subcategories: ['Flaw Detectors', 'Portable Hardness Tester'] }
 
@@ -103,6 +109,8 @@ export default function App() {
   const [desktopProductsOpen, setDesktopProductsOpen] = useState(false);
   const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
   const [mobileProductOpenId, setMobileProductOpenId] = useState<string | null>(null);
+  const [navHidden, setNavHidden] = useState(false);
+  const [backgroundIndex, setBackgroundIndex] = useState(0);
   const navigate = useNavigate();
 
   // --- BRAND COLORS ---
@@ -133,45 +141,45 @@ export default function App() {
       window.history.scrollRestoration = 'manual';
     }
 
-    let lastScrollY = window.scrollY;
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const nav = navRef.current;
       if (nav) {
-        const scrollingDown = currentScrollY > 20 && currentScrollY > lastScrollY && !productMenuHoverRef.current;
-        nav.classList.toggle('hidden', scrollingDown);
-        nav.classList.toggle('block', !scrollingDown);
+        const pageIsScrolled = currentScrollY > 20;
+        setNavHidden(pageIsScrolled);
         nav.classList.toggle('py-4', currentScrollY > 20);
         nav.classList.toggle('py-8', currentScrollY <= 20);
-        nav.classList.toggle('shadow-2xl', currentScrollY > 20);
-        nav.classList.toggle('bg-slate-900/98', currentScrollY > 20);
+        nav.classList.toggle('shadow-2xl', pageIsScrolled);
+        nav.classList.toggle('bg-slate-900/98', pageIsScrolled);
         nav.classList.toggle('bg-[#0F172A]', currentScrollY <= 20);
-        nav.classList.toggle('-translate-y-full', scrollingDown);
-        nav.classList.toggle('translate-y-0', !scrollingDown);
       }
-      lastScrollY = currentScrollY;
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const backgroundTimer = window.setInterval(() => {
+      setBackgroundIndex((currentIndex) => (currentIndex + 1) % BACKGROUND_IMAGES.length);
+    }, 20000);
+
+    return () => window.clearInterval(backgroundTimer);
+  }, []);
+
   const LandingPage = () => {
     // ????? ???? ?????? (???? ?? ???? ?????? ?? ???? public)
-    const HERO_BG = new URL('./public/unnamed.jpg', import.meta.url).href;
+    const currentBackground = BACKGROUND_IMAGES[backgroundIndex];
 
     return (
       <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
 
-        {/* ???? ??????: ??? ?????? ?????? ??????? ?????? ??? ?????? 
-          ????????? ????? ???? ??? ?????? ????? */}
-        <ScrollManager />
         {/* ????? ?????? ???????? ??????? ??????? */}
         <header
 
           id="home"
           className="relative pt-64 pb-32 px-6 overflow-hidden flex items-center justify-center min-h-[80vh]"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4)), url(${HERO_BG})`,
+            backgroundImage: `linear-gradient(to bottom, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.86)), url(${currentBackground})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed' // ???? ????? Parallax ???????
@@ -223,12 +231,12 @@ export default function App() {
             {activeProductTab === 'products' ? (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
                 {partnerLogos.map((logo) => (
-                  <Link to={`/product/${logo.id}`} key={logo.id} className="group relative bg-white border border-slate-100 rounded-3xl overflow-hidden hover:shadow-2xl hover:border-slate-300 transition-all flex flex-col items-center text-center">
+                  <Link to={`/product/${logo.id}`} key={logo.id} className="group relative bg-[#0F172A] border border-[#0F172A] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center">
                     <div className="aspect-square w-full flex items-center justify-center bg-slate-50 px-4 py-4">
                       <img src={logo.url} alt={logo.name} className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
                     </div>
                     <div className="px-4 py-4 w-full">
-                      <div className="text-sm font-black uppercase tracking-[0.18em] text-slate-900">{logo.name || ''}</div>
+                      <div className="text-sm font-black uppercase tracking-[0.18em] text-white">{logo.name || ''}</div>
                     </div>
                   </Link>
                 ))}
@@ -592,9 +600,14 @@ export default function App() {
   );
 
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-slate-200">
+    <div
+      className="site-shell min-h-screen bg-white font-sans selection:bg-slate-200"
+      style={{ '--site-background-image': `linear-gradient(rgba(15, 23, 42, 0.84), rgba(15, 23, 42, 0.84)), url(${BACKGROUND_IMAGES[backgroundIndex]})` } as React.CSSProperties}
+    >
 
-      <nav ref={navRef} className="fixed top-0 left-0 right-0 w-full z-50 block translate-y-0 py-8 bg-[#0F172A] transition-all duration-500">
+      <ScrollManager />
+
+      <nav ref={navRef} className={`fixed top-0 left-0 right-0 w-full z-50 block py-8 bg-[#0F172A] transition-all duration-500 ${navHidden ? '-translate-y-[110%] pointer-events-none' : 'translate-y-0'}`}>
         <div className="max-w-7xl mx-auto px-0 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-0 -translate-x-20 md:-translate-x-8">
             <img src={ISL_LOGO_NEW} alt="Integrity Scientific" className="h-28 md:h-40 transition-all" />
@@ -623,7 +636,7 @@ export default function App() {
                 setHoveredProduct(null);
               }}
             >
-              <Link to="/products" className="flex h-full items-center gap-1 text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 hover:text-white transition-all">
+              <Link to="/products" onClick={() => setDesktopProductsOpen(false)} className="flex h-full items-center gap-1 text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 hover:text-white transition-all">
                 Products
               </Link>
 
@@ -687,14 +700,19 @@ export default function App() {
           <div className="px-6 py-5 space-y-4 text-[12px] font-black uppercase tracking-[0.2em] text-slate-200">
             <Link key="Home" to="/" onClick={() => setMobileNavOpen(false)} className="block text-white/80 hover:text-white transition-all">Home</Link>
 
-            <button
-              type="button"
-              onClick={() => setMobileProductsOpen((open) => !open)}
-              className="flex w-full items-center justify-between rounded-2xl border border-slate-800 bg-slate-900/90 px-4 py-3 text-left text-white/80 hover:text-white transition-all"
-            >
-              <span>Products</span>
-              <span className="text-sm">{mobileProductsOpen ? '-' : '+'}</span>
-            </button>
+            <div className="flex w-full items-center justify-between rounded-2xl border border-slate-800 bg-slate-900/90 px-4 py-3 text-white/80">
+              <Link to="/products" onClick={() => setMobileNavOpen(false)} className="flex-1 text-left hover:text-white transition-all">
+                Products
+              </Link>
+              <button
+                type="button"
+                aria-label="Toggle product categories"
+                onClick={() => setMobileProductsOpen((open) => !open)}
+                className="px-2 text-sm hover:text-white transition-all"
+              >
+                {mobileProductsOpen ? '-' : '+'}
+              </button>
+            </div>
 
             {mobileProductsOpen && (
               <div className="space-y-3 rounded-3xl border border-slate-800 bg-slate-900/95 p-4">
@@ -746,12 +764,12 @@ export default function App() {
         <Route path="/contact" element={<ContactUsPage />} />
       </Routes>
 
-      <footer className="bg-slate-950 text-white pt-24 relative">
+      <footer className="bg-[#0F172A] text-white pt-24 relative">
         <div className="max-w-7xl mx-auto px-8 pb-16 grid grid-cols-1 md:grid-cols-3 gap-20">
           {/* RESTORED: What We Do Section */}
           <div>
             <h3 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 text-slate-500">What we do</h3>
-            <ul className="space-y-5 text-[13px] font-bold text-slate-300">
+            <ul className="space-y-5 text-[13px] font-bold text-slate-400">
               {[
                 'Understand our customer needs',
                 'Discuss challenges and limitations',
@@ -769,7 +787,7 @@ export default function App() {
           </div>
 
           {/* RESTORED: Sectors Section */}
-          <div className="border-x border-white/5 px-10 text-center">
+          <div className="border-x border-white/5 px-10 text-left">
             <h3 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 text-slate-500">Sectors</h3>
             <div className="grid grid-cols-1 gap-5 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
               {[
@@ -788,9 +806,9 @@ export default function App() {
             </div>
           </div>
 
-          <div className="flex flex-col items-end">
+          <div className="flex flex-col items-start">
             <h3 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 text-slate-500">Stay in touch</h3>
-            <div className="space-y-4 w-full flex flex-col items-end">
+            <div className="space-y-4 w-full flex flex-col items-start">
               <a href="#" className="flex items-center gap-3 w-56 px-5 py-3 bg-[#0077B5] rounded-lg hover:brightness-110 transition-all">
                 <Linkedin size={20} className="text-white" />
                 <span className="text-sm font-black text-white">ISLTE</span>

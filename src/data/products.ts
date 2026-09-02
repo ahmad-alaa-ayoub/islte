@@ -102,19 +102,19 @@ export const productsData: Product[] = [
   },
   {
     id: 'ekoscan',
-    name: 'Ekoscan',
+    name: '',
     logo: assetUrl('EKOSCAN.jpg'),
     description: `Backed by a team of specialists (PhDs, MScs, BScs, 50+ engineering group) in electronics, probes, robotics, ultrasound, eddy-current, signal processing, and software engineering, EKOSCAN combines over 40 years of expertise in the NDT industry. Innovation is placed at the core of its mission, ensuring products are not only technologically advanced but also intuitive and effective in the field.`
   },
   {
     id: 'proceq',
-    name: 'Proceq',
+    name: '',
     logo: assetUrl('PROCEQ.png'),
     description: `Screening Eagle Technologies provides a technology platform for intelligent inspection of the built environment. The company was created through the merger of Dreamlab in Singapore and Proceq in Switzerland with a mission to protect the built world with software, sensors and data. Screening Eagle's full-stack inspection solution combines intuitive software and powerful portable sensors to deliver reliable data for construction and asset maintenance decisions. Powered by data from intelligent and autonomous inspection, Screening Eagle is on a steep growth path to realize its vision of predictive healthcare that extends asset life and increases long-term value for asset owners.`
   },
   {
     id: 'fuji',
-    name: 'FUJI FILM',
+    name: '',
     logo: assetUrl('fuji.png'),
     description: `Fujifilm is known as the world's largest photographic and imaging company . Based on wide-ranging technological expertise, Fujifilm pursues innovation in many areas, with the goal of enhancing the quality of life. Fujifilm provides the high quality Industrial X-ray films to assure the quality in various production sectors.`
   }
