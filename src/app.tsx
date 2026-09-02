@@ -538,14 +538,14 @@ export default function App() {
 
         <div className="space-y-6">
           <div className="text-left">
-            <h2 className="text-4xl font-black tracking-tight text-sky-700">Who we are</h2>
-            <p className="mt-4 text-base md:text-lg leading-8 text-sky-700">
+            <h2 className="text-4xl font-black tracking-tight text-slate-400">Who we are</h2>
+            <p className="mt-4 text-base md:text-lg leading-8 text-slate-500">
               Integrity Scientific & Laboratory Equipment Trading LLC. was established in 2014 to support the increasing needs and demands of Quality Control in the fields of Oil & Gas, Energy, Aviation and Laboratories industries. Integrity Scientific & Laboratory relies on the extensive 20 Years experience of its team. It has enabled us to better understand the needs of our clients for high quality Products and constant customer support.
             </p>
           </div>
 
           <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-            <p className="text-base md:text-lg leading-8 text-sky-700 mb-6">
+            <p className="text-base md:text-lg leading-8 text-slate-500 mb-6">
               Integrity Scientific & Lab is a representative of prominent and highly professional companies which provide state-of-the-art equipment and technology in the following fields:
             </p>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -560,7 +560,7 @@ export default function App() {
                 'Security',
                 'Laboratory and environment.'
               ].map((item) => (
-                <span key={item} className="inline-flex rounded-2xl bg-sky-50 px-4 py-3 text-sky-700 font-semibold text-xs">
+                <span key={item} className="inline-flex rounded-2xl bg-[#0F172A] px-4 py-3 text-slate-300 font-semibold text-xs">
                   {item}
                 </span>
               ))}
@@ -582,7 +582,7 @@ export default function App() {
 
       <section className="py-24 px-6 bg-white rounded-[3rem]">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-black tracking-tight text-slate-900 text-center mb-12">Office Pictures</h2>
+          <h2 className="text-4xl font-black tracking-tight text-slate-400 text-center mb-12">Office Pictures</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {OFFICE_IMAGES.map((src, index) => (
               <div key={index} className="overflow-hidden rounded-3xl shadow-2xl bg-slate-100 group">

@@ -52,6 +52,28 @@
     background-color: rgb(241 245 249 / 0.92) !important;
 }
 
+.site-shell [class~="text-sky-700"],
+.site-shell [class~="text-sky-800"],
+.site-shell [class~="text-blue-500"],
+.site-shell [class~="text-blue-600"],
+.site-shell [class~="text-[#003349]"] {
+    color: var(--site-muted) !important;
+}
+
+.site-shell [class~="bg-sky-700"],
+.site-shell [class~="bg-sky-600"],
+.site-shell [class~="bg-blue-500"],
+.site-shell [class~="bg-blue-600"],
+.site-shell [class~="bg-[#003349]"] {
+    background-color: var(--site-navy) !important;
+}
+
+.site-shell [class~="border-sky-700"],
+.site-shell [class~="border-sky-400"],
+.site-shell [class~="border-[#003349]"] {
+    border-color: var(--site-muted) !important;
+}
+
 .product-detail-panel .bg-slate-50,
 .product-detail-panel .bg-slate-100 {
     background-color: #0f172a !important;
