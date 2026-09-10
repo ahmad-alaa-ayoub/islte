@@ -1,0 +1,12 @@
+<svg width="900" height="260" viewBox="0 0 900 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="260" rx="24" fill="#0F172A"/>
+  <rect x="24" y="24" width="852" height="212" rx="18" fill="#F8FAFC"/>
+  <path d="M110 178V82H173C201 82 226 91 242 112C257 132 257 158 242 178C226 198 201 208 173 208H110V178ZM152 146H167C181 146 190 141 196 131C202 121 201 110 194 101C188 91 178 86 164 86H152V146Z" fill="#0F172A"/>
+  <path d="M286 178L328 82H370L410 178H366L360 160H335L330 178H286ZM343 127H352L347 109L341 127H343Z" fill="#0F172A"/>
+  <path d="M456 178V82H498V178H456Z" fill="#0F172A"/>
+  <path d="M556 178V82H598V178H556Z" fill="#0F172A"/>
+  <path d="M534 82H596L661 178H600L534 82Z" fill="#0F172A"/>
+  <path d="M690 82H735L794 178H750L690 82Z" fill="#0F172A"/>
+  <rect x="84" y="40" width="620" height="8" rx="4" fill="#0F6FFF" opacity="0.9"/>
+  <text x="450" y="210" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#0F172A" letter-spacing="10">TPAC</text>
+</svg>

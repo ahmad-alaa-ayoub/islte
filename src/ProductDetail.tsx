@@ -405,7 +405,6 @@ const HARD_FACE_ARRAYS = new URL('./product/Ekoscan/5_HARD-FACE-ARRAYS-300x300.j
 const PAUT_WEDGES = new URL('./product/Ekoscan/6_PAUT-WEDGES-300x300.png', import.meta.url).href;
 
 
-
 //fuji
 const UT8000 = new URL('./product/Proceq/UT8000_gallery_image_02.119ee3c2.avif', import.meta.url).href;
 const Equotip = new URL('./product/Proceq/550 Leeb_gallery_image_03.9866d940.avif', import.meta.url).href;
@@ -415,6 +414,36 @@ const Equotip_550 = new URL('./product/Proceq/01-Equotip550-iso@2x.8b4935b0.png'
 const Equotip_Live_UCI = new URL('./product/Proceq/04_EQLive_UCI.43560a18.avif', import.meta.url).href
 const Equotip_550_Portable_Rockwell = new URL('./product/Proceq/550 Rockwell_gallery_image_01.ddf08840.avif', import.meta.url).href;
 const Equotip_550_UCI_MOTO_03__MOTO_08 = new URL('./product/Proceq/550-uci-moto-gallery-image-01@2x.0f2de10a.avif', import.meta.url).href;
+
+//iris:
+const IRIS9000PLUS = new URL('./product/IRIS/IRIS9000PLUS.png', import.meta.url).href;
+const B_scan = new URL('./product/IRIS/B-scan-preview.png', import.meta.url).href;
+const IRIS_Probes = new URL('./product/IRIS/IRIS-Probes.png', import.meta.url).href;
+const WATER_FILTER_ASSEMBLY = new URL('./product/IRIS/WATER FILTER ASSEMBLY.png', import.meta.url).href;
+const TESTCALIBRATION = new URL('./product/IRIS/TESTCALIBRATION TUBES.png', import.meta.url).href;
+
+//tpac:
+const Explorer = new URL('./product/TPAC/Explorer.webp', import.meta.url).href;
+const Explorer_128 = new URL('./product/TPAC/explorer128.webp', import.meta.url).href;
+const Explorer_Max = new URL('./product/TPAC/explorerMax.webp', import.meta.url).href;
+const Explorer_128_Max = new URL('./product/TPAC/explorer-128-max.webp', import.meta.url).href;
+  //pilot line
+const pilotPlus = new URL('./product/TPAC/pilot-pluswebp.webp', import.meta.url).href;
+const pilotMulti = new URL('./product/TPAC/pilot-multi.webp', import.meta.url).href;
+const pilot = new URL('./product/TPAC/pilot.webp', import.meta.url).href;
+
+  //software
+const prelude= new URL('./product/TPAC/Prelude.png', import.meta.url).href;
+const concerto= new URL('./product/TPAC/concerto.png', import.meta.url).href;
+const aria= new URL('./product/TPAC/Aria.png', import.meta.url).href;
+const iwScan = new URL('./product/TPAC/IW_Scan.png', import.meta.url).href;
+ //accessories
+const inputsAndOutputsManagement = new URL('./product/TPAC/Inputs & Outputs Management.webp', import.meta.url).href;
+const adaptorsAndConnectors = new URL('./product/TPAC/Adaptors and connectors.webp', import.meta.url).href;
+const preAmplifier = new URL('./product/TPAC/Pre-amplifier.webp', import.meta.url).href;
+const probes = new URL('./product/TPAC/Probes.webp', import.meta.url).href;
+
+
 
 
 export default function ProductDetail() {
@@ -429,6 +458,9 @@ export default function ProductDetail() {
   const [spectroCategory, setSpectroCategory] = React.useState<'RADIOMETERS' | 'NDT_SUPPLIES' | 'AEROSPACE' | null>(null);
   const [spectroEntered, setSpectroEntered] = React.useState(false);
   const [drtechCategory, setDrtechCategory] = React.useState<'BENDABLE' | 'STATIC' | 'HIGH_RESOLUTION' | null>(null);
+  const [irisCategory, setIrisCategory] = React.useState<'IRIS_9000_PLUS' | 'SOFTWARE' | 'PROBES' | 'ACCESSORIES' | null>(null);
+  const [tpacCategory, setTpacCategory] = React.useState<'INSTRUMENT' | 'SOFTWARE' | 'ACCESSORIES' | null>(null);
+  const [tpacSubCategory, setTpacSubCategory] = React.useState<'PAUT' | 'MULTI_CHANNEL' | 'OPEN_PLATFORM' | null>(null);
   const [jirehCategory, setJirehCategory] = React.useState<'MANUAL' | 'AUTOMATED' | null>(null);
   const [jirehEntered, setJirehEntered] = React.useState(false);
   const [mitcorpCategory, setMitcorpCategory] = React.useState<'X_SERIES' | 'PR_SERIES' | null>(null);
@@ -458,6 +490,9 @@ export default function ProductDetail() {
       setDurrCategory(null);
       setSpectroCategory(null);
       setDrtechCategory(null);
+      setIrisCategory(null);
+      setTpacCategory(null);
+      setTpacSubCategory(null);
       setJirehCategory(null);
       setMitcorpCategory(null);
       setDanatronicsCategory(null);
@@ -488,6 +523,20 @@ export default function ProductDetail() {
         if (slug === 'bendable-curved-panel') setDrtechCategory('BENDABLE');
         else if (slug === 'static-series') setDrtechCategory('STATIC');
         else if (slug === 'high-resolution-frame-rate') setDrtechCategory('HIGH_RESOLUTION');
+        break;
+      case 'iris':
+        if (slug === 'iris-9000-plus') setIrisCategory('IRIS_9000_PLUS');
+        else if (slug === 'software') setIrisCategory('SOFTWARE');
+        else if (slug === 'probes') setIrisCategory('PROBES');
+        else if (slug === 'accessories') setIrisCategory('ACCESSORIES');
+        break;
+      case 'tpac':
+        if (slug === 'instrument') setTpacCategory('INSTRUMENT');
+        else if (slug === 'software') setTpacCategory('SOFTWARE');
+        else if (slug === 'accessories') setTpacCategory('ACCESSORIES');
+        if (slug === 'paut-explorer-line') setTpacSubCategory('PAUT');
+        else if (slug === 'multi-channel-ut-pilot-line') setTpacSubCategory('MULTI_CHANNEL');
+        else if (slug === 'open-platform-pioneer-line') setTpacSubCategory('OPEN_PLATFORM');
         break;
       case 'Ekoscan':
         if (slug === 'universal-arrays') setEkoscanCategory('UNIVERSAL_ARRAYS');
@@ -782,6 +831,149 @@ export default function ProductDetail() {
                   </>
                 )}
               </div>
+            </>
+          )}
+
+         {/* --- IRIS --- */}
+          {product.id === 'iris' && (
+  <>
+    <div className="grid gap-4 mb-10 transition-all duration-500 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      {([
+        { id: 'IRIS_9000_PLUS', name: 'IRIS 9000 PLUS' },
+        { id: 'SOFTWARE', name: 'Software' },
+        { id: 'PROBES', name: 'Probes' },
+        { id: 'ACCESSORIES', name: 'Accessories' },
+      ] as const).map((cat) => (
+        <button
+          key={cat.id}
+          onClick={() => setIrisCategory(cat.id)}
+          className={`group rounded-2xl border-2 transition-all duration-300 p-6 ${irisCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'}`}
+        >
+          <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 transition-all group-hover:text-white">
+            {cat.name}
+          </div>
+        </button>
+      ))}
+    </div>
+
+    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {irisCategory === 'IRIS_9000_PLUS' && (
+        <>
+          <ProductCard title="IRIS 9000 PLUS" img={IRIS9000PLUS} link="https://www.iris-inspection.com/products/iris-9000plus/" desc="
+Introducing the next generation of heat exchanger inspection. Representing the seventh generation of the IRIS system, the IRIS 9000 Plus has nearly 200 years of combined field inspection experience incorporated in its design. This experience combined with a strong commitment to quality and a history of innovation has made Iris Inspection Services® the undisputed leader in IRIS technology." />
+        </>
+      )}
+
+      {irisCategory === 'SOFTWARE' && (
+        <>
+          <ProductCard title="B-Scan / C-Scan" img={B_scan} link="https://www.iris-inspection.com/products/software/" desc="New IRIS-Vision 5.0© software: the complete IRIS control system and reporting application. With this advanced proprietary software; build tube sheet maps and inspection plans, collect and analyze data, and build quick and concise reports – all on-site.
+This software is used for the inspection, data collection, and analysis. Once complete, an on-site final report is immediately generated. This report consists of a detailed description of the inspection findings, a summary of the test results, tube sheet maps; color coded by percentage loss/remaining and damage type, side views of the exchanger indicating percentage loss/remaining, detailed information on each tube inspected, along with screen captures of the typical indications found. In addition, supplemental tube sheet maps can be generated for tube plugging or selective re-tubing." />
+        </>
+      )}
+
+      {irisCategory === 'PROBES' && (
+        <>
+          <ProductCard title="IRIS Probes" img={IRIS_Probes} link="https://www.iris-inspection.com/products/probes/" desc="The IRIS probes operate in pulse-echo mode to measure wall thickness, material loss, and defect orientation within the range of 8.6mm (0.34 in.) to 82.6mm (3.25 in.) ID." />
+        </>
+      )}
+
+      {irisCategory === 'ACCESSORIES' && (
+        <>
+          <ProductCard title="Water Filter Assembly" img={WATER_FILTER_ASSEMBLY} link="https://www.iris-inspection.com/products/accessories/" desc="" />
+          <ProductCard title="Test & Calibration Tubes" img={TESTCALIBRATION} link="https://www.iris-inspection.com/products/accessories/" desc="Custom material and size test/calibration tubes available." />
+        </>
+      )}
+    </div>
+  </>
+          )}
+
+          {/* --- TPAC --- */}
+          {product.id === 'tpac' && (
+            <>
+              <div className="grid gap-4 mb-10 transition-all duration-500 grid-cols-1 md:grid-cols-3">
+                {([
+                  { id: 'INSTRUMENT', name: 'Instrument' },
+                  { id: 'SOFTWARE', name: 'Software' },
+                  { id: 'ACCESSORIES', name: 'Accessories' },
+                ] as const).map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setTpacCategory(cat.id)}
+                    className={`group rounded-2xl border-2 transition-all duration-300 p-6 ${tpacCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'}`}
+                  >
+                    <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 transition-all group-hover:text-white">
+                      {cat.name}
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {tpacCategory === 'INSTRUMENT' && (
+                <>
+                  <div className="grid gap-4 mb-10 transition-all duration-500 grid-cols-1 md:grid-cols-3">
+                    {([
+                      { id: 'PAUT', name: 'PAUT (Explorer line)' },
+                      { id: 'MULTI_CHANNEL', name: 'Multi-channel UT (Pilot Line)' },
+                      { id: 'OPEN_PLATFORM', name: 'Open Platform (Pioneer Line)' },
+                    ] as const).map((sub) => (
+                      <button
+                        key={sub.id}
+                        onClick={() => setTpacSubCategory(sub.id)}
+                        className={`group rounded-2xl border-2 transition-all duration-300 p-5 ${tpacSubCategory === sub.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'}`}
+                      >
+                        <div className="text-center text-[10px] font-black uppercase tracking-[0.2em] leading-relaxed text-white/70 transition-all group-hover:text-white">
+                          {sub.name}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    {tpacSubCategory === 'PAUT' && (
+                      <>
+                        <ProductCard title="Explorer" img={Explorer} link="https://thephasedarraycompany.com/product/explorer/" desc={`Explorer meets the requirements of your most demanding applications, while weighing only 1.2kg!\n\nWith its compact form factor, designed for IP 67 rating and easy mounting capability, the Explorer is perfect for integration in automated inspection systems, scanners or robots.\n\nThe Explorer's technology thrives in any environment or setting, exceeding your expectations by providing tailored tools for your application.\n\nElevate your inspection capabilities with the Explorer line — where cutting-edge technology meets unparalleled adaptability.`} />
+                        <ProductCard title="Explorer 128" img={Explorer_128} link="https://thephasedarraycompany.com/product/explorer-128/" desc={`The Explorer 128 is a field and immersion proof phased array UT device.\n\nThis top-of-the line full parallel 128 channels is ideal for most common applications requiring advanced imaging techniques.\n\nUltra compact, the Explorer 128 guarantees faster, more reliable inspections.\n\nElevate your inspection capabilities with the Explorer line — where cutting-edge technology meets unparalleled adaptability.`} />
+                        <ProductCard title="Explorer Max" img={Explorer_Max} link="https://thephasedarraycompany.com/product/explorer-max/" desc={`The Explorer Max sets the highest speed standard for phased array UT technology.\n\nThe inspection speed for a 1/2 inch weld at a 60-degree angle is greater than 100 millimeters per second with the Explorer Max!\n\nThis ultra compact device includes PAUT, Matrix array, FMC and all other TFM methods.\n\nElevate your inspection capabilities with the Explorer line — where cutting-edge technology meets unparalleled adaptability.`} />
+                        <ProductCard title="Explorer 128 Max" img={Explorer_128_Max} link="https://thephasedarraycompany.com/product/explorer-128-max/" desc={`The Explorer 128 Max is ultra compact, IP rated and super fast!\n\nThe inspection speed for a 1/2 inch weld at a 60-degree angle is greater than 100 millimeters per second with the Explorer 128 MAX.\n\nThis revolutionary device includes PAUT, large matrix phased array, FMC and all other TFM methods.\n\nElevate your inspection capabilities with the Explorer line — where cutting-edge technology meets unparalleled adaptability.`} />
+                      </>
+                    )}
+
+                      {tpacSubCategory === 'MULTI_CHANNEL' && (
+                      <>
+                        <ProductCard title="Pilot +" img={pilotPlus} link="https://thephasedarraycompany.com/product/pilot-plus/" desc={`The Pilot + will meet your most demanding needs in various industries, from aeronautics (composite and honeycomb structures) to in-line, as well as TOFD.\n\nThe high voltage transmitters and the bipolar tone burst facilitate the inspection of thick, noisy or complex materials such as sandwich, honeycomb or composite.\n\nPowerful and ultra compact, this 8-channel full parallel and up to 64 multiplexed, unit pushed the boundaries of the UT benchmark.\n\nFlexible platform designed for multi-channel UT.\n\nDigital dynamic range of 162 dB – No more analog gain!`} />
+                        <ProductCard title="Pilot Multi" img={pilotMulti} link="https://thephasedarraycompany.com/product/pilot-multi/" desc={`The Pilot Multi sets itself apart with its very high channel density, it can go up to 64 multiplexed channels!\n\nWith this revolutionary, open platform device, create your own custom solutions for fast inspection.\n\nSuper compact, the Pilot multi is designed for IP 67, easy to integrate on robots and scanners.\n\nFlexible platform designed for multi-channel UT.`} />
+                        <ProductCard title="Pilot" img={pilot} link="https://thephasedarraycompany.com/product/pilot/" desc={`The Pilot Multi sets itself apart with its very high channel density, it can go up to 64 multiplexed channels!\n\nWith this revolutionary, open platform device, create your own custom solutions for fast inspection.\n\nSuper compact, the Pilot multi is designed for IP 67, easy to integrate on robots and scanners.\n\nFlexible platform designed for multi-channel UT.`} />
+                      </>
+                    )}
+
+                    {tpacSubCategory === 'OPEN_PLATFORM' && (
+                      <>
+                        <ProductCard title="Pioneer Open Platform" img={product.logo} link="https://www.google.com/search?q=TPAC+Pioneer+line+open+platform+NDT" desc="Flexible open-platform ultrasonic system built for custom inspection configurations, integration, and advanced research or production use." />
+                        <ProductCard title="Pioneer Integration Modules" img={product.logo} link="https://www.google.com/search?q=TPAC+Pioneer+integration+modules" desc="Scalable modules supporting custom system architecture, data interfaces, and specialized inspection layouts." />
+                        <ProductCard title="Pioneer Custom Test Setup" img={product.logo} link="https://www.google.com/search?q=TPAC+Pioneer+custom+UT+setup" desc="Adaptable solution for testing rigs and automation workflows requiring open architecture and tailored inspection capabilities." />
+                      </>
+                    )}
+                  </div>
+                </>
+              )}
+
+                {tpacCategory === 'SOFTWARE' && (
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                  <ProductCard title="Prelude" img={prelude} link="https://thephasedarraycompany.com/product/prelude/" desc={`To simplify your inspection, we offer you Prelude, a versatile phased array software that is suitable for any application. Prelude is designed with a focus on your ease of use: anyone knowing phased array becomes a Prelude expert in less than 15 minutes, as Prelude handles the complexity for you.\n\nPrelude is a powerful and flexible software package for PAUT, providing real-time visualization and simple data analysis after completing your inspection. All displays represent corrected views, no need to go through complex settings. You can start a new inspection with just a few clicks.\n\nUT setup parameters and data acquisition for PAUT have never been easier!`} />
+                  <ProductCard title="Concerto" img={concerto} link="https://thephasedarraycompany.com/product/concerto/" desc={`Concerto is a UT data acquisition and analysis software designed specifically for wall thickness measurement and corrosion mapping using either conventional multi-channel or phased array. Considering the tough field conditions that operators deal with, Concerto makes it easy, featuring an interface with no menu, less than 18 icons, and only a few controls, so that operators can work with an intuitive interface and not be bothered by complex GUIs.\n\nConcerto's ease of use is coupled with extensive features; corrosion mapping with interface echo tracking, coating layers (a great addition for corrosion applications!), adjustable gates in analysis (acquisition remains valid when initial gate settings are not correct), configurable views & color palettes, as well as simple but effective analysis tools.\n\nConcerto is a perfect companion for the Explorer and your automated scanner for rapid and first-class corrosion mapping results at an affordable price.\n\nCorrosion mapping has never been easier, even for dissimilar corrosion.`} />
+                  <ProductCard title="Aria" img={aria} link="https://thephasedarraycompany.com/product/aria/" desc={`ARIA is an open format software for R&D, academia, and laboratory applications. Nevertheless, all users can benefit from ARIA regardless of its deployment.\n\nDedicated to ultrasonic imaging, ARIA offers a powerful software suite, for exploration of all the TFM-based reconstruction technologies such as SAFT, TFM, and more advanced imaging techniques such as PWI, CWI, DWI, XWI and, in addition, adaptive (complex geometries), nonlinear acoustics, and much more.\n\nApply extensive post-processing to analyze and manage your results. Although it is full of features and various processing tools, it is optimized in speed (optimized for GPU and therefore future-proof).\n\nEnjoy a comprehensive user-friendly configuration panel, which is also a powerful inspection tool. Complete with setup, acquisition, and analysis modules, ARIA allows the user to use any TPAC scanning device. Acquire, manipulate, and analyze data in high resolution while using the most comprehensive and advanced image reconstruction technology available. All UT probe configurations are possible, including flat, curved, matrix, pitch and catch matrix, and custom. Also includes Adaptive FMC/TFM for easy inspection of components with complex geometries.`} />
+                  <ProductCard title="IW Scan" img={iwScan} link="https://www.utex.com/webapps/UtexHomeV2.nsf/~/1.1.1" desc={`The UTEX NDT Suite brings together four interoperable applications (Scan, Evaluate, Plan and Automate) to support workflows ranging from simple inspections to fully automated systems.\n\nIts modular design enables continuous improvement without recertification and ensures smooth integration between instruments and inspection systems.\n\nIW Scan is used on its own for manual or semi-automated inspections, or as part of a fully automated workflow when coordinated by IW Automate. Once data is acquired, all advanced analysis tools in IW Evaluate become available, providing a seamless transition from acquisition to evaluation.\n\nIt supports TPAC Explorer, a compact, high-throughput advanced PAUT instrument.\n\nIW Scan lets you visualize, configure, and calibrate your inspection setup easily, and the full UTEX NDT Suite enhances performance across aerospace, robotics, and oil & gas applications.`} />
+                </div>
+              )}
+
+                  {tpacCategory === 'ACCESSORIES' && (
+                  <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                  <ProductCard title="Inputs & Outputs Management" img={inputsAndOutputsManagement} link="https://thephasedarraycompany.com/product/inputs-outputs-management/" desc="To manage input and output signals interfacing with TPAC devices" />
+                  <ProductCard title="Adaptors and Connectors" img={adaptorsAndConnectors} link="https://thephasedarraycompany.com/product/adaptors-and-connectors/" desc="Standard or customized accessories for ideal inspection setup" />
+                  <ProductCard title="Pre-amplifier" img={preAmplifier} link="https://thephasedarraycompany.com/product/low-noise-pre-amplifier/" desc="The Preamplifier is a high-performance accessory for the low-noise amplification of ultrasonic signals" />
+                  <ProductCard title="Probes" img={probes} link="https://thephasedarraycompany.com/product/probes/" desc="A wide range of Phased Array probes, in various configuration for optimal signal transmission" />
+                </div>
+              )}
             </>
           )}
 

@@ -1,0 +1,12 @@
+<svg width="800" height="240" viewBox="0 0 800 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="240" rx="28" fill="#0F172A"/>
+  <rect x="24" y="24" width="752" height="192" rx="22" fill="#F8FAFC"/>
+  <path d="M128 170V70H200C231 70 256 82 272 106C286 127 286 154 272 175C256 199 231 211 200 211H128V170ZM168 130H192C204 130 212 124 216 114C220 104 219 95 214 88C210 80 201 75 188 75H168V130Z" fill="#0F172A"/>
+  <path d="M318 170L352 70H395L428 170H385L380 156H361L356 170H318ZM365 126H376L372 111L368 126H365Z" fill="#0F172A"/>
+  <path d="M454 170V70H495V170H454Z" fill="#0F172A"/>
+  <path d="M545 170V70H586V170H545Z" fill="#0F172A"/>
+  <path d="M538 70H593L652 170H610L538 70Z" fill="#0F172A"/>
+  <path d="M668 70H706L754 170H716L668 70Z" fill="#0F172A"/>
+  <rect x="104" y="34" width="580" height="10" rx="5" fill="#0F6FFF" opacity="0.9"/>
+  <text x="400" y="198" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#0F172A" letter-spacing="10">IRIS</text>
+</svg>

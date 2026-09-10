@@ -86,6 +86,8 @@ const productMenu = [
   { id: '3e-ndt', label: '3E NDT', href: '/product/3e-ndt', subcategories: [] },
   { id: 'durr-ndt', label: 'DURR NDT', href: '/product/durr-ndt', subcategories: ['Computed Radiography', 'Direct Digital Radiography', 'NDT Software', 'Conventional Radiography'] },
   { id: 'drtech', label: 'DRTECH', href: '/product/drtech', subcategories: ['Bendable & Curved panel', 'Static series', 'High Resolution & Frame Rate'] },
+  { id: 'iris', label: 'IRIS', href: '/product/iris', subcategories: ['IRIS 9000 PLUS', 'Software', 'Probes', 'Accessories'] },
+  { id: 'TPAC', label: 'TPAC', href: '/product/TPAC.jpg', subcategories: ['Instrument', 'Software', 'Accessories'] },
   { id: 'vallen-systeme', label: 'VALLEN SYSTEME', href: '/product/vallen-systeme', subcategories: [] },
   { id: 'rohmann', label: 'ROHMANN', href: '/product/rohmann', subcategories: ['Inspection Systems', 'Accessories'] },
   { id: 'mitcorp', label: 'MITCORP', href: '/product/mitcorp', subcategories: ['X-SERIES INDUSTRIAL VIDEOSCOPES', 'PR-SERIES PIPE INSPECTION VIDEOSCOPES'] },

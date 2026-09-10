@@ -26,8 +26,20 @@ export const productsData: Product[] = [
   {
     id: 'drtech',
     name: 'DRTECH',
-    logo: assetUrl('DRTECH.svg'),
+    logo: assetUrl('DRTECH.png'),
     description: 'DRTECH specializes in advanced digital radiography and flat-panel detector solutions designed for high-resolution imaging, bendable curved panel applications, static inspection systems, and high frame-rate performance in demanding industrial inspection environments.',
+  },
+  {
+    id: 'iris',
+    name: 'IRIS',
+    logo: assetUrl('IRIS.png'),
+    description: 'IRIS delivers advanced ultrasonic inspection technology, software-driven analysis, interchangeable probes, and accessories engineered for reliable, high-precision nondestructive testing across industrial applications.',
+  },
+  {
+    id: 'tpac',
+    name: 'TPAC',
+    logo: assetUrl('TPAC.jpg'),
+    description: 'TPAC provides advanced ultrasonic instrumentation, software, and accessories for industrial NDT, with flexible inspection platforms designed for PAUT, multi-channel UT, and open-platform applications.',
   },
   {
     id: 'balteau',
