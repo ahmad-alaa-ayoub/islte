@@ -125,7 +125,7 @@ export default function App() {
 
   // --- BRAND COLORS ---
   const ISL_GRAY = '#A3A3A3';
-  const NAV_DARK = '#0F172A';
+  const NAV_DARK = 'rgba(15, 23, 42, 0.78)';
   const TEXT_PRIMARY = '#1E293B';
   const TEXT_MUTED = '#64748B';
 
@@ -189,7 +189,7 @@ export default function App() {
           id="home"
           className="relative pt-64 pb-32 px-6 overflow-hidden flex items-center justify-center min-h-[80vh]"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.86)), url(${currentBackground})`,
+            backgroundImage: `linear-gradient(to bottom, rgba(15, 23, 42, 0.74), rgba(15, 23, 42, 0.6)), url(${currentBackground})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed' // ???? ????? Parallax ???????
@@ -241,7 +241,7 @@ export default function App() {
             {activeProductTab === 'products' ? (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
                 {partnerLogos.map((logo) => (
-                  <Link to={`/product/${logo.id}`} key={logo.id} className="group relative bg-[#0F172A] border border-[#0F172A] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center">
+                  <Link to={`/product/${logo.id}`} key={logo.id} className="group relative bg-[rgba(15,23,42,0.72)] border border-[rgba(15,23,42,0.72)] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center">
                     <div className="aspect-square w-full flex items-center justify-center bg-slate-50 px-4 py-4">
                       <img src={logo.url} alt={logo.name} className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
                     </div>
@@ -617,7 +617,7 @@ export default function App() {
 
       <ScrollManager />
 
-      <nav ref={navRef} className={`fixed top-0 left-0 right-0 w-full z-50 block py-8 bg-[#0F172A] transition-all duration-500 ${navHidden ? '-translate-y-[110%] pointer-events-none' : 'translate-y-0'}`}>
+      <nav ref={navRef} className={`fixed top-0 left-0 right-0 w-full z-50 block py-8 bg-[rgba(15,23,42,0.75)] transition-all duration-500 ${navHidden ? '-translate-y-[110%] pointer-events-none' : 'translate-y-0'}`}>
         <div className="max-w-7xl mx-auto px-0 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-0 -translate-x-20 md:-translate-x-8">
             <img src={ISL_LOGO_NEW} alt="Integrity Scientific" className="h-28 md:h-40 transition-all" />
@@ -706,7 +706,7 @@ export default function App() {
           </button>
         </div>
 
-        <div className={`${mobileNavOpen ? 'block' : 'hidden'} lg:hidden border-t border-slate-800 bg-slate-950/98`}>
+        <div className={`${mobileNavOpen ? 'block' : 'hidden'} lg:hidden border-t border-slate-800 bg-slate-950/70`}>
           <div className="px-6 py-5 space-y-4 text-[12px] font-black uppercase tracking-[0.2em] text-slate-200">
             <Link key="Home" to="/" onClick={() => setMobileNavOpen(false)} className="block text-white/80 hover:text-white transition-all">Home</Link>
 
@@ -774,7 +774,7 @@ export default function App() {
         <Route path="/contact" element={<ContactUsPage />} />
       </Routes>
 
-      <footer className="bg-[#0F172A] text-white pt-24 relative">
+      <footer className="bg-[rgba(15,23,42,0.78)] text-white pt-24 relative">
         <div className="max-w-7xl mx-auto px-8 pb-16 grid grid-cols-1 md:grid-cols-3 gap-20">
           {/* RESTORED: What We Do Section */}
           <div>

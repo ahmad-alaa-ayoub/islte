@@ -578,7 +578,7 @@ export default function ProductDetail() {
   // Reusable Card Component
   const ProductCard = ({ title, desc, img, link, note }: { title: string, desc: string, img?: string, link: string, note?: string }) => (
 
-    <div className="group overflow-hidden rounded-3xl border border-[#0F172A] bg-[#0F172A] p-4 transition-all hover:shadow-lg flex flex-col">
+    <div className="group overflow-hidden rounded-3xl border border-[rgba(15,23,42,0.72)] bg-[rgba(15,23,42,0.72)] p-4 transition-all hover:shadow-lg flex flex-col">
       <a href={link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-3xl mb-4 bg-white">
         {img ? (
           <img src={img} alt={title} className="h-56 w-full object-contain transition-transform group-hover:scale-105" />
@@ -611,7 +611,7 @@ export default function ProductDetail() {
           </Link>
         )}
 
-        <div className="product-detail-panel bg-[#0F172A] rounded-3xl p-8 md:p-12 shadow-sm border border-[#0F172A]">
+        <div className="product-detail-panel bg-[rgba(15,23,42,0.78)] rounded-3xl p-8 md:p-12 shadow-sm border border-[rgba(15,23,42,0.72)]">
           <img src={product.logo} alt={product.name} className="product-detail-logo mb-8" />
           <p className="text-xl text-slate-300 leading-relaxed mb-10 whitespace-pre-line">
             {product.description}

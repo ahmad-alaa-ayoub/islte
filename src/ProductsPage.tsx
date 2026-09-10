@@ -18,7 +18,7 @@ export default function ProductsPage() {
           {partnerLogos.map((logo) => (
             <div
               key={logo.id}
-              className="group relative bg-[#0F172A] border border-[#0F172A] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center"
+              className="group relative bg-[rgba(15,23,42,0.72)] border border-[rgba(15,23,42,0.72)] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center"
             >
               <Link to={`/product/${logo.id}`} className="block w-full">
                 <div className="product-logo-frame bg-slate-50 px-4 py-4">
@@ -33,7 +33,7 @@ export default function ProductsPage() {
                 <div className="text-sm font-black uppercase tracking-[0.18em] text-white">{logo.name}</div>
                 <Link
                   to={`/product/${logo.id}`}
-                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#0F172A] px-4 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-white transition hover:bg-sky-700"
+                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-[rgba(15,23,42,0.72)] px-4 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-white transition hover:bg-sky-700"
                 >
                   View Product
                   <ChevronRight size={14} />

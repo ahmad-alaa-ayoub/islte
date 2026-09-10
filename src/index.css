@@ -4,7 +4,8 @@
 
 @layer base {
     :root {
-        --site-navy: #0f172a;
+        --site-navy: rgba(15, 23, 42, 0.75);
+        --site-navy-strong: #0f172a;
         --site-text: #1e293b;
         --site-muted: #64748b;
     }
@@ -66,6 +67,13 @@
 .site-shell [class~="bg-blue-600"],
 .site-shell [class~="bg-[#003349]"] {
     background-color: var(--site-navy) !important;
+}
+
+.site-shell .bg-slate-950\/95,
+.site-shell .bg-slate-950\/98,
+.site-shell .bg-slate-900\/95,
+.site-shell .bg-slate-900\/98 {
+    background-color: rgba(15, 23, 42, 0.72) !important;
 }
 
 .site-shell [class~="border-sky-700"],
