@@ -13,6 +13,7 @@ const drtechExt1036bwImage = new URL('./product/DRTECH/EXT 1036BW.png', import.m
 const drtechExt1036cImage = new URL('./product/DRTECH/EXT 1036C.png', import.meta.url).href;
 const drtechExt4357uhImage = new URL('./product/DRTECH/EXT 4357UH.png', import.meta.url).href;
 const drtechExt3643uhImage = new URL('./product/DRTECH/EXT 3643UH.png', import.meta.url).href;
+const drtechExt2430hImage = new URL('./product/DRTECH/EXT 2430H.png', import.meta.url).href;
 const drtechExt2430uhImage = new URL('./product/DRTECH/EXT 2430UH.png', import.meta.url).href;
 const drtechExt3643sImage = new URL('./product/DRTECH/EXT 3643S.png', import.meta.url).href;
 const drtechExt1024sImage = new URL('./product/DRTECH/EXT 1024S.png', import.meta.url).href;
@@ -768,7 +769,7 @@ export default function ProductDetail() {
                     <ProductCard title="EXT 3643UH" img={drtechExt3643uhImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=287" desc={"High Image Quality\nReliable & Portable Solution\nStable Wireless Interface"} />
                     <ProductCard title="EXT 2430UH" img={drtechExt2430uhImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=297" desc={"High Image Quality\nReliable & Portable Solution\nStable Wireless Interface"} />
                     <ProductCard title="EXT 3643S" img={drtechExt3643sImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=42" desc={"High Resolution, High Quality Image\nLarge Field of View\nRugged Design & Portable Solution\nHot Swap & Dual Battery\nStable Wireless Interface\nFast Workflow"} />
-                    <ProductCard title="EXT 2430H" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=41" desc={"High Image Quality\nWidest Energy Range from X-ray to Gamma-ray\nReliable & Portable Solution\nFast Workflow"} />
+                    <ProductCard title="EXT 2430H" img={drtechExt2430hImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=41" desc={"High Image Quality\nWidest Energy Range from X-ray to Gamma-ray\nReliable & Portable Solution\nFast Workflow"} />
                     <ProductCard title="EXT 1024S" img={drtechExt1024sImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=39" desc={"Identical Active Area Size as NDT RT Film\nHigh Quality Image\nLight Weight & Rugged Design\nReliable & Portable Solution\nFast Workflow"} />
                   </>
                 )}
