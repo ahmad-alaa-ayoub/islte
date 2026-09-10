@@ -5,6 +5,20 @@ import { ChevronLeft } from 'lucide-react';
 
 // --- IMAGE IMPORTS ---
 
+// DRTECH
+const drtechExt1043Image = new URL('./product/DRTECH/EXT1043.png', import.meta.url).href;
+const drtechExt1024bImage = new URL('./product/DRTECH/EXT 1024B.png', import.meta.url).href;
+const drtechExt1036bImage = new URL('./product/DRTECH/EXT 1036B.png', import.meta.url).href;
+const drtechExt1036bwImage = new URL('./product/DRTECH/EXT 1036BW.png', import.meta.url).href;
+const drtechExt1036cImage = new URL('./product/DRTECH/EXT 1036C.png', import.meta.url).href;
+const drtechExt4357uhImage = new URL('./product/DRTECH/EXT 4357UH.png', import.meta.url).href;
+const drtechExt3643uhImage = new URL('./product/DRTECH/EXT 3643UH.png', import.meta.url).href;
+const drtechExt2430uhImage = new URL('./product/DRTECH/EXT 2430UH.png', import.meta.url).href;
+const drtechExt3643sImage = new URL('./product/DRTECH/EXT 3643S.png', import.meta.url).href;
+const drtechExt1024sImage = new URL('./product/DRTECH/EXT 1024S.png', import.meta.url).href;
+const drtechExt4343rImage = new URL('./product/DRTECH/EXT 4343R.png', import.meta.url).href;
+const drtechExt2832rImage = new URL('./product/DRTECH/EXT 2832R.png', import.meta.url).href;
+const drtechExt1616rImage = new URL('./product/DRTECH/EXT 1616R.png', import.meta.url).href;
 
 // GB INSPECTION SYSTEMS
 const gb0Compression = new URL('./product/GB/download.jpg', import.meta.url).href;
@@ -728,12 +742,9 @@ export default function ProductDetail() {
                   <button
                     key={cat.id}
                     onClick={() => setDrtechCategory(cat.id)}
-                    className={`group rounded-2xl border-2 transition-all duration-300 p-4 ${drtechCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'}`}
+                    className={`group rounded-2xl border-2 transition-all duration-300 p-6 ${drtechCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'}`}
                   >
-                    <div className="mb-3 flex h-20 items-center justify-center rounded-2xl bg-white ring-1 ring-slate-200">
-                      <img src={product.logo} alt={cat.name} className="max-h-full max-w-full object-contain" />
-                    </div>
-                    <div className="text-center font-black uppercase text-[10px] leading-relaxed">
+                    <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 transition-all group-hover:text-white">
                       {cat.name}
                     </div>
                   </button>
@@ -743,30 +754,30 @@ export default function ProductDetail() {
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {drtechCategory === 'BENDABLE' && (
                   <>
-                    <ProductCard title="EXT 1043B" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=286" desc={"The world's first Benable Detector\nFree movement from 8\" pipe (Distortion free)\nSuperior mobility for all pipe inspection area\nLong wide image area with Lightweight\nReliable waterproof (IP67)"} />
-                    <ProductCard title="EXT 1024B" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=285" desc={"The world's first Benable Detector\nFree movement from 2\" pipe (Distortion free)\nSuperior mobility for all pipe inspection area\nReliable waterproof (IP67)"} />
-                    <ProductCard title="EXT 1036B" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=55" desc={"World 1st pipe & tank cover designed digital X-ray panel (Free movement from 8\" pipe)\nConforms to the pipe, zero distortion\nLight weight for the carry out"} />
-                    <ProductCard title="EXT 1036BW" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=53" desc={"World 1st pipe & tank cover designed digital X-ray panel (Free movement from 8\" pipe)\nConforms to the pipe, zero distortion\nLight weight for the carry out"} />
-                    <ProductCard title="EXT 1036C" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=51" desc={"Curved digital X-ray panel for Pipeline inspection\nConforms to the pipe, zero distortion\nLight weight for the carry out\nWater & Dust proof"} />
+                    <ProductCard title="EXT 1043B" img={drtechExt1043Image} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=286" desc={"The world's first Benable Detector\nFree movement from 8\" pipe (Distortion free)\nSuperior mobility for all pipe inspection area\nLong wide image area with Lightweight\nReliable waterproof (IP67)"} />
+                    <ProductCard title="EXT 1024B" img={drtechExt1024bImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=285" desc={"The world's first Benable Detector\nFree movement from 2\" pipe (Distortion free)\nSuperior mobility for all pipe inspection area\nReliable waterproof (IP67)"} />
+                    <ProductCard title="EXT 1036B" img={drtechExt1036bImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=55" desc={"World 1st pipe & tank cover designed digital X-ray panel (Free movement from 8\" pipe)\nConforms to the pipe, zero distortion\nLight weight for the carry out"} />
+                    <ProductCard title="EXT 1036BW" img={drtechExt1036bwImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=53" desc={"World 1st pipe & tank cover designed digital X-ray panel (Free movement from 8\" pipe)\nConforms to the pipe, zero distortion\nLight weight for the carry out"} />
+                    <ProductCard title="EXT 1036C" img={drtechExt1036cImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=51" desc={"Curved digital X-ray panel for Pipeline inspection\nConforms to the pipe, zero distortion\nLight weight for the carry out\nWater & Dust proof"} />
                   </>
                 )}
 
                 {drtechCategory === 'STATIC' && (
                   <>
-                    <ProductCard title="EXT 4357UH" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=298" desc={"Ultra Large Imaging Area\nReliable & Portable Solution\nStable Wireless Interface"} />
-                    <ProductCard title="EXT 3643UH" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=287" desc={"High Image Quality\nReliable & Portable Solution\nStable Wireless Interface"} />
-                    <ProductCard title="EXT 2430UH" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=297" desc={"High Image Quality\nReliable & Portable Solution\nStable Wireless Interface"} />
-                    <ProductCard title="EXT 3643S" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=42" desc={"High Resolution, High Quality Image\nLarge Field of View\nRugged Design & Portable Solution\nHot Swap & Dual Battery\nStable Wireless Interface\nFast Workflow"} />
+                    <ProductCard title="EXT 4357UH" img={drtechExt4357uhImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=298" desc={"Ultra Large Imaging Area\nReliable & Portable Solution\nStable Wireless Interface"} />
+                    <ProductCard title="EXT 3643UH" img={drtechExt3643uhImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=287" desc={"High Image Quality\nReliable & Portable Solution\nStable Wireless Interface"} />
+                    <ProductCard title="EXT 2430UH" img={drtechExt2430uhImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=297" desc={"High Image Quality\nReliable & Portable Solution\nStable Wireless Interface"} />
+                    <ProductCard title="EXT 3643S" img={drtechExt3643sImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=42" desc={"High Resolution, High Quality Image\nLarge Field of View\nRugged Design & Portable Solution\nHot Swap & Dual Battery\nStable Wireless Interface\nFast Workflow"} />
                     <ProductCard title="EXT 2430H" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=41" desc={"High Image Quality\nWidest Energy Range from X-ray to Gamma-ray\nReliable & Portable Solution\nFast Workflow"} />
-                    <ProductCard title="EXT 1024S" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=39" desc={"Identical Active Area Size as NDT RT Film\nHigh Quality Image\nLight Weight & Rugged Design\nReliable & Portable Solution\nFast Workflow"} />
+                    <ProductCard title="EXT 1024S" img={drtechExt1024sImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=39" desc={"Identical Active Area Size as NDT RT Film\nHigh Quality Image\nLight Weight & Rugged Design\nReliable & Portable Solution\nFast Workflow"} />
                   </>
                 )}
 
                 {drtechCategory === 'HIGH_RESOLUTION' && (
                   <>
-                    <ProductCard title="EXT 4343R" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=44" desc={"High Resolution, High Quality Image\nLarge Field of View\nFast Frame Rate\nHigh Energy Range\nExceptional Reliability & Rugged Design"} />
-                    <ProductCard title="EXT 2832R" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=289" desc={"Low Noise IGZO TFT\nFast Frame Rate\nExceptional Reliability & Rugged Design"} />
-                    <ProductCard title="EXT 1616R" img={product.logo} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=43" desc={"High Resolution, High Quality Image\nFast Frame Rate\nHigh Energy Range\nDurable & Rugged Design"} />
+                    <ProductCard title="EXT 4343R" img={drtechExt4343rImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=44" desc={"High Resolution, High Quality Image\nLarge Field of View\nFast Frame Rate\nHigh Energy Range\nExceptional Reliability & Rugged Design"} />
+                    <ProductCard title="EXT 2832R" img={drtechExt2832rImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=289" desc={"Low Noise IGZO TFT\nFast Frame Rate\nExceptional Reliability & Rugged Design"} />
+                    <ProductCard title="EXT 1616R" img={drtechExt1616rImage} link="https://www.drtech.co.kr/en/sub/product/view.php?s_cate=1015&idx=43" desc={"High Resolution, High Quality Image\nFast Frame Rate\nHigh Energy Range\nDurable & Rugged Design"} />
                   </>
                 )}
               </div>
