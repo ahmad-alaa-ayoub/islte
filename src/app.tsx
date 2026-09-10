@@ -85,6 +85,7 @@ const productMenu = [
   { id: 'jireh', label: 'JIREH', href: '/product/jireh', subcategories: ['Manual Weld & Corrosion Scanning', 'Automated Crawlers'] },
   { id: '3e-ndt', label: '3E NDT', href: '/product/3e-ndt', subcategories: [] },
   { id: 'durr-ndt', label: 'DURR NDT', href: '/product/durr-ndt', subcategories: ['Computed Radiography', 'Direct Digital Radiography', 'NDT Software', 'Conventional Radiography'] },
+  { id: 'drtech', label: 'DRTECH', href: '/product/drtech', subcategories: ['Bendable & Curved panel', 'Static series', 'High Resolution & Frame Rate'] },
   { id: 'vallen-systeme', label: 'VALLEN SYSTEME', href: '/product/vallen-systeme', subcategories: [] },
   { id: 'rohmann', label: 'ROHMANN', href: '/product/rohmann', subcategories: ['Inspection Systems', 'Accessories'] },
   { id: 'mitcorp', label: 'MITCORP', href: '/product/mitcorp', subcategories: ['X-SERIES INDUSTRIAL VIDEOSCOPES', 'PR-SERIES PIPE INSPECTION VIDEOSCOPES'] },
@@ -125,7 +126,7 @@ export default function App() {
 
   // --- BRAND COLORS ---
   const ISL_GRAY = '#A3A3A3';
-  const NAV_DARK = 'rgba(15, 23, 42, 0.78)';
+  const NAV_DARK = 'rgba(15, 23, 42, 0.56)';
   const TEXT_PRIMARY = '#1E293B';
   const TEXT_MUTED = '#64748B';
 
@@ -171,7 +172,7 @@ export default function App() {
   useEffect(() => {
     const backgroundTimer = window.setInterval(() => {
       setBackgroundIndex((currentIndex) => (currentIndex + 1) % BACKGROUND_IMAGES.length);
-    }, 20000);
+    }, 10000);
 
     return () => window.clearInterval(backgroundTimer);
   }, []);
@@ -189,7 +190,7 @@ export default function App() {
           id="home"
           className="relative pt-64 pb-32 px-6 overflow-hidden flex items-center justify-center min-h-[80vh]"
           style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(15, 23, 42, 0.74), rgba(15, 23, 42, 0.6)), url(${currentBackground})`,
+            backgroundImage: `linear-gradient(to bottom, rgba(15, 23, 42, 0.58), rgba(15, 23, 42, 0.42)), url(${currentBackground})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed' // ???? ????? Parallax ???????
@@ -617,7 +618,7 @@ export default function App() {
 
       <ScrollManager />
 
-      <nav ref={navRef} className={`fixed top-0 left-0 right-0 w-full z-50 block py-8 bg-[rgba(15,23,42,0.75)] transition-all duration-500 ${navHidden ? '-translate-y-[110%] pointer-events-none' : 'translate-y-0'}`}>
+      <nav ref={navRef} className={`fixed top-0 left-0 right-0 w-full z-50 block py-8 bg-[rgba(15,23,42,0.52)] transition-all duration-500 ${navHidden ? '-translate-y-[110%] pointer-events-none' : 'translate-y-0'}`}>
         <div className="max-w-7xl mx-auto px-0 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-0 -translate-x-20 md:-translate-x-8">
             <img src={ISL_LOGO_NEW} alt="Integrity Scientific" className="h-28 md:h-40 transition-all" />

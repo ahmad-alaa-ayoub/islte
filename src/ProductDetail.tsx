@@ -413,6 +413,7 @@ export default function ProductDetail() {
   const [durrEntered, setDurrEntered] = React.useState(false);
   const [spectroCategory, setSpectroCategory] = React.useState<'RADIOMETERS' | 'NDT_SUPPLIES' | 'AEROSPACE' | null>(null);
   const [spectroEntered, setSpectroEntered] = React.useState(false);
+  const [drtechCategory, setDrtechCategory] = React.useState<'BENDABLE' | 'STATIC' | 'HIGH_RESOLUTION' | null>(null);
   const [jirehCategory, setJirehCategory] = React.useState<'MANUAL' | 'AUTOMATED' | null>(null);
   const [jirehEntered, setJirehEntered] = React.useState(false);
   const [mitcorpCategory, setMitcorpCategory] = React.useState<'X_SERIES' | 'PR_SERIES' | null>(null);
@@ -441,6 +442,7 @@ export default function ProductDetail() {
       setEchoCategory(null);
       setDurrCategory(null);
       setSpectroCategory(null);
+      setDrtechCategory(null);
       setJirehCategory(null);
       setMitcorpCategory(null);
       setDanatronicsCategory(null);
@@ -466,6 +468,11 @@ export default function ProductDetail() {
           setSpectroCategory('NDT_SUPPLIES');
           setSpectroEntered(true);
         }
+        break;
+      case 'drtech':
+        if (slug === 'bendable-curved-panel') setDrtechCategory('BENDABLE');
+        else if (slug === 'static-series') setDrtechCategory('STATIC');
+        else if (slug === 'high-resolution-frame-rate') setDrtechCategory('HIGH_RESOLUTION');
         break;
       case 'Ekoscan':
         if (slug === 'universal-arrays') setEkoscanCategory('UNIVERSAL_ARRAYS');
@@ -703,6 +710,58 @@ export default function ProductDetail() {
                     <ProductCard title="MOTIX" img={jirehMotixImg} link="https://www.jireh.com/products/category/motix/" desc="The MOTIX is a motorized inspection system capable of various configurations on non-ferrous surfaces such as GRP, HDPE, plastic, stainless steel and more. The quick-release chain system allows the MOTIX to attach to pipes up to 42 inches in diameter." />
                     <ProductCard title="TERAX" img={jirehTeraxImg} link="https://www.jireh.com/products/category/terax/" desc="TERAX crawlers navigate ferrous surfaces or internal pipes using magnetic or rubber-track adhesion. Its powerful motors allow the TERAX to be steered vertically, allowing precise and controlled movements. Handles on the device provide an easy grab point for convenient handling and transport." />
                     <ProductCard title="TROGLO" img={jirehTrogloImg} link="https://www.jireh.com/products/troglo-large-crawler/" desc="TROGLO is a rugged, waterproof crawler for underground, sewer, and pipeline inspections. Steerable with cameras, LED lights, and integrated sonde for mapping, it handles small to large pipes and submersible conditions." />
+                  </>
+                )}
+              </div>
+            </>
+          )}
+
+          {/* --- DRTECH --- */}
+          {product.id === 'drtech' && (
+            <>
+              <div className="grid gap-4 mb-10 transition-all duration-500 grid-cols-1 md:grid-cols-3">
+                {([
+                  { id: 'BENDABLE', name: 'Bendable & Curved panel' },
+                  { id: 'STATIC', name: 'Static series' },
+                  { id: 'HIGH_RESOLUTION', name: 'High Resolution & Frame Rate' },
+                ] as const).map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setDrtechCategory(cat.id)}
+                    className={`group rounded-2xl border-2 transition-all duration-300 p-4 ${drtechCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'}`}
+                  >
+                    <div className="mb-3 flex h-20 items-center justify-center rounded-2xl bg-white ring-1 ring-slate-200">
+                      <img src={product.logo} alt={cat.name} className="max-h-full max-w-full object-contain" />
+                    </div>
+                    <div className="text-center font-black uppercase text-[10px] leading-relaxed">
+                      {cat.name}
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {drtechCategory === 'BENDABLE' && (
+                  <>
+                    <ProductCard title="Bendable Panel" img={product.logo} link="https://example.com" desc="Flexible curved detector panels designed for precise inspection on curved and irregular surfaces, improving access and field coverage in demanding applications." />
+                    <ProductCard title="Curved Surface Array" img={product.logo} link="https://example.com" desc="Optimized for bendable inspection layouts where conventional flat panels would limit coverage or contact quality." />
+                    <ProductCard title="Flexible Inspection Solution" img={product.logo} link="https://example.com" desc="A lightweight bendable detector approach that supports complex geometry and difficult inspection paths." />
+                  </>
+                )}
+
+                {drtechCategory === 'STATIC' && (
+                  <>
+                    <ProductCard title="Static Series A" img={product.logo} link="https://example.com" desc="Reliable static flat-panel solutions for stable imaging, repeatable inspections, and production quality control." />
+                    <ProductCard title="Static Series B" img={product.logo} link="https://example.com" desc="Built for routine inspections where consistency, robustness, and clear image capture are essential." />
+                    <ProductCard title="Static Platform" img={product.logo} link="https://example.com" desc="A dependable static imaging platform for operators requiring stable, controllable image acquisition." />
+                  </>
+                )}
+
+                {drtechCategory === 'HIGH_RESOLUTION' && (
+                  <>
+                    <ProductCard title="High Resolution Panel" img={product.logo} link="https://example.com" desc="High-definition imaging for fine defect identification and intricate inspection details across critical applications." />
+                    <ProductCard title="Fast Frame Rate System" img={product.logo} link="https://example.com" desc="High-speed acquisition makes dynamic or rapid inspection workflows more efficient and responsive." />
+                    <ProductCard title="High Fidelity Imaging" img={product.logo} link="https://example.com" desc="Combines resolution and frame-rate performance for advanced imaging quality and improved process visibility." />
                   </>
                 )}
               </div>
