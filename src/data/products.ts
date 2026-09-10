@@ -24,6 +24,12 @@ export const productsData: Product[] = [
     description: 'DÜRR NDT provides ultra-high resolution computed radiography (CR) scanners, new flat panel technology, tailor-made digital imaging software solutions and also X-ray film processors for mobile use plus DÜRR NDT’s unique ‘green’ X-ray chemistry.',
   },
   {
+    id: 'drtech',
+    name: 'DRTECH',
+    logo: assetUrl('DRTECH.svg'),
+    description: 'DRTECH specializes in advanced digital radiography and flat-panel detector solutions designed for high-resolution imaging, bendable curved panel applications, static inspection systems, and high frame-rate performance in demanding industrial inspection environments.',
+  },
+  {
     id: 'balteau',
     name: '',
     logo: assetUrl('BALTEAU.jpg'),
