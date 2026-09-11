@@ -245,7 +245,7 @@ export default function App() {
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
                 {partnerLogos.map((logo) => (
                   <Link to={`/product/${logo.id}`} key={logo.id} className="group relative bg-[rgba(15,23,42,0.72)] border border-[rgba(15,23,42,0.72)] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center">
-                    <div className="aspect-square w-full flex items-center justify-center bg-slate-50 px-4 py-4">
+                    <div className="logo-white-background aspect-square w-full flex items-center justify-center px-4 py-4">
                       <img src={logo.url} alt={logo.name} className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
                     </div>
                     <div className="px-4 py-4 w-full">
@@ -376,17 +376,17 @@ export default function App() {
 
     return (
       <section className="contact-page min-h-screen pt-64 pb-24 px-6 bg-slate-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-5xl mx-auto px-10">
 
-          <p className="text-xl text-slate-500 font-bold uppercase tracking-widest">
+          <p className="text-sm text-white font-black uppercase tracking-[0.2em] mb-6">
             Send us a message
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start mb-20">
+        <div className="grid gap-16 items-start mb-20">
 
           {/* ????? ???????? */}
-          <div className="contact-form-card bg-white rounded-[2.5rem] p-10 shadow-2xl border border-slate-100">
+          <div className="contact-form-card bg-white rounded-[2.5rem] p-10 shadow-2xl border border-slate-100 w-full max-w-5xl mx-auto">
             <form action="https://formsubmit.co/info@islte.ae" method="POST" className="space-y-6">
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_next" value={window.location.href} />
@@ -418,8 +418,9 @@ export default function App() {
             </form>
           </div>
 
-          {/* ??????? ??????? */}
-          <div className="grid gap-8">
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.72fr)] gap-8 lg:gap-10 items-start">
+            {/* ??????? ??????? */}
+            <div className="grid gap-8">
             {/* //////////////////////////DUBAI */}
             <div onClick={() => setSelectedOffice(offices[0])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[0].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
               <h3 className="text-xl font-black text-sky-700 mb-4 uppercase tracking-tighter">Main office (Dubai)</h3>
@@ -464,11 +465,10 @@ export default function App() {
                 <p><span className="font-bold text-slate-800">Email:</span> info@islte.ae</p>
               </div>
             </div>
-          </div>
-        </div>
+            </div>
 
-        {/* ??? ??????? ?????? ???????? ?????????? ??????? ????? ?????? */}
-        <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white h-[600px] w-full">
+            {/* ??? ??????? ?????? ???????? ?????????? ??????? ????? ?????? */}
+            <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white h-[520px] lg:sticky lg:top-28 w-full">
           <iframe
             src={mapUrl}
             width="100%"
@@ -502,6 +502,8 @@ export default function App() {
                   Get Directions
                 </a>
               </div>
+            </div>
+          </div>
             </div>
           </div>
         </div>

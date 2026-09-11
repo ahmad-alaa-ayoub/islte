@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { partnerLogos } from './data/productLogos';
 
 export default function ProductsPage() {
+  useEffect(() => {
+    const savedScrollPosition = sessionStorage.getItem('products-scroll-position');
+    if (savedScrollPosition === null) return;
+
+    sessionStorage.removeItem('products-scroll-position');
+    requestAnimationFrame(() => window.scrollTo(0, Number(savedScrollPosition)));
+  }, []);
+
+  const rememberScrollPosition = () => {
+    sessionStorage.setItem('products-scroll-position', String(window.scrollY));
+  };
+
   return (
     <section className="products-page pt-64 pb-24 px-6 bg-white border-t border-slate-100 min-h-screen">
       <div className="max-w-7xl mx-auto">
@@ -20,8 +32,8 @@ export default function ProductsPage() {
               key={logo.id}
               className="group relative bg-[rgba(15,23,42,0.52)] border border-[rgba(15,23,42,0.52)] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center"
             >
-              <Link to={`/product/${logo.id}`} className="block w-full">
-                <div className="product-logo-frame bg-slate-50 px-4 py-4">
+              <Link to={`/product/${logo.id}`} onClick={rememberScrollPosition} className="block w-full">
+                <div className="product-logo-frame logo-white-background px-4 py-4">
                   <img
                     src={logo.url}
                     alt={logo.name}
@@ -33,6 +45,7 @@ export default function ProductsPage() {
                 <div className="text-sm font-black uppercase tracking-[0.18em] text-white">{logo.name}</div>
                 <Link
                   to={`/product/${logo.id}`}
+                  onClick={rememberScrollPosition}
                   className="mt-4 inline-flex items-center gap-2 rounded-full bg-[rgba(15,23,42,0.52)] px-4 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-white transition hover:bg-sky-700"
                 >
                   View Product

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, useLocation, Link, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import { productsData } from './data/products';
 import { ChevronLeft } from 'lucide-react';
 
@@ -478,8 +478,6 @@ export default function ProductDetail() {
 
 
   const location = useLocation();
-  const navigate = useNavigate();
-  const canGoBack = location.key !== 'default';
   const product = productsData.find(p => p.id === productId);
 
   React.useEffect(() => {
@@ -677,22 +675,18 @@ export default function ProductDetail() {
   return (
     <div className="min-h-screen bg-slate-50 pt-64 pb-20 px-6">
       <div className="max-w-7xl mx-auto">
-        {canGoBack ? (
-          <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-slate-400 hover:text-white mb-8 transition-colors font-bold uppercase text-sm tracking-widest">
-            <ChevronLeft size={20} /> Back to Products
-          </button>
-        ) : (
-          <Link to="/products" className="flex items-center gap-2 text-slate-400 hover:text-white mb-8 transition-colors font-bold uppercase text-sm tracking-widest">
-            <ChevronLeft size={20} /> Back to Products
-          </Link>
-        )}
+        <Link to="/products" className="flex items-center gap-2 text-slate-400 hover:text-white mb-8 transition-colors font-bold uppercase text-sm tracking-widest">
+          <ChevronLeft size={20} /> Back to Products
+        </Link>
 
         <div className="product-detail-panel bg-[rgba(15,23,42,0.78)] rounded-3xl p-8 md:p-12 shadow-sm border border-[rgba(15,23,42,0.72)]">
-          <img
-            src={product.logo}
-            alt={product.name}
-            className={`product-detail-logo mb-8 ${product.id === 'dolphitech' ? 'brightness-0 invert' : ''}`}
-          />
+          <div className={`logo-white-background product-detail-logo mb-8 ${product.id === 'dolphitech' ? 'dolphitech-logo' : ''} ${product.id === 'spectro' ? 'spectro-logo' : ''}`}>
+            <img
+              src={product.logo}
+              alt={product.name}
+              className="h-full w-full object-contain"
+            />
+          </div>
           <p className="text-xl text-slate-300 leading-relaxed mb-10 whitespace-pre-line">
             {product.description}
           </p>

@@ -90,6 +90,10 @@
     background-color: rgb(241 245 249 / 0.92) !important;
 }
 
+.site-shell .logo-white-background {
+    background-color: #fff !important;
+}
+
 .site-shell [class~="text-sky-700"],
 .site-shell [class~="text-sky-800"],
 .site-shell [class~="text-blue-500"],
@@ -191,8 +195,21 @@
     .product-detail-logo {
         height: 12rem;
         width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         object-fit: contain;
         object-position: left center;
+    }
+
+    .product-detail-logo.dolphitech-logo img {
+        max-width: 24rem;
+        margin: 0 auto;
+    }
+
+    .product-detail-logo.spectro-logo img {
+        max-width: 52rem;
+        margin: 0 auto;
     }
 
     .product-category-frame {
