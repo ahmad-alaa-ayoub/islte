@@ -406,6 +406,8 @@ const PAUT_WEDGES = new URL('./product/Ekoscan/6_PAUT-WEDGES-300x300.png', impor
 
 
 //fuji
+const fujiFilmsCategoryImage = new URL('./product/fuji/films.jpg', import.meta.url).href;
+const fujiChemicalsCategoryImage = new URL('./product/fuji/chemicals.jpg', import.meta.url).href;
 const UT8000 = new URL('./product/Proceq/UT8000_gallery_image_02.119ee3c2.avif', import.meta.url).href;
 const Equotip = new URL('./product/Proceq/550 Leeb_gallery_image_03.9866d940.avif', import.meta.url).href;
 const Equotip_Live = new URL('./product/Proceq/01-EQLive-LeebD-iPhone-iso@2x.d165a004.png', import.meta.url).href;
@@ -427,17 +429,17 @@ const Explorer = new URL('./product/TPAC/Explorer.webp', import.meta.url).href;
 const Explorer_128 = new URL('./product/TPAC/explorer128.webp', import.meta.url).href;
 const Explorer_Max = new URL('./product/TPAC/explorerMax.webp', import.meta.url).href;
 const Explorer_128_Max = new URL('./product/TPAC/explorer-128-max.webp', import.meta.url).href;
-  //pilot line
+//pilot line
 const pilotPlus = new URL('./product/TPAC/pilot-pluswebp.webp', import.meta.url).href;
 const pilotMulti = new URL('./product/TPAC/pilot-multi.webp', import.meta.url).href;
 const pilot = new URL('./product/TPAC/pilot.webp', import.meta.url).href;
 
-  //software
-const prelude= new URL('./product/TPAC/Prelude.png', import.meta.url).href;
-const concerto= new URL('./product/TPAC/concerto.png', import.meta.url).href;
-const aria= new URL('./product/TPAC/Aria.png', import.meta.url).href;
+//software
+const prelude = new URL('./product/TPAC/Prelude.png', import.meta.url).href;
+const concerto = new URL('./product/TPAC/concerto.png', import.meta.url).href;
+const aria = new URL('./product/TPAC/Aria.png', import.meta.url).href;
 const iwScan = new URL('./product/TPAC/IW_Scan.png', import.meta.url).href;
- //accessories
+//accessories
 const inputsAndOutputsManagement = new URL('./product/TPAC/Inputs & Outputs Management.webp', import.meta.url).href;
 const adaptorsAndConnectors = new URL('./product/TPAC/Adaptors and connectors.webp', import.meta.url).href;
 const preAmplifier = new URL('./product/TPAC/Pre-amplifier.webp', import.meta.url).href;
@@ -470,6 +472,7 @@ export default function ProductDetail() {
   const [wohlerSubCat, setWohlerSubCat] = React.useState<string | null>(null);
   const [EkoscanCategory, setEkoscanCategory] = React.useState<string | null>(null);
   const [proceqCategory, setProceqCategory] = React.useState<'Flaw Detectors' | 'Portable Hardness Tester' | null>(null);
+  const [fujiCategory, setFujiCategory] = React.useState<'IX_FILM' | 'CHEMICALS' | null>(null);
   // const [proceqCategory, setProceqCategory] = React.useState<'Flaw Detectors' | 'Portable Hardness Tester' | null>(null);
 
 
@@ -501,6 +504,7 @@ export default function ProductDetail() {
       setWohlerSubCat(null);
       setEkoscanCategory(null);
       setProceqCategory(null);
+      setFujiCategory(null);
 
     };
 
@@ -538,7 +542,7 @@ export default function ProductDetail() {
         else if (slug === 'multi-channel-ut-pilot-line') setTpacSubCategory('MULTI_CHANNEL');
         else if (slug === 'open-platform-pioneer-line') setTpacSubCategory('OPEN_PLATFORM');
         break;
-      case 'Ekoscan':
+      case 'ekoscan':
         if (slug === 'universal-arrays') setEkoscanCategory('UNIVERSAL_ARRAYS');
         else if (slug === 'weld-arrays') setEkoscanCategory('WELD_ARRAYS');
         else if (slug === 'corrosion-arrays') setEkoscanCategory('CORROSION_ARRAYS');
@@ -552,6 +556,11 @@ export default function ProductDetail() {
         if (slug === 'flaw-detectors') setProceqCategory('Flaw Detectors');
         else if (slug === 'portable-hardness-tester') setProceqCategory('Portable Hardness Tester');
         else setProceqCategory(null);
+        break;
+
+      case 'fuji':
+        if (slug === 'ix-film') setFujiCategory('IX_FILM');
+        else if (slug === 'chemicals') setFujiCategory('CHEMICALS');
         break;
 
       case 'jireh':
@@ -650,15 +659,11 @@ export default function ProductDetail() {
   const ProductCard = ({ title, desc, img, link, note }: { title: string, desc: string, img?: string, link: string, note?: string }) => (
 
     <div className="group overflow-hidden rounded-3xl border border-[rgba(15,23,42,0.72)] bg-[rgba(15,23,42,0.72)] p-4 transition-all hover:shadow-lg flex flex-col">
-      <a href={link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-3xl mb-4 bg-white">
-        {img ? (
+      {img && (
+        <a href={link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-3xl mb-4 bg-white">
           <img src={img} alt={title} className="h-56 w-full object-contain transition-transform group-hover:scale-105" />
-        ) : (
-          <div className="h-56 w-full flex items-center justify-center bg-slate-200 text-slate-400 font-bold uppercase text-xs rounded-3xl text-center px-4">
-            {note || "No Image Available"}
-          </div>
-        )}
-      </a>
+        </a>
+      )}
       <div className="flex flex-col flex-grow">
         <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
         <p className="text-sm text-slate-300 leading-relaxed mb-6 flex-grow whitespace-pre-line">{desc}</p>
@@ -683,7 +688,11 @@ export default function ProductDetail() {
         )}
 
         <div className="product-detail-panel bg-[rgba(15,23,42,0.78)] rounded-3xl p-8 md:p-12 shadow-sm border border-[rgba(15,23,42,0.72)]">
-          <img src={product.logo} alt={product.name} className="product-detail-logo mb-8" />
+          <img
+            src={product.logo}
+            alt={product.name}
+            className={`product-detail-logo mb-8 ${product.id === 'dolphitech' ? 'brightness-0 invert' : ''}`}
+          />
           <p className="text-xl text-slate-300 leading-relaxed mb-10 whitespace-pre-line">
             {product.description}
           </p>
@@ -834,57 +843,57 @@ export default function ProductDetail() {
             </>
           )}
 
-         {/* --- IRIS --- */}
+          {/* --- IRIS --- */}
           {product.id === 'iris' && (
-  <>
-    <div className="grid gap-4 mb-10 transition-all duration-500 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-      {([
-        { id: 'IRIS_9000_PLUS', name: 'IRIS 9000 PLUS' },
-        { id: 'SOFTWARE', name: 'Software' },
-        { id: 'PROBES', name: 'Probes' },
-        { id: 'ACCESSORIES', name: 'Accessories' },
-      ] as const).map((cat) => (
-        <button
-          key={cat.id}
-          onClick={() => setIrisCategory(cat.id)}
-          className={`group rounded-2xl border-2 transition-all duration-300 p-6 ${irisCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'}`}
-        >
-          <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 transition-all group-hover:text-white">
-            {cat.name}
-          </div>
-        </button>
-      ))}
-    </div>
+            <>
+              <div className="grid gap-4 mb-10 transition-all duration-500 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                {([
+                  { id: 'IRIS_9000_PLUS', name: 'IRIS 9000 PLUS' },
+                  { id: 'SOFTWARE', name: 'Software' },
+                  { id: 'PROBES', name: 'Probes' },
+                  { id: 'ACCESSORIES', name: 'Accessories' },
+                ] as const).map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setIrisCategory(cat.id)}
+                    className={`group rounded-2xl border-2 transition-all duration-300 p-6 ${irisCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'}`}
+                  >
+                    <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 transition-all group-hover:text-white">
+                      {cat.name}
+                    </div>
+                  </button>
+                ))}
+              </div>
 
-    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {irisCategory === 'IRIS_9000_PLUS' && (
-        <>
-          <ProductCard title="IRIS 9000 PLUS" img={IRIS9000PLUS} link="https://www.iris-inspection.com/products/iris-9000plus/" desc="
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {irisCategory === 'IRIS_9000_PLUS' && (
+                  <>
+                    <ProductCard title="IRIS 9000 PLUS" img={IRIS9000PLUS} link="https://www.iris-inspection.com/products/iris-9000plus/" desc="
 Introducing the next generation of heat exchanger inspection. Representing the seventh generation of the IRIS system, the IRIS 9000 Plus has nearly 200 years of combined field inspection experience incorporated in its design. This experience combined with a strong commitment to quality and a history of innovation has made Iris Inspection Services® the undisputed leader in IRIS technology." />
-        </>
-      )}
+                  </>
+                )}
 
-      {irisCategory === 'SOFTWARE' && (
-        <>
-          <ProductCard title="B-Scan / C-Scan" img={B_scan} link="https://www.iris-inspection.com/products/software/" desc="New IRIS-Vision 5.0© software: the complete IRIS control system and reporting application. With this advanced proprietary software; build tube sheet maps and inspection plans, collect and analyze data, and build quick and concise reports – all on-site.
+                {irisCategory === 'SOFTWARE' && (
+                  <>
+                    <ProductCard title="B-Scan / C-Scan" img={B_scan} link="https://www.iris-inspection.com/products/software/" desc="New IRIS-Vision 5.0© software: the complete IRIS control system and reporting application. With this advanced proprietary software; build tube sheet maps and inspection plans, collect and analyze data, and build quick and concise reports – all on-site.
 This software is used for the inspection, data collection, and analysis. Once complete, an on-site final report is immediately generated. This report consists of a detailed description of the inspection findings, a summary of the test results, tube sheet maps; color coded by percentage loss/remaining and damage type, side views of the exchanger indicating percentage loss/remaining, detailed information on each tube inspected, along with screen captures of the typical indications found. In addition, supplemental tube sheet maps can be generated for tube plugging or selective re-tubing." />
-        </>
-      )}
+                  </>
+                )}
 
-      {irisCategory === 'PROBES' && (
-        <>
-          <ProductCard title="IRIS Probes" img={IRIS_Probes} link="https://www.iris-inspection.com/products/probes/" desc="The IRIS probes operate in pulse-echo mode to measure wall thickness, material loss, and defect orientation within the range of 8.6mm (0.34 in.) to 82.6mm (3.25 in.) ID." />
-        </>
-      )}
+                {irisCategory === 'PROBES' && (
+                  <>
+                    <ProductCard title="IRIS Probes" img={IRIS_Probes} link="https://www.iris-inspection.com/products/probes/" desc="The IRIS probes operate in pulse-echo mode to measure wall thickness, material loss, and defect orientation within the range of 8.6mm (0.34 in.) to 82.6mm (3.25 in.) ID." />
+                  </>
+                )}
 
-      {irisCategory === 'ACCESSORIES' && (
-        <>
-          <ProductCard title="Water Filter Assembly" img={WATER_FILTER_ASSEMBLY} link="https://www.iris-inspection.com/products/accessories/" desc="" />
-          <ProductCard title="Test & Calibration Tubes" img={TESTCALIBRATION} link="https://www.iris-inspection.com/products/accessories/" desc="Custom material and size test/calibration tubes available." />
-        </>
-      )}
-    </div>
-  </>
+                {irisCategory === 'ACCESSORIES' && (
+                  <>
+                    <ProductCard title="Water Filter Assembly" img={WATER_FILTER_ASSEMBLY} link="https://www.iris-inspection.com/products/accessories/" desc="" />
+                    <ProductCard title="Test & Calibration Tubes" img={TESTCALIBRATION} link="https://www.iris-inspection.com/products/accessories/" desc="Custom material and size test/calibration tubes available." />
+                  </>
+                )}
+              </div>
+            </>
           )}
 
           {/* --- TPAC --- */}
@@ -938,7 +947,7 @@ This software is used for the inspection, data collection, and analysis. Once co
                       </>
                     )}
 
-                      {tpacSubCategory === 'MULTI_CHANNEL' && (
+                    {tpacSubCategory === 'MULTI_CHANNEL' && (
                       <>
                         <ProductCard title="Pilot +" img={pilotPlus} link="https://thephasedarraycompany.com/product/pilot-plus/" desc={`The Pilot + will meet your most demanding needs in various industries, from aeronautics (composite and honeycomb structures) to in-line, as well as TOFD.\n\nThe high voltage transmitters and the bipolar tone burst facilitate the inspection of thick, noisy or complex materials such as sandwich, honeycomb or composite.\n\nPowerful and ultra compact, this 8-channel full parallel and up to 64 multiplexed, unit pushed the boundaries of the UT benchmark.\n\nFlexible platform designed for multi-channel UT.\n\nDigital dynamic range of 162 dB – No more analog gain!`} />
                         <ProductCard title="Pilot Multi" img={pilotMulti} link="https://thephasedarraycompany.com/product/pilot-multi/" desc={`The Pilot Multi sets itself apart with its very high channel density, it can go up to 64 multiplexed channels!\n\nWith this revolutionary, open platform device, create your own custom solutions for fast inspection.\n\nSuper compact, the Pilot multi is designed for IP 67, easy to integrate on robots and scanners.\n\nFlexible platform designed for multi-channel UT.`} />
@@ -957,7 +966,7 @@ This software is used for the inspection, data collection, and analysis. Once co
                 </>
               )}
 
-                {tpacCategory === 'SOFTWARE' && (
+              {tpacCategory === 'SOFTWARE' && (
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                   <ProductCard title="Prelude" img={prelude} link="https://thephasedarraycompany.com/product/prelude/" desc={`To simplify your inspection, we offer you Prelude, a versatile phased array software that is suitable for any application. Prelude is designed with a focus on your ease of use: anyone knowing phased array becomes a Prelude expert in less than 15 minutes, as Prelude handles the complexity for you.\n\nPrelude is a powerful and flexible software package for PAUT, providing real-time visualization and simple data analysis after completing your inspection. All displays represent corrected views, no need to go through complex settings. You can start a new inspection with just a few clicks.\n\nUT setup parameters and data acquisition for PAUT have never been easier!`} />
                   <ProductCard title="Concerto" img={concerto} link="https://thephasedarraycompany.com/product/concerto/" desc={`Concerto is a UT data acquisition and analysis software designed specifically for wall thickness measurement and corrosion mapping using either conventional multi-channel or phased array. Considering the tough field conditions that operators deal with, Concerto makes it easy, featuring an interface with no menu, less than 18 icons, and only a few controls, so that operators can work with an intuitive interface and not be bothered by complex GUIs.\n\nConcerto's ease of use is coupled with extensive features; corrosion mapping with interface echo tracking, coating layers (a great addition for corrosion applications!), adjustable gates in analysis (acquisition remains valid when initial gate settings are not correct), configurable views & color palettes, as well as simple but effective analysis tools.\n\nConcerto is a perfect companion for the Explorer and your automated scanner for rapid and first-class corrosion mapping results at an affordable price.\n\nCorrosion mapping has never been easier, even for dissimilar corrosion.`} />
@@ -966,8 +975,8 @@ This software is used for the inspection, data collection, and analysis. Once co
                 </div>
               )}
 
-                  {tpacCategory === 'ACCESSORIES' && (
-                  <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {tpacCategory === 'ACCESSORIES' && (
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                   <ProductCard title="Inputs & Outputs Management" img={inputsAndOutputsManagement} link="https://thephasedarraycompany.com/product/inputs-outputs-management/" desc="To manage input and output signals interfacing with TPAC devices" />
                   <ProductCard title="Adaptors and Connectors" img={adaptorsAndConnectors} link="https://thephasedarraycompany.com/product/adaptors-and-connectors/" desc="Standard or customized accessories for ideal inspection setup" />
                   <ProductCard title="Pre-amplifier" img={preAmplifier} link="https://thephasedarraycompany.com/product/low-noise-pre-amplifier/" desc="The Preamplifier is a high-performance accessory for the low-noise amplification of ultrasonic signals" />
@@ -996,7 +1005,7 @@ This software is used for the inspection, data collection, and analysis. Once co
                     <div className={`product-category-frame transition-all duration-500 ${durrEntered ? 'h-20 mb-2' : 'h-40 mb-4'}`}>
                       <img src={cat.icon} alt={cat.name} className="max-w-full max-h-full object-contain" />
                     </div>
-                    <div className={`text-center font-black uppercase transition-all duration-500 ${durrEntered ? 'text-[10px]' : 'text-sm'}`}>
+                    <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 transition-all group-hover:text-white">
                       {cat.name}
                     </div>
                   </button>
@@ -1068,7 +1077,7 @@ This software is used for the inspection, data collection, and analysis. Once co
                         </div>
                       )}
                     </div>
-                    <div className={`text-center font-black uppercase transition-all duration-500 ${spectroEntered ? 'text-[10px]' : 'text-sm'}`}>
+                    <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 transition-all group-hover:text-white">
                       {cat.name}
                     </div>
                   </button>
@@ -1244,9 +1253,9 @@ This software is used for the inspection, data collection, and analysis. Once co
                   <Link
                     key={cat.id}
                     to={`/product/danatronics#${cat.id}`}
-                    className={`px-6 py-3 rounded-full border-2 transition-all ${danatronicsCategory === cat.id.toUpperCase().replace(/-/g, '_')
+                    className={`px-6 py-3 rounded-full border-2 transition-all text-[11px] font-black uppercase tracking-[0.2em] leading-none ${danatronicsCategory === cat.id.toUpperCase().replace(/-/g, '_')
                       ? 'bg-[#003349] text-white border-[#003349]'
-                      : 'bg-white text-slate-700 border-slate-300 hover:border-[#003349] hover:text-[#003349]'
+                      : 'bg-slate-50 text-white/70 border-slate-100 hover:border-[#003349] hover:text-white'
                       }`}
                   >
                     {cat.name}
@@ -1308,9 +1317,9 @@ This software is used for the inspection, data collection, and analysis. Once co
                   <Link
                     key={cat.id}
                     to={`/product/dolphitech#${cat.id}`}
-                    className={`px-6 py-3 rounded-full border-2 transition-all ${dolphitechCategory === cat.id.toUpperCase().replace(/-/g, '_')
+                    className={`px-6 py-3 rounded-full border-2 transition-all text-[11px] font-black uppercase tracking-[0.2em] leading-none ${dolphitechCategory === cat.id.toUpperCase().replace(/-/g, '_')
                       ? 'bg-[#003349] text-white border-[#003349]'
-                      : 'bg-white text-slate-700 border-slate-300 hover:border-[#003349] hover:text-[#003349]'
+                      : 'bg-slate-50 text-white/70 border-slate-100 hover:border-[#003349] hover:text-white'
                       }`}
                   >
                     {cat.name}
@@ -1381,9 +1390,9 @@ This software is used for the inspection, data collection, and analysis. Once co
                   <Link
                     key={cat.id}
                     to={`/product/proceq#${cat.id}`}
-                    className={`px-6 py-3 rounded-full border-2 transition-all ${proceqCategory === cat.name
+                    className={`px-6 py-3 rounded-full border-2 transition-all text-[11px] font-black uppercase tracking-[0.2em] leading-none ${proceqCategory === cat.name
                       ? 'bg-[#003349] text-white border-[#003349]'
-                      : 'bg-white text-slate-700 border-slate-300 hover:border-[#003349] hover:text-[#003349]'
+                      : 'bg-slate-50 text-white/70 border-slate-100 hover:border-[#003349] hover:text-white'
                       }`}
                   >
                     {cat.name}
@@ -1416,26 +1425,49 @@ This software is used for the inspection, data collection, and analysis. Once co
 
           {/* --- FUJI FILM --- */}
           {product.id === 'fuji' && (
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <ProductCard
-                title="XD-50"
-                link="https://www.fujifilm.com/us/en/business/industrial/ndt"
-                note="FUJIFILM XD-50 NDT Film"
-                desc="Fuji XD-50 is for non-destructive materials testing with ultrafine grain and high contrast. This ASTM class 1 film has outstanding sharpness and fine detail and is particularly suitable for low-density materials. XD-50 is equivalent to D4 films and is available in all standard sizes, including NIF sheets and LP rolls."
-              />
-              <ProductCard
-                title="XD-80"
-                link="https://www.fujifilm.com/us/en/business/industrial/ndt"
-                note="FUJIFILM XD-80 NDT Film"
-                desc="Fuji XD-80 is for non-destructive materials testing with extremely fine grain and high contrast. This ASTM class 1 film is especially suitable for detecting the smallest faults. XD-80 is equivalent to D5 films and is available in all standard sizes, including NIF sheets and LP rolls."
-              />
-              <ProductCard
-                title="XD-100"
-                link="https://www.fujifilm.com/us/en/business/industrial/ndt"
-                note="FUJIFILM XD-100 NDT Film"
-                desc="Fuji XD-100 is for non-destructive materials testing with fine grain and high contrast. This ASTM class 2 film is especially suitable for test objects of medium to high density. XD-100 is equivalent to D7 films and is available in all standard sizes, including NIF sheets and LP rolls."
-              />
-            </div>
+            <>
+              <div className="grid gap-6 md:grid-cols-2 mb-12">
+                <Link to="/product/fuji#ix-film" className={`group rounded-3xl border-2 transition-all duration-300 ${fujiCategory === 'IX_FILM' ? 'border-[#0f6fff] bg-blue-50' : 'border-transparent bg-slate-100'} p-6`}>
+                  <div className="h-44 mb-4"><img src={fujiFilmsCategoryImage} alt="IX-Film" className="w-full h-full object-contain rounded-2xl" /></div>
+                  <h2 className="fuji-category-title text-center text-xl font-bold">IX-FILM</h2>
+                </Link>
+                <Link to="/product/fuji#chemicals" className={`group rounded-3xl border-2 transition-all duration-300 ${fujiCategory === 'CHEMICALS' ? 'border-[#0f6fff] bg-blue-50' : 'border-transparent bg-slate-100'} p-6`}>
+                  <div className="h-44 mb-4"><img src={fujiChemicalsCategoryImage} alt="Chemicals" className="w-full h-full object-contain rounded-2xl" /></div>
+                  <h2 className="fuji-category-title text-center text-xl font-bold">CHEMICALS</h2>
+                </Link>
+              </div>
+
+              {fujiCategory === 'IX_FILM' && (
+                <>
+                  <p className="text-lg text-slate-300 leading-relaxed mb-10 whitespace-pre-line">For consistent high quality non-destructive testing{`\n\n`}Fujifilm industrial X-ray film (IX Film) features our revolutionary new film technology. The combination of the latest emulsion making science and computerized manufacturing process assures consistent batch to batch performance, optimum image quality, and compatibility with all NDT chemicals and manual / automatic processing conditions. The IX Film incorporates unique speed and grain technologies that allow its usage over a wide range of applications with consistent high quality, regardless of the testing material and the radiation source.</p>
+                  <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    <ProductCard title="IX20" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/xrayfilm" desc="Applications: Micro-electronic parts; neutron radiography; critical investment castings; ultra-fine ceramic parts; graphite composite parts. Features: A single emulsion, ultra-fine grain, high contrast film for critical inspections requiring high image quality. Its single emulsion minimizes parallax and permits an extremely sharp magnified image." />
+                    <ProductCard title="IX25" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/xrayfilm" desc="Applications: Micro-electronic parts; fine ceramic parts; castings using low to medium atomic number metals; carbon fiber reinforced plastics. Features: Fujifilm's finest grain, highest contrast ASTM special film with maximum sharpness and discrimination characteristics. Recommended for automatic processing only." />
+                    <ProductCard title="IX30" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/xrayfilm" desc="Applications: Pipe weld; electronic components; aerospace and aircraft components; nuclear plants; castings using low to medium atomic number metals. Features: Ultra-fine grain, very high contrast ASTM Class I film with excellent sharpness and discrimination characteristics." />
+                    <ProductCard title="IX50" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/xrayfilm" desc="Applications: Electronic parts; graphite epoxy composites; castings using low to medium atomic number metals. Features: Ultra-fine grain, high contrast ASTM Class I film with excellent sharpness and high discrimination characteristics, suitable wherever fine image detail is imperative." />
+                    <ProductCard title="IX80" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/xrayfilm" desc="Applications: Welds and castings using low to medium atomic number metals; aircraft construction and maintenance; graphite epoxy composites. Features: Extremely fine grain, high contrast ASTM Class I film suitable for detection of minute defects." />
+                    <ProductCard title="IX100" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/xrayfilm" desc="Applications: Welds and castings using medium to higher atomic number metals; aircraft construction and maintenance. Features: Very fine grain, high contrast ASTM Class II film suitable for light metals with low activity radiation sources and thick objects with high kilovoltage X-ray or gamma ray sources." />
+                    <ProductCard title="IX150" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/xrayfilm" desc="Applications: Heavy, multi-thick steel parts; steel reinforced concrete; low curie isotope and low-output X-ray exposures. Features: High-speed, fine grain, high contrast ASTM Class III film suitable for a large variety of objects with low-to-high kilovoltage X-ray and gamma ray sources." />
+                    <ProductCard title="IX29" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/xrayfilm" desc="Applications: Castings and other multi-thickness objects. Features: Ultra-fine grain, medium contrast ASTM Class W-A film suitable for a wide range of thickness objects such as precision cast parts with X-ray or gamma ray sources." />
+                    <ProductCard title="IX59" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/xrayfilm" desc="Applications: Castings and other multi-thickness objects. Features: Extremely fine grain, medium contrast ASTM Class W-B film suitable for multi-thick, low-atomic number metal and steel cast parts." />
+                    <ProductCard title="IX50XD" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/xrayfilm" desc="Applications: Aerospace components; weldings and castings using low to medium atomic number metals; electronic components. Features: Ultra fine grain film with very high contrast and medium speed." />
+                    <ProductCard title="IX80XD" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/xrayfilm" desc="Applications: Weldings and castings using low to medium atomic number metals; aerospace components. Features: Very fine grain film with very high contrast and medium speed." />
+                    <ProductCard title="IX100XD" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/xrayfilm" desc="Applications: Weldings and castings using medium to higher atomic number metals; aerospace components. Features: Fine grain film with high contrast and high speed." />
+                  </div>
+                </>
+              )}
+              {fujiCategory === 'CHEMICALS' && (
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                  <ProductCard title="Hi Rendol I" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/Chemicals" desc="Weight: 4 x 5 litres." />
+                  <ProductCard title="IX starter solution" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/Chemicals" desc="Weight: 1 litre." />
+                  <ProductCard title="AUFIX" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/Chemicals" desc="Weight: 2 x 20 litres." />
+                  <ProductCard title="Audel" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/Chemicals" desc="Weight: 2 x 20 litres." />
+                  <ProductCard title="MAN-X" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/Chemicals" desc="Fujifilm processing chemical for industrial X-ray film." />
+                  <ProductCard title="M-FIX" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/Chemicals" desc="Name: M-FIX\n\nVolume: 1 x 50 l\n\nApplication: Starter developer\n\nHardware compatibility: Compatible with all known types of processing machines\n\nSecurity: Material Safety Data Sheet" />
+                  <ProductCard title="ADSTRAT" link="https://www.fujifilm.com/ae/en/business/inspection/non-destructive-digital/Chemicals" desc="Fujifilm processing chemical for industrial X-ray film." />
+                </div>
+              )}
+            </>
           )}
 
 
@@ -1718,7 +1750,7 @@ This software is used for the inspection, data collection, and analysis. Once co
                     <div className={`product-category-frame ${mitcorpCategory ? 'h-20 mb-1' : 'h-40 mb-4'}`}>
                       <img src={cat.icon} alt={cat.name} className="max-w-full max-h-full object-contain" />
                     </div>
-                    <div className={`text-center font-black uppercase ${mitcorpCategory ? 'text-[8px]' : 'text-sm'}`}>{cat.name}</div>
+                    <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 transition-all group-hover:text-white">{cat.name}</div>
                   </button>
                 ))}
               </div>
@@ -1746,7 +1778,7 @@ This software is used for the inspection, data collection, and analysis. Once co
           )}
 
           {/* --- Ekoscan --- */}
-          {product.id === 'Ekoscan' && (
+          {product.id === 'ekoscan' && (
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <ProductCard title="UNIVERSAL ARRAYS" img={UNIVERSAL_ARRAYS} link="https://ekoscan-ndt.com/products/ultrasonic-probes/phased-array-probes/universal-arrays/" desc=": Universal arrays are general-purpose phased array probes designed for a wide range of inspection applications including welds, pipes, and structural components. 
                             

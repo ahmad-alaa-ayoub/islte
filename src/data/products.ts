@@ -26,7 +26,7 @@ export const productsData: Product[] = [
   {
     id: 'drtech',
     name: 'DRTECH',
-    logo: assetUrl('DRTECH.png'),
+    logo: assetUrl('DRTECH.jpg'),
     description: 'DRTECH specializes in advanced digital radiography and flat-panel detector solutions designed for high-resolution imaging, bendable curved panel applications, static inspection systems, and high frame-rate performance in demanding industrial inspection environments.',
   },
   {

@@ -5,7 +5,7 @@ import { partnerLogos } from './data/productLogos';
 
 export default function ProductsPage() {
   return (
-    <section className="pt-64 pb-24 px-6 bg-white border-t border-slate-100 min-h-screen">
+    <section className="products-page pt-64 pb-24 px-6 bg-white border-t border-slate-100 min-h-screen">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-14">
           <h1 className="text-5xl md:text-6xl font-black tracking-tight text-slate-400 mb-4">Our Products</h1>

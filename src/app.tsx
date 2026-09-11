@@ -81,7 +81,7 @@ const navItems = [
 
 const productMenu = [
   { id: 'trm_0_7_mhz.jpg', label: 'Spectro', href: '/product/spectro', subcategories: ['Radiometers', 'Aerospace', 'NDT Supplies'] },
-  { id: 'fuji', label: 'FujiFilm', href: '/product/fuji', subcategories: ['Flaw Detectors', 'Portable Hardness Tester'] },
+  { id: 'fuji', label: 'FujiFilm', href: '/product/fuji', subcategories: ['IX-Film', 'Chemicals'] },
   { id: 'jireh', label: 'JIREH', href: '/product/jireh', subcategories: ['Manual Weld & Corrosion Scanning', 'Automated Crawlers'] },
   { id: '3e-ndt', label: '3E NDT', href: '/product/3e-ndt', subcategories: [] },
   { id: 'durr-ndt', label: 'DURR NDT', href: '/product/durr-ndt', subcategories: ['Computed Radiography', 'Direct Digital Radiography', 'NDT Software', 'Conventional Radiography'] },
@@ -97,7 +97,7 @@ const productMenu = [
   { id: 'echo', label: 'ECHO Ultrasonics', href: '/product/echo', subcategories: ['High Temperature', 'Intermediate & Low Temp', 'Specialty Application'] },
   { id: 'danatronics', label: 'DANATRONICS', href: '/product/danatronics', subcategories: ['Flaw Detectors', 'Corrosion Thickness Gage', 'Precision Thickness Gage', 'Hall Effect Gage', 'Transducers'] },
   { id: 'dolphitech', label: 'Dolphitech', href: '/product/dolphitech', subcategories: ['MAUT Core Units', 'MAUT Transducers (TRMs)', 'Accessories', 'Scanning Tools'] },
-  { id: 'Ekoscan', label: 'Ekoscan', href: '/product/ekoscan', subcategories: [] },
+  { id: 'ekoscan', label: 'Ekoscan', href: '/product/ekoscan', subcategories: [] },
   { id: 'balteau', label: 'BALTEAU NDT', href: '/product/balteau', subcategories: ['BALTOSPOT', 'BALTOGRAPH', 'BALTOMATIC', 'BALTOSCOPE', 'ACCESSORIES'] },
   { id: 'proceq', label: 'proceq', href: '/product/proceq', subcategories: ['Flaw Detectors', 'Portable Hardness Tester'] }
 
@@ -190,7 +190,7 @@ export default function App() {
         <header
 
           id="home"
-          className="relative pt-64 pb-32 px-6 overflow-hidden flex items-center justify-center min-h-[80vh]"
+          className="hero-section relative pt-64 pb-32 px-6 overflow-hidden flex items-center justify-center min-h-[80vh]"
           style={{
             backgroundImage: `linear-gradient(to bottom, rgba(15, 23, 42, 0.58), rgba(15, 23, 42, 0.42)), url(${currentBackground})`,
             backgroundSize: 'cover',
@@ -264,7 +264,7 @@ export default function App() {
   };
 
   const AfterSaleServicesPage = () => (
-    <section className="min-h-screen pt-64 pb-24 px-6 bg-white">
+    <section className="after-sale-page min-h-screen pt-64 pb-24 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center gap-10 text-center mb-24 mt-16">
           <img src={TECHCAL_LOGO} alt="Technical Logo" className="h-32 md:h-40 object-contain" />
@@ -375,7 +375,7 @@ export default function App() {
     }, [selectedOffice.name]);
 
     return (
-      <section className="min-h-screen pt-64 pb-24 px-6 bg-slate-50">
+      <section className="contact-page min-h-screen pt-64 pb-24 px-6 bg-slate-50">
         <div className="max-w-7xl mx-auto">
 
           <p className="text-xl text-slate-500 font-bold uppercase tracking-widest">
@@ -386,7 +386,7 @@ export default function App() {
         <div className="grid lg:grid-cols-2 gap-16 items-start mb-20">
 
           {/* ????? ???????? */}
-          <div className="bg-white rounded-[2.5rem] p-10 shadow-2xl border border-slate-100">
+          <div className="contact-form-card bg-white rounded-[2.5rem] p-10 shadow-2xl border border-slate-100">
             <form action="https://formsubmit.co/info@islte.ae" method="POST" className="space-y-6">
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_next" value={window.location.href} />
@@ -543,7 +543,7 @@ export default function App() {
   };
 
   const AboutUsPage = () => (
-    <section className="min-h-screen pt-64 pb-24 px-6 bg-slate-50">
+    <section className="about-page min-h-screen pt-64 pb-24 px-6 bg-slate-50">
       <div className="max-w-7xl mx-auto grid gap-12 lg:grid-cols-[1.05fr_0.95fr] items-center mb-24">
         <div className="overflow-hidden rounded-[2rem] shadow-2xl bg-white">
           <img src={ABOUT_IMAGE} alt="Integrity Scientific Office" className="w-full h-full object-cover" />

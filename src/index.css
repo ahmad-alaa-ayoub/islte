@@ -8,6 +8,8 @@
         --site-navy-strong: #0f172a;
         --site-text: #1e293b;
         --site-muted: #64748b;
+        --site-font: "Trebuchet MS", Verdana, sans-serif;
+        --site-on-dark: #f8fafc;
     }
 
     html,
@@ -18,9 +20,44 @@
 
     body {
         color: var(--site-text);
-        font-family: "Trebuchet MS", Verdana, sans-serif;
+        font-family: var(--site-font);
         background: #0f172a;
     }
+}
+
+.site-shell,
+.site-shell * {
+    font-family: var(--site-font) !important;
+}
+
+.site-shell :where(nav, footer, .product-detail-panel) :where(h1, h2, h3, h4, h5, h6, p, li, label, a, button, span) {
+    color: var(--site-on-dark);
+}
+
+.site-shell :where(nav, footer, .product-detail-panel) :where(input, textarea, select) {
+    color: var(--site-on-dark);
+}
+
+.site-shell :where(.hero-section, [class*="bg-[#0a0f1a]"]) :where(h1, h2, h3, h4, h5, h6, p, li, label, a, button, span) {
+    color: var(--site-on-dark);
+}
+
+.product-detail-panel,
+.product-detail-panel * {
+    font-family: var(--site-font) !important;
+}
+
+.product-detail-panel :where(h1, h2, h3, h4, h5, h6, p, li, label, a, button, span, div) {
+    color: var(--site-on-dark) !important;
+}
+
+.products-page :where(h1, p) {
+    color: var(--site-on-dark) !important;
+}
+
+.about-page>.max-w-7xl:first-child>.space-y-6>.text-left :where(h2, p),
+.contact-page>.max-w-7xl:first-child>p {
+    color: var(--site-on-dark) !important;
 }
 
 .site-shell {
@@ -104,6 +141,38 @@
     color: #f8fafc;
 }
 
+.product-detail-panel :where(h2, h3, p, span, a, button, div) {
+    color: var(--site-on-dark) !important;
+}
+
+.site-shell .contact-form-card {
+    background-color: rgba(15, 23, 42, 0.78) !important;
+    border-color: rgb(148 163 184 / 0.35) !important;
+}
+
+.site-shell .contact-form-card label {
+    color: #cbd5e1 !important;
+}
+
+.site-shell .contact-form-card :where(input, textarea) {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: var(--site-on-dark) !important;
+    border: 1px solid rgb(148 163 184 / 0.25) !important;
+}
+
+.site-shell .contact-form-card :where(input, textarea)::placeholder {
+    color: #94a3b8 !important;
+}
+
+.site-shell .contact-form-card button {
+    background-color: #475569 !important;
+    color: var(--site-on-dark) !important;
+}
+
+.site-shell .contact-form-card button:hover {
+    background-color: #64748b !important;
+}
+
 @layer components {
     .product-logo-frame {
         height: 14rem;
@@ -139,4 +208,21 @@
         width: 100%;
         object-fit: contain;
     }
+}
+
+.site-shell .product-detail-panel :where(h2, h3, p, span, a, button) {
+    color: var(--site-on-dark) !important;
+}
+
+.site-shell .product-detail-panel .fuji-category-title {
+    color: var(--site-on-dark) !important;
+}
+
+.site-shell .contact-form-card {
+    background-color: rgba(15, 23, 42, 0.78) !important;
+}
+
+.site-shell .contact-form-card :where(input, textarea) {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: var(--site-on-dark) !important;
 }
