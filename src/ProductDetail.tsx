@@ -447,7 +447,7 @@ const probes = new URL('./product/TPAC/Probes.webp', import.meta.url).href;
 
 //coatmaster
 const coatmaster3d = new URL('./product/coatmaster/coatmaster3d.png', import.meta.url).href;
-const flex = new URL('./product/coatmaster/flex.PNG', import.meta.url).href;
+const flex = new URL('./product/coatmaster/flex.png', import.meta.url).href;
 const inline = new URL('./product/coatmaster/Inline.png', import.meta.url).href;
 const atline = new URL('./product/coatmaster/Atline.png', import.meta.url).href;
 
