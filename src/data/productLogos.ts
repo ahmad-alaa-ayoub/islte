@@ -24,4 +24,5 @@ export const partnerLogos = [
   { id: 'spectro', name: 'SPECTRO', url: assetUrl('Spectro_UV_transparent_logo.avif') },
   { id: 'dolphitech', name: 'DOLPHITECH', url: assetUrl('Picture1.png') },
   { id: 'balteau', name: 'BALTEAU NDT', url: assetUrl('BALTEAU.jpg') },
+  { id: 'coatmaster', name: 'COATMASTER', url: assetUrl('coatMaster.png') },
 ];

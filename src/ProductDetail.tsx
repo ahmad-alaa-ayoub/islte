@@ -445,6 +445,11 @@ const adaptorsAndConnectors = new URL('./product/TPAC/Adaptors and connectors.we
 const preAmplifier = new URL('./product/TPAC/Pre-amplifier.webp', import.meta.url).href;
 const probes = new URL('./product/TPAC/Probes.webp', import.meta.url).href;
 
+//coatmaster
+const coatmaster3d = new URL('./product/coatmaster/coatmaster3d.png', import.meta.url).href;
+const flex = new URL('./product/coatmaster/Flex.png', import.meta.url).href;
+const inline = new URL('./product/coatmaster/Inline.png', import.meta.url).href;
+const atline = new URL('./product/coatmaster/Atline.png', import.meta.url).href;
 
 
 
@@ -1769,6 +1774,16 @@ This software is used for the inspection, data collection, and analysis. Once co
                 )}
               </div>
             </>
+          )}
+
+                    {/* --- COATMASTER --- */}
+            {product.id === 'coatmaster' && (
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+              <ProductCard title="coatmaster 3D" img={coatmaster3d} link="https://coatmaster.com/en/coatmaster/produkte/coatmaster-3d/" desc={`Fast measurement of coating thickness distribution over whole components.\n\ncoatmaster3D\n\n• Decrease setup time for your process.\n• Save material.\n• Document continuously.`} />
+              <ProductCard title="Flex" img={flex} link="https://coatmaster.com/en/coatmaster/produkte/coatmaster-flex/" desc={`The coatmaster Flex is the most advanced handheld device for contactless coating thickness measurement.\n\nIt enables early measurement in the coating process, ensuring optimal material usage and preventing costly rework.\n\nDocument without interruption — automatic documentation seamlessly integrates into quality control systems, and closed-loop-ready design integrates with any coating line via TCP/IP.\n\nSave material — reduces paint consumption with optimized coating lines that save more than 30% on paint on average, and reduces rework by preventing costly errors.\n\nAssure quality — accurate even for high coating thicknesses, with reliable measurements up to 500µm, and fast and precise results in a fraction of a second with no handling problems.\n\nControl production — direct measurement on moving parts without stopping production, completely eye-safe operation with no lasers or harmful radiation, and reduces training time.`} />
+              <ProductCard title="Inline" img={inline} link="https://coatmaster.com/en/coatmaster/produkte/inline/" desc={`coatmasterInline\n\n• Decrease setup time for your process.\n• Save material.\n• Document continuously.`} />
+              <ProductCard title="Atline" img={atline} link="https://coatmaster.com/en/coatmaster/produkte/atline/" desc={`Noncontact coating thickness measurement in laboratory and production.\n\ncoatmasterAtline\n\n• Avoid rework and rejects.\n• For complex shaped parts.\n• Mobile measuring station.`} />
+            </div>
           )}
 
           {/* --- Ekoscan --- */}

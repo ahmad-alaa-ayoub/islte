@@ -99,7 +99,8 @@ const productMenu = [
   { id: 'dolphitech', label: 'Dolphitech', href: '/product/dolphitech', subcategories: ['MAUT Core Units', 'MAUT Transducers (TRMs)', 'Accessories', 'Scanning Tools'] },
   { id: 'ekoscan', label: 'Ekoscan', href: '/product/ekoscan', subcategories: [] },
   { id: 'balteau', label: 'BALTEAU NDT', href: '/product/balteau', subcategories: ['BALTOSPOT', 'BALTOGRAPH', 'BALTOMATIC', 'BALTOSCOPE', 'ACCESSORIES'] },
-  { id: 'proceq', label: 'proceq', href: '/product/proceq', subcategories: ['Flaw Detectors', 'Portable Hardness Tester'] }
+  { id: 'proceq', label: 'proceq', href: '/product/proceq', subcategories: ['Flaw Detectors', 'Portable Hardness Tester'] },
+  { id: 'coatmaster', label: 'Coatmaster', href: '/product/coatmaster', subcategories: ['coatmaster 3D', 'Flex', 'Inline', 'Atline'] }
 
 
 ];

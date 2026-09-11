@@ -135,5 +135,11 @@ export const productsData: Product[] = [
     name: '',
     logo: assetUrl('fuji.png'),
     description: `Fujifilm is known as the world's largest photographic and imaging company . Based on wide-ranging technological expertise, Fujifilm pursues innovation in many areas, with the goal of enhancing the quality of life. Fujifilm provides the high quality Industrial X-ray films to assure the quality in various production sectors.`
+  },
+  {
+    id: 'coatmaster',
+    name: 'Coatmaster',
+    logo: assetUrl('coatMaster.png'),
+    description: 'Coatmaster develops non-contact coating thickness measurement solutions for reliable quality control in industrial coating processes.',
   }
 ];
