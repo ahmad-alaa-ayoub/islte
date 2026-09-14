@@ -661,10 +661,10 @@ export default function ProductDetail() {
   // Reusable Card Component
   const ProductCard = ({ title, desc, img, link, note }: { title: string, desc: string, img?: string, link: string, note?: string }) => (
 
-    <div className="group overflow-hidden rounded-3xl border border-[rgba(15,23,42,0.72)] bg-[rgba(15,23,42,0.72)] p-4 transition-all hover:shadow-lg flex flex-col">
+    <div className="product-card group overflow-hidden rounded-3xl border border-[rgba(15,23,42,0.72)] bg-[rgba(15,23,42,0.72)] p-4 transition-all hover:shadow-lg flex flex-col">
       {img && (
         <a href={link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-3xl mb-4 bg-white">
-          <img src={img} alt={title} className="h-56 w-full object-contain transition-transform group-hover:scale-105" />
+          <img src={img} alt={title} loading="lazy" decoding="async" className="h-56 w-full object-contain transition-transform group-hover:scale-105" />
         </a>
       )}
       <div className="flex flex-col flex-grow">

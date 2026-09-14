@@ -199,6 +199,11 @@
 }
 
 @layer components {
+    .product-card {
+        content-visibility: auto;
+        contain-intrinsic-size: 22rem 30rem;
+    }
+
     .product-logo-frame {
         height: 14rem;
         width: 100%;

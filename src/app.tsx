@@ -150,17 +150,23 @@ export default function App() {
   ];
 
   useEffect(() => {
-    // ??? ?????? "??????" ???? ?????? ??????? ??? ??? ?????? ???
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
 
-    const handleScroll = () => {
+    let frameId = 0;
+    let lastScrolledState = false;
+
+    const updateNavigation = () => {
+      frameId = 0;
       const currentScrollY = window.scrollY;
       const nav = navRef.current;
       if (nav) {
         const pageIsScrolled = currentScrollY > 20;
-        setNavHidden(pageIsScrolled);
+        if (pageIsScrolled !== lastScrolledState) {
+          lastScrolledState = pageIsScrolled;
+          setNavHidden(pageIsScrolled);
+        }
         nav.classList.toggle('py-4', currentScrollY > 20);
         nav.classList.toggle('py-8', currentScrollY <= 20);
         nav.classList.toggle('shadow-2xl', pageIsScrolled);
@@ -168,8 +174,16 @@ export default function App() {
         nav.classList.toggle('bg-[#0F172A]', currentScrollY <= 20);
       }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const handleScroll = () => {
+      if (frameId === 0) frameId = window.requestAnimationFrame(updateNavigation);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (frameId !== 0) window.cancelAnimationFrame(frameId);
+    };
   }, []);
 
   useEffect(() => {
