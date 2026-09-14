@@ -64,7 +64,7 @@
     background-image: var(--site-background-image);
     background-position: center;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: scroll;
     background-color: transparent !important;
 }
 
@@ -101,11 +101,23 @@
     padding: 0 !important;
 }
 
+.site-shell .drtech-logo-container {
+    background-color: #fff !important;
+}
+
 .site-shell .logo-fill-image {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
     object-position: center !important;
+}
+
+.site-shell .drtech-logo-container .drtech-logo-image {
+    width: 88% !important;
+    height: 88% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    transform: none;
 }
 
 .site-shell .e3-logo-card img,
@@ -199,6 +211,11 @@
 }
 
 @layer components {
+    .product-logo-card {
+        content-visibility: auto;
+        contain-intrinsic-size: 18rem 22rem;
+    }
+
     .product-card {
         content-visibility: auto;
         contain-intrinsic-size: 22rem 30rem;

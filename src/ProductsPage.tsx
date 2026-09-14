@@ -33,13 +33,15 @@ export default function ProductsPage() {
             return (
               <div
                 key={logo.id}
-                className={`group relative bg-[rgba(15,23,42,0.52)] border border-[rgba(15,23,42,0.52)] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center ${logo.id === 'drtech' ? 'drtech-logo-card' : ''}`}
+                className={`product-logo-card group relative bg-[rgba(15,23,42,0.52)] border border-[rgba(15,23,42,0.52)] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center ${logo.id === 'drtech' ? 'drtech-logo-card' : ''}`}
               >
                 <Link to={`/product/${logo.id}`} onClick={rememberScrollPosition} className="block w-full">
                   <div className={`product-logo-frame px-4 py-4 ${logo.id === '3e-ndt' ? 'e3-logo-card' : ''} ${logo.id === 'tpac' ? 'tpac-logo-card' : ''} ${logo.id === 'drtech' ? 'drtech-logo-container' : 'logo-white-background'}`}>
                     <img
                       src={logo.url}
                       alt={logo.name}
+                      loading="lazy"
+                      decoding="async"
                       className={`h-full w-full object-contain transition-transform duration-500 group-hover:scale-105 ${logo.id === 'drtech' ? 'drtech-logo-image' : ''} ${shouldFillLogo ? 'logo-fill-image' : ''}`}
                     />
                   </div>
