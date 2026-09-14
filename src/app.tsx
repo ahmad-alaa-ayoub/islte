@@ -244,16 +244,28 @@ export default function App() {
 
             {activeProductTab === 'products' ? (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
-                {partnerLogos.map((logo) => (
-                  <Link to={`/product/${logo.id}`} key={logo.id} className="group relative bg-[rgba(15,23,42,0.72)] border border-[rgba(15,23,42,0.72)] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center">
-                    <div className="logo-white-background aspect-square w-full flex items-center justify-center px-4 py-4">
-                      <img src={logo.url} alt={logo.name} className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" />
-                    </div>
-                    <div className="px-4 py-4 w-full">
-                      <div className="text-sm font-black uppercase tracking-[0.18em] text-white">{logo.name || ''}</div>
-                    </div>
-                  </Link>
-                ))}
+                {partnerLogos.map((logo) => {
+                  const shouldFillLogo = logo.id === '3e-ndt' || logo.id === 'tpac' || logo.id === 'drtech';
+
+                  return (
+                    <Link
+                      to={`/product/${logo.id}`}
+                      key={logo.id}
+                      className={`group relative bg-[rgba(15,23,42,0.72)] border border-[rgba(15,23,42,0.72)] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center ${logo.id === 'drtech' ? 'drtech-logo-card' : ''}`}
+                    >
+                      <div className={`aspect-square w-full flex items-center justify-center px-4 py-4 ${logo.id === '3e-ndt' ? 'e3-logo-card' : ''} ${logo.id === 'tpac' ? 'tpac-logo-card' : ''} ${logo.id === 'drtech' ? 'drtech-logo-container' : 'logo-white-background'}`}>
+                        <img
+                          src={logo.url}
+                          alt={logo.name}
+                          className={`h-full w-full object-contain transition-transform duration-500 group-hover:scale-105 ${logo.id === 'drtech' ? 'drtech-logo-image' : ''} ${shouldFillLogo ? 'logo-fill-image' : ''}`}
+                        />
+                      </div>
+                      <div className="px-4 py-4 w-full">
+                        <div className="text-sm font-black uppercase tracking-[0.18em] text-white">{logo.name || ''}</div>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             ) : (
               <div className="py-20 text-slate-300 font-black uppercase tracking-[0.5em] text-sm italic">Updates Coming Soon</div>
@@ -422,89 +434,89 @@ export default function App() {
           <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.72fr)] gap-8 lg:gap-10 items-start">
             {/* ??????? ??????? */}
             <div className="grid gap-8">
-            {/* //////////////////////////DUBAI */}
-            <div onClick={() => setSelectedOffice(offices[0])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[0].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
-              <h3 className="text-xl font-black text-sky-700 mb-4 uppercase tracking-tighter">Main office (Dubai)</h3>
-              <div className="text-slate-600 space-y-1 font-medium text-sm">
-                <p className="font-bold text-slate-900">Integrity Scientific Laboratory Equipment LLC</p>
-                <p>Offices 12 & 13 Al Jaber Building, Nad Al Hamar, Dubai, UAE</p>
-                <p>P.O.Box : 392998</p>
-                <p className="pt-2"><span className="font-bold text-sky-700">Phone:</span> +971 4 4323551</p>
-                <p><span className="font-bold text-sky-700">Email:</span> info@islte.ae</p>
+              {/* //////////////////////////DUBAI */}
+              <div onClick={() => setSelectedOffice(offices[0])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[0].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
+                <h3 className="text-xl font-black text-sky-700 mb-4 uppercase tracking-tighter">Main office (Dubai)</h3>
+                <div className="text-slate-600 space-y-1 font-medium text-sm">
+                  <p className="font-bold text-slate-900">Integrity Scientific Laboratory Equipment LLC</p>
+                  <p>Offices 12 & 13 Al Jaber Building, Nad Al Hamar, Dubai, UAE</p>
+                  <p>P.O.Box : 392998</p>
+                  <p className="pt-2"><span className="font-bold text-sky-700">Phone:</span> +971 4 4323551</p>
+                  <p><span className="font-bold text-sky-700">Email:</span> info@islte.ae</p>
+                </div>
               </div>
-            </div>
 
-            {/* ////////////////////////////////////////////ABU DHABI */}
-            <div onClick={() => setSelectedOffice(offices[1])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[1].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
-              <h3 className="text-xl font-black text-slate-800 mb-4 uppercase tracking-tighter">Abu Dhabi Office</h3>
-              <div className="text-slate-600 space-y-1 font-medium text-sm">
-                <p className="font-bold text-slate-900">Integrity Scientific Laboratory Equipment LLC</p>
-                <p>Office number 8, floor 9, tower 3, Mazyad mall, zone 1, Mohammed Bin Zayed city, Abu Dhabi, UAE</p>
-                <p className="pt-2"><span className="font-bold text-slate-800">Phone:</span> +971 2 6273561</p>
-                <p><span className="font-bold text-slate-800">Email:</span> info@islte.ae</p>
+              {/* ////////////////////////////////////////////ABU DHABI */}
+              <div onClick={() => setSelectedOffice(offices[1])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[1].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
+                <h3 className="text-xl font-black text-slate-800 mb-4 uppercase tracking-tighter">Abu Dhabi Office</h3>
+                <div className="text-slate-600 space-y-1 font-medium text-sm">
+                  <p className="font-bold text-slate-900">Integrity Scientific Laboratory Equipment LLC</p>
+                  <p>Office number 8, floor 9, tower 3, Mazyad mall, zone 1, Mohammed Bin Zayed city, Abu Dhabi, UAE</p>
+                  <p className="pt-2"><span className="font-bold text-slate-800">Phone:</span> +971 2 6273561</p>
+                  <p><span className="font-bold text-slate-800">Email:</span> info@islte.ae</p>
+                </div>
               </div>
-            </div>
 
-            {/* ///////////////////////////oman office */}
-            <div onClick={() => setSelectedOffice(offices[2])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[2].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
-              <h3 className="text-xl font-black text-slate-800 mb-4 uppercase tracking-tighter">Oman Office</h3>
-              <div className="text-slate-600 space-y-1 font-medium text-sm">
-                <p className="font-bold text-slate-900">Integrity Scientific & Laboratory Equipment LLC</p>
-                <p>Office No: 14, DRC Building, Ruwi, Muscat, Oman</p>
-                <p className="pt-2"><span className="font-bold text-slate-800">Mob:</span> +968 93500515</p>
-                <p><span className="font-bold text-slate-800">Email:</span> info@islte.ae</p>
+              {/* ///////////////////////////oman office */}
+              <div onClick={() => setSelectedOffice(offices[2])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[2].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
+                <h3 className="text-xl font-black text-slate-800 mb-4 uppercase tracking-tighter">Oman Office</h3>
+                <div className="text-slate-600 space-y-1 font-medium text-sm">
+                  <p className="font-bold text-slate-900">Integrity Scientific & Laboratory Equipment LLC</p>
+                  <p>Office No: 14, DRC Building, Ruwi, Muscat, Oman</p>
+                  <p className="pt-2"><span className="font-bold text-slate-800">Mob:</span> +968 93500515</p>
+                  <p><span className="font-bold text-slate-800">Email:</span> info@islte.ae</p>
+                </div>
               </div>
-            </div>
-            {/* /////////////////////////////KSA */}
-            <div onClick={() => setSelectedOffice(offices[3])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[3].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
-              <h3 className="text-xl font-black text-slate-800 mb-4 uppercase tracking-tighter">Saudi Arabia Office</h3>
-              <div className="text-slate-600 space-y-1 font-medium text-sm">
-                <p className="font-bold text-slate-900">Integrity Scientific & Laboratory Equipment LLC</p>
-                <p>15th street, building 3149, Office 310, Dammam Saihat </p>
-                <p>Short address: EMJC3149</p>
-                <p className="pt-2"><span className="font-bold text-slate-800">Tel:</span> 0138303573</p>
-                <p><span className="font-bold text-slate-800">Email:</span> info@islte.ae</p>
+              {/* /////////////////////////////KSA */}
+              <div onClick={() => setSelectedOffice(offices[3])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[3].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
+                <h3 className="text-xl font-black text-slate-800 mb-4 uppercase tracking-tighter">Saudi Arabia Office</h3>
+                <div className="text-slate-600 space-y-1 font-medium text-sm">
+                  <p className="font-bold text-slate-900">Integrity Scientific & Laboratory Equipment LLC</p>
+                  <p>15th street, building 3149, Office 310, Dammam Saihat </p>
+                  <p>Short address: EMJC3149</p>
+                  <p className="pt-2"><span className="font-bold text-slate-800">Tel:</span> 0138303573</p>
+                  <p><span className="font-bold text-slate-800">Email:</span> info@islte.ae</p>
+                </div>
               </div>
-            </div>
             </div>
 
             {/* ??? ??????? ?????? ???????? ?????????? ??????? ????? ?????? */}
             <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white h-[520px] lg:sticky lg:top-28 w-full">
-          <iframe
-            src={mapUrl}
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen={true}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+              <iframe
+                src={mapUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
 
-          {/* ????? ????????? ??????? */}
-          <div className="absolute top-10 left-10 z-10 bg-white/95 backdrop-blur-md p-8 rounded-[2.5rem] shadow-2xl max-w-sm border border-white/20 hidden md:block">
-            <div className="flex items-start gap-4">
-              <div className="bg-sky-700 p-3 rounded-2xl shadow-lg">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
+              {/* ????? ????????? ??????? */}
+              <div className="absolute top-10 left-10 z-10 bg-white/95 backdrop-blur-md p-8 rounded-[2.5rem] shadow-2xl max-w-sm border border-white/20 hidden md:block">
+                <div className="flex items-start gap-4">
+                  <div className="bg-sky-700 p-3 rounded-2xl shadow-lg">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-black text-slate-900 leading-none mb-2">Our Location</h4>
+                    <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                      {selectedOffice.address}
+                    </p>
+                    <a
+                      href={directionsUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-block mt-4 text-sky-700 font-bold text-xs uppercase tracking-widest hover:text-sky-800 transition-colors"
+                    >
+                      Get Directions
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h4 className="text-xl font-black text-slate-900 leading-none mb-2">Our Location</h4>
-                <p className="text-sm text-slate-600 leading-relaxed font-medium">
-                  {selectedOffice.address}
-                </p>
-                <a
-                  href={directionsUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-block mt-4 text-sky-700 font-bold text-xs uppercase tracking-widest hover:text-sky-800 transition-colors"
-                >
-                  Get Directions
-                </a>
-              </div>
-            </div>
-          </div>
             </div>
           </div>
         </div>

@@ -685,13 +685,6 @@ export default function ProductDetail() {
         </Link>
 
         <div className="product-detail-panel bg-[rgba(15,23,42,0.78)] rounded-3xl p-8 md:p-12 shadow-sm border border-[rgba(15,23,42,0.72)]">
-          <div className={`logo-white-background product-detail-logo mb-8 ${product.id === 'dolphitech' ? 'dolphitech-logo' : ''} ${product.id === 'spectro' ? 'spectro-logo' : ''} ${product.id === '3e-ndt' ? 'e3-logo' : ''}`}>
-            <img
-              src={product.logo}
-              alt={product.name}
-              className="h-full w-full object-contain"
-            />
-          </div>
           <p className="text-xl text-slate-300 leading-relaxed mb-10 whitespace-pre-line">
             {product.description}
           </p>

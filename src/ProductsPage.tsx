@@ -27,33 +27,37 @@ export default function ProductsPage() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
-          {partnerLogos.map((logo) => (
-            <div
-              key={logo.id}
-              className="group relative bg-[rgba(15,23,42,0.52)] border border-[rgba(15,23,42,0.52)] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center"
-            >
-              <Link to={`/product/${logo.id}`} onClick={rememberScrollPosition} className="block w-full">
-                <div className="product-logo-frame logo-white-background px-4 py-4">
-                  <img
-                    src={logo.url}
-                    alt={logo.name}
-                    className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-              </Link>
-              <div className="px-4 py-4 w-full">
-                <div className="text-sm font-black uppercase tracking-[0.18em] text-white">{logo.name}</div>
-                <Link
-                  to={`/product/${logo.id}`}
-                  onClick={rememberScrollPosition}
-                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-[rgba(15,23,42,0.52)] px-4 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-white transition hover:bg-sky-700"
-                >
-                  View Product
-                  <ChevronRight size={14} />
+          {partnerLogos.map((logo) => {
+            const shouldFillLogo = logo.id === '3e-ndt' || logo.id === 'tpac' || logo.id === 'drtech';
+
+            return (
+              <div
+                key={logo.id}
+                className={`group relative bg-[rgba(15,23,42,0.52)] border border-[rgba(15,23,42,0.52)] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center ${logo.id === 'drtech' ? 'drtech-logo-card' : ''}`}
+              >
+                <Link to={`/product/${logo.id}`} onClick={rememberScrollPosition} className="block w-full">
+                  <div className={`product-logo-frame px-4 py-4 ${logo.id === '3e-ndt' ? 'e3-logo-card' : ''} ${logo.id === 'tpac' ? 'tpac-logo-card' : ''} ${logo.id === 'drtech' ? 'drtech-logo-container' : 'logo-white-background'}`}>
+                    <img
+                      src={logo.url}
+                      alt={logo.name}
+                      className={`h-full w-full object-contain transition-transform duration-500 group-hover:scale-105 ${logo.id === 'drtech' ? 'drtech-logo-image' : ''} ${shouldFillLogo ? 'logo-fill-image' : ''}`}
+                    />
+                  </div>
                 </Link>
+                <div className="px-4 py-4 w-full">
+                  <div className="text-sm font-black uppercase tracking-[0.18em] text-white">{logo.name}</div>
+                  <Link
+                    to={`/product/${logo.id}`}
+                    onClick={rememberScrollPosition}
+                    className="mt-4 inline-flex items-center gap-2 rounded-full bg-[rgba(15,23,42,0.52)] px-4 py-2 text-[10px] font-black uppercase tracking-[0.16em] text-white transition hover:bg-sky-700"
+                  >
+                    View Product
+                    <ChevronRight size={14} />
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
