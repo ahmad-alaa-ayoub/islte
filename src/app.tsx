@@ -191,7 +191,7 @@ export default function App() {
   useEffect(() => {
     const backgroundTimer = window.setInterval(() => {
       setBackgroundIndex((currentIndex) => (currentIndex + 1) % BACKGROUND_IMAGES.length);
-    }, 10000);
+    }, 5000);
 
     return () => window.clearInterval(backgroundTimer);
   }, []);
