@@ -121,7 +121,7 @@ export const productsData: Product[] = [
   {
     id: 'ekoscan',
     name: '',
-    logo: assetUrl('EKOSCAN.jpg'),
+    logo: assetUrl('EKOSCAN.png'),
     description: `Backed by a team of specialists (PhDs, MScs, BScs, 50+ engineering group) in electronics, probes, robotics, ultrasound, eddy-current, signal processing, and software engineering, EKOSCAN combines over 40 years of expertise in the NDT industry. Innovation is placed at the core of its mission, ensuring products are not only technologically advanced but also intuitive and effective in the field.`
   },
   {

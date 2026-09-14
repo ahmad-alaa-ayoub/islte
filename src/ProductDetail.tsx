@@ -685,7 +685,7 @@ export default function ProductDetail() {
         </Link>
 
         <div className="product-detail-panel bg-[rgba(15,23,42,0.78)] rounded-3xl p-8 md:p-12 shadow-sm border border-[rgba(15,23,42,0.72)]">
-          <div className={`logo-white-background product-detail-logo mb-8 ${product.id === 'dolphitech' ? 'dolphitech-logo' : ''} ${product.id === 'spectro' ? 'spectro-logo' : ''}`}>
+          <div className={`logo-white-background product-detail-logo mb-8 ${product.id === 'dolphitech' ? 'dolphitech-logo' : ''} ${product.id === 'spectro' ? 'spectro-logo' : ''} ${product.id === '3e-ndt' ? 'e3-logo' : ''}`}>
             <img
               src={product.logo}
               alt={product.name}
@@ -1776,9 +1776,9 @@ This software is used for the inspection, data collection, and analysis. Once co
             </>
           )}
 
-                    {/* --- COATMASTER --- */}
-            {product.id === 'coatmaster' && (
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {/* --- COATMASTER --- */}
+          {product.id === 'coatmaster' && (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               <ProductCard title="coatmaster 3D" img={coatmaster3d} link="https://coatmaster.com/en/coatmaster/produkte/coatmaster-3d/" desc={`Fast measurement of coating thickness distribution over whole components.\n\ncoatmaster3D\n\n• Decrease setup time for your process.\n• Save material.\n• Document continuously.`} />
               <ProductCard title="Flex" img={flex} link="https://coatmaster.com/en/coatmaster/produkte/coatmaster-flex/" desc={`The coatmaster Flex is the most advanced handheld device for contactless coating thickness measurement.\n\nIt enables early measurement in the coating process, ensuring optimal material usage and preventing costly rework.\n\nDocument without interruption — automatic documentation seamlessly integrates into quality control systems, and closed-loop-ready design integrates with any coating line via TCP/IP.\n\nSave material — reduces paint consumption with optimized coating lines that save more than 30% on paint on average, and reduces rework by preventing costly errors.\n\nAssure quality — accurate even for high coating thicknesses, with reliable measurements up to 500µm, and fast and precise results in a fraction of a second with no handling problems.\n\nControl production — direct measurement on moving parts without stopping production, completely eye-safe operation with no lasers or harmful radiation, and reduces training time.`} />
               <ProductCard title="Inline" img={inline} link="https://coatmaster.com/en/coatmaster/produkte/inline/" desc={`coatmasterInline\n\n• Decrease setup time for your process.\n• Save material.\n• Document continuously.`} />

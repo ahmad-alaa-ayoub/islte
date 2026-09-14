@@ -12,7 +12,7 @@ export const partnerLogos = [
   { id: 'iris', name: 'IRIS', url: assetUrl('IRIS.png') },
   { id: 'tpac', name: 'TPAC', url: assetUrl('TPAC.jpg') },
   { id: 'danatronics', name: 'DANATRONICS', url: assetUrl('logo.jpg') },
-  { id: 'ekoscan', name: 'EKOSCAN', url: assetUrl('EKOSCAN.jpg') },
+  { id: 'ekoscan', name: 'EKOSCAN', url: assetUrl('EKOSCAN.png') },
   { id: 'proceq', name: 'PROCEQ', url: assetUrl('PROCEQ.png') },
   { id: 'vallen-systeme', name: 'VALLEN SYSTEME', url: assetUrl('Vallen-Logo.png') },
   { id: 'rohmann', name: 'ROHMANN', url: assetUrl('ROHMANN.jpg') },
