@@ -1,3 +1,5 @@
+//app.tsx
+import { useDocumentTitle } from './useDocumentTitle';
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import {
   Routes,
@@ -195,38 +197,24 @@ export default function App() {
   }, []);
 
   const LandingPage = () => {
-    // ????? ???? ?????? (???? ?? ???? ?????? ?? ???? public)
+    useDocumentTitle('Integrity Scientific & Laboratory Equipment Trading LLC | NDT Equipment Supplier');
     const currentBackground = BACKGROUND_IMAGES[backgroundIndex];
 
     return (
       <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
 
-        {/* ????? ?????? ???????? ??????? ??????? */}
         <header
-
           id="home"
-          className="hero-section relative pt-64 pb-32 px-6 overflow-hidden flex items-center justify-center min-h-[80vh]"
+          className="hero-section relative pt-40 pb-16 px-6 overflow-hidden min-h-[70vh]"
           style={{
             backgroundImage: `linear-gradient(to bottom, rgba(15, 23, 42, 0.58), rgba(15, 23, 42, 0.42)), url(${currentBackground})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            backgroundAttachment: 'fixed' // ???? ????? Parallax ???????
+            backgroundAttachment: 'fixed'
           }}
         >
-          {/* ???? ?????? ????? ??????? */}
           <div className="absolute inset-0 bg-slate-900/10 backdrop-blur-[1px]"></div>
-
-          <div className="max-w-6xl mx-auto text-center relative z-10">
-            {/* ?? ????? ??????? ??? ??? ?????? (text-white) ?????? ??????? ??????? */}
-            <h1 className="text-6xl md:text-8xl font-black tracking-tight mb-8 leading-[1.1] text-white">
-              Welcome To <span className="text-sky-400">Integrity Scientific</span> Laboratory
-            </h1>
-            <p className="text-xl text-slate-200 font-medium max-w-2xl mx-auto uppercase tracking-widest">
-              Precision & Quality in Every Measurement
-            </p>
-          </div>
         </header>
-
         <section id="news" className="py-24 px-6 bg-white border-t border-slate-100">
           <div className="max-w-7xl mx-auto text-center">
             <div className="flex justify-center mb-16">
@@ -275,7 +263,7 @@ export default function App() {
                         />
                       </div>
                       <div className="px-4 py-4 w-full">
-                        <div className="text-sm font-black uppercase tracking-[0.18em] text-white">{logo.name || ''}</div>
+                        <div className="text-lg font-black uppercase tracking-[0.18em] text-white">{logo.name || ''}</div>
                       </div>
                     </Link>
                   );
@@ -290,22 +278,27 @@ export default function App() {
     );
   };
 
-  const AfterSaleServicesPage = () => (
-    <section className="after-sale-page min-h-screen pt-64 pb-24 px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col items-center gap-10 text-center mb-24 mt-16">
-          <img src={TECHCAL_LOGO} alt="Technical Logo" className="h-32 md:h-40 object-contain" />
-        </div>
+  const AfterSaleServicesPage = () => {
+    useDocumentTitle('After Sale Services | Integrity Scientific');
+    return (
+      <section className="after-sale-page min-h-screen pt-64 pb-24 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col items-center gap-10 text-center mb-24 mt-16">
+            <img src={TECHCAL_LOGO} alt="Technical Logo" className="h-32 md:h-40 object-contain" />
+          </div>
 
-        <div className="bg-slate-50 rounded-3xl border border-slate-200 p-10 shadow-sm">
-          <p className="text-base md:text-lg leading-relaxed text-slate-700">
-            Our service team is committed to deliver the premium quality of calibration, repair and certification services through the accredited with Emirates International Accreditation Center (EIAC, formerly DAC) to meet ISO/IEC/17025 in order to ensure a high level of calibration and quality standards. Calibration is traceable through NPL, NIST, PTB, EMI or other international/ national standards institutes to the International Systems of Units (SI) or to accepted intrinsic standards of measurement.
-          </p>
+          <div className="bg-slate-50 rounded-3xl border border-slate-200 p-10 shadow-sm">
+            <p className="text-base md:text-lg leading-relaxed text-slate-700">
+              Our service team is committed to deliver the premium quality of calibration, repair and certification services through the accredited with Emirates International Accreditation Center (EIAC, formerly DAC) to meet ISO/IEC/17025 in order to ensure a high level of calibration and quality standards. Calibration is traceable through NPL, NIST, PTB, EMI or other international/ national standards institutes to the International Systems of Units (SI) or to accepted intrinsic standards of measurement.
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  };
+
   const CareerSection = React.useMemo(() => () => {
+    useDocumentTitle('Careers | Integrity Scientific');
     return (
       <div className="min-h-screen bg-[#0a0f1a] pt-64 pb-20 px-6 flex items-center justify-center">
         <div className="max-w-2xl w-full bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-md shadow-2xl">
@@ -320,7 +313,6 @@ export default function App() {
             method="POST"
             className="space-y-5"
           >
-            {/* ??????? ?????? ????? ??????? */}
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_next" value={window.location.href} />
 
@@ -389,7 +381,9 @@ export default function App() {
       </div>
     );
   }, []);
+
   const ContactUsPage = React.useMemo(() => () => {
+    useDocumentTitle('Contact Us | Integrity Scientific');
     const [selectedOffice, setSelectedOffice] = useState(() => {
       const savedOfficeName = sessionStorage.getItem('selectedOfficeName');
       return offices.find((office) => office.name === savedOfficeName) ?? offices[0];
@@ -412,7 +406,6 @@ export default function App() {
 
         <div className="grid gap-16 items-start mb-20">
 
-          {/* ????? ???????? */}
           <div className="contact-form-card bg-white rounded-[2.5rem] p-10 shadow-2xl border border-slate-100 w-full max-w-5xl mx-auto">
             <form action="https://formsubmit.co/info@islte.ae" method="POST" className="space-y-6">
               <input type="hidden" name="_captcha" value="false" />
@@ -446,9 +439,7 @@ export default function App() {
           </div>
 
           <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.72fr)] gap-8 lg:gap-10 items-start">
-            {/* ??????? ??????? */}
             <div className="grid gap-8">
-              {/* //////////////////////////DUBAI */}
               <div onClick={() => setSelectedOffice(offices[0])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[0].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
                 <h3 className="text-xl font-black text-sky-700 mb-4 uppercase tracking-tighter">Main office (Dubai)</h3>
                 <div className="text-slate-600 space-y-1 font-medium text-sm">
@@ -460,7 +451,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* ////////////////////////////////////////////ABU DHABI */}
               <div onClick={() => setSelectedOffice(offices[1])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[1].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
                 <h3 className="text-xl font-black text-slate-800 mb-4 uppercase tracking-tighter">Abu Dhabi Office</h3>
                 <div className="text-slate-600 space-y-1 font-medium text-sm">
@@ -471,7 +461,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* ///////////////////////////oman office */}
               <div onClick={() => setSelectedOffice(offices[2])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[2].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
                 <h3 className="text-xl font-black text-slate-800 mb-4 uppercase tracking-tighter">Oman Office</h3>
                 <div className="text-slate-600 space-y-1 font-medium text-sm">
@@ -481,7 +470,6 @@ export default function App() {
                   <p><span className="font-bold text-slate-800">Email:</span> info@islte.ae</p>
                 </div>
               </div>
-              {/* /////////////////////////////KSA */}
               <div onClick={() => setSelectedOffice(offices[3])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[3].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
                 <h3 className="text-xl font-black text-slate-800 mb-4 uppercase tracking-tighter">Saudi Arabia Office</h3>
                 <div className="text-slate-600 space-y-1 font-medium text-sm">
@@ -494,7 +482,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* ??? ??????? ?????? ???????? ?????????? ??????? ????? ?????? */}
             <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white h-[520px] lg:sticky lg:top-28 w-full">
               <iframe
                 src={mapUrl}
@@ -506,7 +493,6 @@ export default function App() {
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
 
-              {/* ????? ????????? ??????? */}
               <div className="absolute top-10 left-10 z-10 bg-white/95 backdrop-blur-md p-8 rounded-[2.5rem] shadow-2xl max-w-sm border border-white/20 hidden md:block">
                 <div className="flex items-start gap-4">
                   <div className="bg-sky-700 p-3 rounded-2xl shadow-lg">
@@ -534,16 +520,17 @@ export default function App() {
             </div>
           </div>
         </div>
-      </section >
+      </section>
     );
   }, []);
+
   const CounterItem = ({ target, label }: { target: number; label: string }) => {
     const [count, setCount] = React.useState(0);
 
     React.useEffect(() => {
       let start = 0;
-      const duration = 2000; // ??? ???????? ?????? ?????
-      const increment = target / (duration / 16); // ????? ????? ??? 60 ???? ?? ???????
+      const duration = 2000;
+      const increment = target / (duration / 16);
 
       const timer = setInterval(() => {
         start += increment;
@@ -571,75 +558,95 @@ export default function App() {
     );
   };
 
-  const AboutUsPage = () => (
-    <section className="about-page min-h-screen pt-64 pb-24 px-6 bg-slate-50">
-      <div className="max-w-7xl mx-auto grid gap-12 lg:grid-cols-[1.05fr_0.95fr] items-center mb-24">
-        <div className="overflow-hidden rounded-[2rem] shadow-2xl bg-white">
-          <img src={ABOUT_IMAGE} alt="Integrity Scientific Office" className="w-full h-full object-cover" />
-        </div>
-
-        <div className="space-y-6">
-          <div className="text-left">
-            <h2 className="text-4xl font-black tracking-tight text-slate-400">Who we are</h2>
-            <p className="mt-4 text-base md:text-lg leading-8 text-slate-500">
-              Integrity Scientific & Laboratory Equipment Trading LLC. was established in 2014 to support the increasing needs and demands of Quality Control in the fields of Oil & Gas, Energy, Aviation and Laboratories industries. Integrity Scientific & Laboratory relies on the extensive 20 Years experience of its team. It has enabled us to better understand the needs of our clients for high quality Products and constant customer support.
-            </p>
+  const AboutUsPage = () => {
+    useDocumentTitle('About Us | Integrity Scientific');
+    return (
+      <section className="about-page min-h-screen pt-64 pb-24 px-6 bg-slate-50">
+        <div className="max-w-7xl mx-auto grid gap-12 lg:grid-cols-[1.05fr_0.95fr] items-center mb-24">
+          <div className="overflow-hidden rounded-[2rem] shadow-2xl bg-white">
+            <img src={ABOUT_IMAGE} alt="Integrity Scientific Office" className="w-full h-full object-cover" />
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-            <p className="text-base md:text-lg leading-8 text-slate-500 mb-6">
-              Integrity Scientific & Lab is a representative of prominent and highly professional companies which provide state-of-the-art equipment and technology in the following fields:
-            </p>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {[
-                'Oil & Gas',
-                'Power Generation',
-                'Petrochemicals.',
-                'Aviation',
-                'Fabrication',
-                'Research (R&D) and Educations',
-                'Manufacturing',
-                'Security',
-                'Laboratory and environment.'
-              ].map((item) => (
-                <span key={item} className="inline-flex rounded-2xl bg-[#0F172A] px-4 py-3 text-slate-300 font-semibold text-xs">
-                  {item}
-                </span>
-              ))}
+          <div className="space-y-6">
+            <div className="text-left">
+              <h2 className="text-4xl font-black tracking-tight text-slate-400">Who we are</h2>
+              <p className="mt-4 text-base md:text-lg leading-8 text-slate-500">
+                Integrity Scientific & Laboratory Equipment Trading LLC. was established in 2014 to support the increasing needs and demands of Quality Control in the fields of Oil & Gas, Energy, Aviation and Laboratories industries. Integrity Scientific & Laboratory relies on the extensive 20 Years experience of its team. It has enabled us to better understand the needs of our clients for high quality Products and constant customer support.
+              </p>
+            </div>
+
+                        <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <p className="text-base md:text-lg leading-8 text-slate-500 mb-6">
+                Integrity Scientific & Lab is a representative of prominent and highly professional companies which provide state-of-the-art equipment and technology in the following fields:
+              </p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[
+                  'Oil & Gas',
+                  'Power Generation',
+                  'Petrochemicals.',
+                  'Aviation',
+                  'Fabrication',
+                  'Research (R&D) and Educations',
+                  'Manufacturing',
+                  'Security',
+                  'Laboratory and environment.'
+                ].map((item) => (
+                  <span key={item} className="inline-flex rounded-2xl bg-[#0F172A] px-4 py-3 text-slate-300 font-semibold text-xs">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <h3 className="text-2xl font-black tracking-tight text-slate-400 mb-6">What We Do</h3>
+              <ul className="space-y-5 text-sm font-bold text-slate-500">
+                {[
+                  'Understand our customer needs',
+                  'Discuss challenges and limitations',
+                  'Suggest best available technology and solutions',
+                  'Supply state-of-the-art equipment',
+                  'Educate and train customer manpower',
+                  'Provide after- sales Support'
+                ].map(text => (
+                  <li key={text} className="flex items-start gap-4">
+                    <ChevronRight size={16} className="mt-0.5 text-sky-600 shrink-0" />
+                    <span>{text}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
-      </div>
 
-
-      {/* ??? ??????? ??????????? ?????? */}
-      <div className="max-w-7xl mx-auto py-20 mb-24 bg-white rounded-[3rem] shadow-sm border border-slate-100">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 px-6">
-          <CounterItem target={35} label="Countries" />
-          <CounterItem target={56} label="Products" />
-          <CounterItem target={89} label="Projects" />
-          <CounterItem target={20} label="Years of Experience" />
-        </div>
-      </div>
-
-      <section className="py-24 px-6 bg-white rounded-[3rem]">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-black tracking-tight text-slate-400 text-center mb-12">Office Pictures</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {OFFICE_IMAGES.map((src, index) => (
-              <div key={index} className="overflow-hidden rounded-3xl shadow-2xl bg-slate-100 group">
-                <img
-                  src={src}
-                  alt={`Office picture ${index + 1}`}
-                  className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
-            ))}
+        <div className="max-w-7xl mx-auto py-20 mb-24 bg-white rounded-[3rem] shadow-sm border border-slate-100">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 px-6">
+            <CounterItem target={35} label="Countries" />
+            <CounterItem target={56} label="Products" />
+            <CounterItem target={89} label="Projects" />
+            <CounterItem target={20} label="Years of Experience" />
           </div>
         </div>
+
+        <section className="py-24 px-6 bg-white rounded-[3rem]">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-4xl font-black tracking-tight text-slate-400 text-center mb-12">Office Pictures</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {OFFICE_IMAGES.map((src, index) => (
+                <div key={index} className="overflow-hidden rounded-3xl shadow-2xl bg-slate-100 group">
+                  <img
+                    src={src}
+                    alt={`Office picture ${index + 1}`}
+                    className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </section>
-    </section>
-  );
+    );
+  };
 
   return (
     <div
@@ -650,19 +657,19 @@ export default function App() {
       <ScrollManager />
 
       <nav ref={navRef} className={`fixed top-0 left-0 right-0 w-full z-50 block py-8 bg-[rgba(15,23,42,0.52)] transition-all duration-500 ${navHidden ? '-translate-y-[110%] pointer-events-none' : 'translate-y-0'}`}>
-        <div className="max-w-7xl mx-auto px-0 flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-0 -translate-x-20 md:-translate-x-8">
-            <img src={ISL_LOGO_NEW} alt="Integrity Scientific" className="h-28 md:h-40 transition-all" />
-            <div className="flex flex-col border-l border-white/10 pl-5">
-              <span className="text-[13px] md:text-[15px] font-black uppercase tracking-[0.12em] text-slate-300 flex flex-col">
+        <div className="max-w-7xl mx-auto px-6 flex flex-nowrap justify-between items-center gap-6">
+          <Link to="/" className="flex items-center gap-0 shrink-0">
+            <img src={ISL_LOGO_NEW} alt="Integrity Scientific" className="h-20 md:h-28 transition-all shrink-0" />
+            <div className="hidden xl:flex flex-col border-l border-white/10 pl-5 shrink-0">
+              <span className="text-[13px] md:text-[15px] font-black uppercase tracking-[0.12em] text-slate-300 flex flex-col whitespace-nowrap">
                 <span>Integrity Scientific</span>
                 <span>Laboratory</span>
               </span>
             </div>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-10 text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
-            <Link key="Home" to="/" className="flex h-full items-center whitespace-nowrap text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 hover:text-white transition-all">
+          <div className="hidden lg:flex items-center gap-6 text-sm font-black uppercase tracking-[0.15em] text-white/60">
+            <Link key="Home" to="/" className="flex h-full items-center whitespace-nowrap text-sm font-black uppercase tracking-[0.15em] leading-none text-white/70 hover:text-white transition-all">
               Home
             </Link>
 
@@ -678,7 +685,7 @@ export default function App() {
                 setHoveredProduct(null);
               }}
             >
-              <Link to="/products" onClick={() => setDesktopProductsOpen(false)} className="flex h-full items-center gap-1 text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 hover:text-white transition-all">
+              <Link to="/products" onClick={() => setDesktopProductsOpen(false)} className="flex h-full items-center gap-1 text-sm font-black uppercase tracking-[0.15em] leading-none text-white/70 hover:text-white transition-all">
                 Products
               </Link>
 
@@ -708,11 +715,11 @@ export default function App() {
 
             {navItems.slice(1).map((item) => (
               item.href.startsWith('/') ? (
-                <Link key={item.label} to={item.href} onClick={() => item.label === 'News' && setActiveProductTab('news')} className="flex h-full items-center whitespace-nowrap text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 hover:text-white transition-all">
+                <Link key={item.label} to={item.href} onClick={() => item.label === 'News' && setActiveProductTab('news')} className="flex h-full items-center whitespace-nowrap text-sm font-black uppercase tracking-[0.15em] leading-none text-white/70 hover:text-white transition-all">
                   {item.label}
                 </Link>
               ) : (
-                <Link key={item.label} to={item.href} onClick={() => item.label === 'News' && setActiveProductTab('news')} className="flex h-full items-center whitespace-nowrap text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 hover:text-white transition-all">
+                <Link key={item.label} to={item.href} onClick={() => item.label === 'News' && setActiveProductTab('news')} className="flex h-full items-center whitespace-nowrap text-sm font-black uppercase tracking-[0.15em] leading-none text-white/70 hover:text-white transition-all">
                   {item.label}
                 </Link>
               )
@@ -720,12 +727,11 @@ export default function App() {
           </div>
 
           <button
-            className="lg:hidden flex flex-col h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-slate-950/90 text-white/80 hover:text-white focus:outline-none gap-1.5"
+            className="lg:hidden flex flex-col h-14 w-14 items-center justify-center rounded-full border border-white/15 bg-slate-950/90 text-white/80 hover:text-white focus:outline-none gap-1.5"
             type="button"
             onClick={() => setMobileNavOpen((open) => !open)}
             aria-label="Toggle mobile menu"
           >
-            {/* ??? ???? ??????? ?????? ???? ????? X? ???? ???? ????? ???? ??? 3 ???? */}
             {mobileNavOpen ? (
               <X size={24} />
             ) : (
@@ -807,31 +813,10 @@ export default function App() {
       </Routes>
 
       <footer className="bg-[rgba(15,23,42,0.78)] text-white pt-24 relative">
-        <div className="max-w-7xl mx-auto px-8 pb-16 grid grid-cols-1 md:grid-cols-3 gap-20">
-          {/* RESTORED: What We Do Section */}
-          <div>
-            <h3 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 text-slate-500">What we do</h3>
-            <ul className="space-y-5 text-[13px] font-bold text-slate-400">
-              {[
-                'Understand our customer needs',
-                'Discuss challenges and limitations',
-                'Suggest best available technology and solutions',
-                'Supply state-of-the-art equipment',
-                'Educate and train customer manpower',
-                'Provide after- sales Support'
-              ].map(text => (
-                <li key={text} className="flex items-start gap-4 group cursor-default">
-                  <ChevronRight size={16} className="mt-0.5 text-slate-700 group-hover:text-white transition-colors" />
-                  <span className="group-hover:text-white transition-colors">{text}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* RESTORED: Sectors Section */}
-          <div className="border-x border-white/5 px-10 text-left">
-            <h3 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 text-slate-500">Sectors</h3>
-            <div className="grid grid-cols-1 gap-5 text-[11px] font-black uppercase tracking-[0.2em] text-slate-400">
+        <div className="max-w-4xl mx-auto px-8 pb-16 grid grid-cols-1 sm:grid-cols-2 gap-16 sm:gap-24">            
+          <div className="text-left">
+            <h3 className="text-x3 font-black uppercase tracking-[0.15em] mb-10 text-slate-500">Sectors</h3>
+            <div className="grid grid-cols-1 gap-5 text-sm font-black uppercase tracking-[0.15em] text-slate-400">
               {[
                 'Oil & Gas',
                 'Power Generation',
@@ -849,7 +834,7 @@ export default function App() {
           </div>
 
           <div className="flex flex-col items-start">
-            <h3 className="text-[10px] font-black uppercase tracking-[0.4em] mb-10 text-slate-500">Stay in touch</h3>
+            <h3 className="text-x1 font-black uppercase tracking-[0.12em] mb-10 text-slate-500">Stay in touch</h3>
             <div className="space-y-4 w-full flex flex-col items-start">
               <a href="#" className="flex items-center gap-3 w-56 px-5 py-3 bg-[#0077B5] rounded-lg hover:brightness-110 transition-all">
                 <Linkedin size={20} className="text-white" />
@@ -867,12 +852,10 @@ export default function App() {
           </div>
         </div>
 
-        <div className="border-t border-white/5 py-10 text-center text-[9px] tracking-[0.5em] font-black text-slate-600 uppercase">
-          2026 � INTEGRITY SCIENTIFIC LABORATORY EQUIPMENT TRADING LLC
+                <div className="border-t border-white/5 py-10 text-center text-[9px] tracking-[0.5em] font-black text-slate-600 uppercase">
+          2026 &copy; INTEGRITY SCIENTIFIC LABORATORY EQUIPMENT TRADING LLC
         </div>
       </footer>
     </div>
   );
 }
-
-

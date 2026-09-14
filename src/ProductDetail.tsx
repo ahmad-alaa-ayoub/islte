@@ -1,7 +1,9 @@
+// ProductDetail.tsx
 import React from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { productsData } from './data/products';
 import { ChevronLeft } from 'lucide-react';
+import { useDocumentTitle } from './useDocumentTitle';
 
 // --- IMAGE IMPORTS ---
 
@@ -648,6 +650,7 @@ export default function ProductDetail() {
     }
   }, [location.hash, product]);
 
+  useDocumentTitle(product ? `${product.name || productId} | Integrity Scientific` : 'Product Not Found | Integrity Scientific');
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center">

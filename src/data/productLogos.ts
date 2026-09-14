@@ -1,3 +1,4 @@
+// productLogos.ts
 const assetUrl = (fileName: string) => {
   const normalizedPath = fileName.replace(/\\/g, '/');
   return new URL(`../public/${encodeURI(normalizedPath)}`, import.meta.url).href;

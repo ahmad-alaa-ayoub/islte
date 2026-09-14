@@ -1,9 +1,12 @@
+// productPage.tsx
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { partnerLogos } from './data/productLogos';
+import { useDocumentTitle } from './useDocumentTitle';
 
 export default function ProductsPage() {
+  useDocumentTitle('Our Products | Integrity Scientific');
   useEffect(() => {
     const savedScrollPosition = sessionStorage.getItem('products-scroll-position');
     if (savedScrollPosition === null) return;
@@ -47,7 +50,7 @@ export default function ProductsPage() {
                   </div>
                 </Link>
                 <div className="px-4 py-4 w-full">
-                  <div className="text-sm font-black uppercase tracking-[0.18em] text-white">{logo.name}</div>
+                  <div className="text-lg font-black uppercase tracking-[0.18em] text-white">{logo.name}</div>
                   <Link
                     to={`/product/${logo.id}`}
                     onClick={rememberScrollPosition}

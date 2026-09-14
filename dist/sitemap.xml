@@ -1,0 +1,31 @@
+<!-- sitemap.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.islte.ae/</loc></url>
+  <url><loc>https://www.islte.ae/products</loc></url>
+  <url><loc>https://www.islte.ae/about</loc></url>
+  <url><loc>https://www.islte.ae/after-sale-services</loc></url>
+  <url><loc>https://www.islte.ae/career</loc></url>
+  <url><loc>https://www.islte.ae/contact</loc></url>
+  <url><loc>https://www.islte.ae/product/jireh</loc></url>
+  <url><loc>https://www.islte.ae/product/fuji</loc></url>
+  <url><loc>https://www.islte.ae/product/3e-ndt</loc></url>
+  <url><loc>https://www.islte.ae/product/durr-ndt</loc></url>
+  <url><loc>https://www.islte.ae/product/drtech</loc></url>
+  <url><loc>https://www.islte.ae/product/iris</loc></url>
+  <url><loc>https://www.islte.ae/product/tpac</loc></url>
+  <url><loc>https://www.islte.ae/product/danatronics</loc></url>
+  <url><loc>https://www.islte.ae/product/ekoscan</loc></url>
+  <url><loc>https://www.islte.ae/product/proceq</loc></url>
+  <url><loc>https://www.islte.ae/product/vallen-systeme</loc></url>
+  <url><loc>https://www.islte.ae/product/rohmann</loc></url>
+  <url><loc>https://www.islte.ae/product/mitcorp</loc></url>
+  <url><loc>https://www.islte.ae/product/gb-inspection</loc></url>
+  <url><loc>https://www.islte.ae/product/wohler</loc></url>
+  <url><loc>https://www.islte.ae/product/johnson-allen</loc></url>
+  <url><loc>https://www.islte.ae/product/echo</loc></url>
+  <url><loc>https://www.islte.ae/product/spectro</loc></url>
+  <url><loc>https://www.islte.ae/product/dolphitech</loc></url>
+  <url><loc>https://www.islte.ae/product/balteau</loc></url>
+  <url><loc>https://www.islte.ae/product/coatmaster</loc></url>
+</urlset>
