@@ -1,14 +1,86 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Integrity Scientific</title>
-    <script type="module" crossorigin src="/islte/assets/index-BTs-eY37.js"></script>
-    <link rel="stylesheet" crossorigin href="/islte/assets/index-BVnvHvli.css">
+
+    <title>Integrity Scientific & Laboratory Equipment Trading LLC | NDT Equipment Supplier</title>
+    <meta name="description" content="Integrity Scientific & Laboratory Equipment Trading LLC supplies non-destructive testing (NDT) equipment, ultrasonic and radiography systems, and calibration tools across the UAE, Oman, and Saudi Arabia." />
+    <meta name="keywords" content="NDT equipment, non-destructive testing, ultrasonic testing, radiography, phased array, UAE, Dubai, Abu Dhabi, Oman, Saudi Arabia" />
+    <link rel="canonical" href="https://www.islte.ae/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Integrity Scientific & Laboratory Equipment Trading LLC" />
+    <meta property="og:description" content="Supplier of non-destructive testing (NDT) equipment, ultrasonic and radiography systems, and calibration tools across the UAE, Oman, and Saudi Arabia." />
+    <meta property="og:url" content="https://www.islte.ae/" />
+    <meta property="og:image" content="https://www.islte.ae/logo-removebg-preview.png" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Integrity Scientific & Laboratory Equipment Trading LLC" />
+    <meta name="twitter:description" content="Supplier of non-destructive testing (NDT) equipment, ultrasonic and radiography systems, and calibration tools across the UAE, Oman, and Saudi Arabia." />
+    <meta name="twitter:image" content="https://www.islte.ae/logo-removebg-preview.png" />
+
+    <link rel="icon" type="image/png" href="/islte/assets/logo-removebg-preview-C0JqGZIz.png" />
+    <script type="module" crossorigin src="/islte/assets/index-GU1JrRcy.js"></script>
+    <link rel="stylesheet" crossorigin href="/islte/assets/index-CNgp5ZNN.css">
   </head>
-  <body>
-    <div id="root"></div>
+     <body>
+    <div id="root"></div>
+
+    <div id="app-loader">
+      <img src="/islte/assets/logo-removebg-preview-C0JqGZIz.png" alt="Loading" id="app-loader-logo" />
+      <div id="app-loader-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <style>
+      #app-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        background: #0f172a;
+        transition: opacity 0.4s ease;
+      }
+      #app-loader.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #app-loader-logo {
+        width: 180px;
+        max-width: 60vw;
+        animation: app-loader-pulse 1.6s ease-in-out infinite;
+      }
+      #app-loader-dots {
+        display: flex;
+        gap: 8px;
+      }
+      #app-loader-dots span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #fff;
+        opacity: 0.3;
+        animation: app-loader-dot 1.2s ease-in-out infinite;
+      }
+      #app-loader-dots span:nth-child(2) { animation-delay: 0.2s; }
+      #app-loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+      @keyframes app-loader-pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(0.96); }
+      }
+      @keyframes app-loader-dot {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 1; }
+      }
+    </style>
+
   </body>
-</html>

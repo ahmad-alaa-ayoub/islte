@@ -1,22 +1,25 @@
 //app.tsx
-import { useDocumentTitle } from './useDocumentTitle';
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import {
-  Routes,
-  Route,
   Link,
+  Route,
+  Routes,
+  useLocation,
   useNavigate,
-  useLocation
+  useNavigationType,
 } from 'react-router-dom';
-
 import {
-  X, Linkedin, Mail, Phone, ChevronRight
+  ChevronRight,
+  Linkedin,
+  Mail,
+  Phone,
+  X,
 } from 'lucide-react';
 
+import { useDocumentTitle } from './useDocumentTitle';
 import ProductDetail from './ProductDetail';
 import ProductsPage from './ProductsPage';
 import { partnerLogos } from './data/productLogos';
-import { useNavigationType } from 'react-router-dom';
 
 
 function ScrollManager() {
@@ -116,7 +119,7 @@ const offices = [
 
 const slugify = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
-function CounterItem({ target, label }: { target: number; label: string }) {
+function CounterItem({ target, label, dark = false }: { target: number; label: string; dark?: boolean }) {
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
@@ -139,13 +142,13 @@ function CounterItem({ target, label }: { target: number; label: string }) {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="text-6xl md:text-7xl font-black text-blue-600 mb-2">
+      <div className={`text-6xl md:text-7xl font-black mb-2 ${dark ? 'text-sky-400' : 'text-blue-600'}`}>
         {count}
       </div>
-      <div className="text-slate-500 font-bold uppercase tracking-[0.2em] text-sm text-center">
+      <div className={`font-bold uppercase tracking-[0.2em] text-sm text-center ${dark ? 'text-slate-300' : 'text-slate-500'}`}>
         {label}
       </div>
-      <div className="h-1 w-12 bg-slate-200 mt-4 rounded-full"></div>
+      <div className={`h-1 w-12 mt-4 rounded-full ${dark ? 'bg-white/20' : 'bg-slate-200'}`}></div>
     </div>
   );
 }
@@ -162,7 +165,7 @@ function HeroBackground() {
   const currentBackground = BACKGROUND_IMAGES[backgroundIndex];
 
   return (
-    <header
+       <header
       id="home"
       className="hero-section relative pt-40 pb-16 px-6 overflow-hidden min-h-[70vh]"
       style={{
@@ -173,12 +176,90 @@ function HeroBackground() {
       }}
     >
       <div className="absolute inset-0 bg-slate-900/10 backdrop-blur-[1px]"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-[#0F172A]"></div>
     </header>
-  );
 
  
-
+    )
 }
+
+
+function LandingPage({ activeProductTab, setActiveProductTab }: { activeProductTab: 'products' | 'news'; setActiveProductTab: (tab: 'products' | 'news') => void }) {
+  useDocumentTitle('Integrity Scientific & Laboratory Equipment Trading LLC | NDT Equipment Supplier');
+
+  return (
+    <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
+
+      <HeroBackground />
+      <section id="news" className="pt-0 pb-16 px-6 bg-white">
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <div className="bg-[rgba(15,23,42,0.85)] backdrop-blur-md rounded-[3rem] shadow-2xl border border-white/10 py-14 px-6 mb-16 -mt-80 relative z-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <CounterItem target={35} label="Countries" dark />
+              <CounterItem target={56} label="Products" dark />
+              <CounterItem target={89} label="Projects" dark />
+              <CounterItem target={20} label="Years of Experience" dark />
+            </div>
+          </div>
+          <div className="flex justify-center mb-16 mt-[200px]">
+            <div className="inline-flex p-1.5 bg-[rgba(15,23,42,0.85)] backdrop-blur-md rounded-2xl border border-white/10">
+              {['news', 'products'].map((tab) => (
+                tab === 'news' ? (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveProductTab('news')}
+                    className={`px-10 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeProductTab === tab ? 'bg-sky-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'}`}
+                  >
+                    {tab}
+                  </button>
+                ) : (
+                  <Link
+                    key={tab}
+                    to="/products"
+                    onClick={() => setActiveProductTab('products')}
+                    className={`px-10 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeProductTab === tab ? 'bg-sky-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'}`}
+                  >
+                    {tab}
+                  </Link>
+                )
+              ))}
+            </div>
+          </div>
+
+          {activeProductTab === 'products' ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
+              {partnerLogos.map((logo) => {
+                const shouldFillLogo = logo.id === '3e-ndt' || logo.id === 'tpac' || logo.id === 'drtech';
+
+                return (
+                  <Link
+                    to={`/product/${logo.id}`}
+                    key={logo.id}
+                    className={`group relative bg-[rgba(15,23,42,0.72)] border border-[rgba(15,23,42,0.72)] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center ${logo.id === 'drtech' ? 'drtech-logo-card' : ''}`}
+                  >
+                    <div className={`aspect-square w-full flex items-center justify-center px-4 py-4 ${logo.id === '3e-ndt' ? 'e3-logo-card' : ''} ${logo.id === 'tpac' ? 'tpac-logo-card' : ''} ${logo.id === 'drtech' ? 'drtech-logo-container' : 'logo-white-background'}`}>
+                      <img
+                        src={logo.url}
+                        alt={logo.name}
+                        className={`h-full w-full object-contain transition-transform duration-500 group-hover:scale-105 ${logo.id === 'drtech' ? 'drtech-logo-image' : ''} ${shouldFillLogo ? 'logo-fill-image' : ''}`}
+                      />
+                    </div>
+                    <div className="px-4 py-4 w-full">
+                      <div className="text-lg font-black uppercase tracking-[0.18em] text-white">{logo.name || ''}</div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="py-20 text-slate-300 font-black uppercase tracking-[0.5em] text-sm italic">Updates Coming Soon</div>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+}
+
 
 export default function App() {
   const navRef = React.useRef<HTMLElement>(null);
@@ -190,29 +271,12 @@ export default function App() {
   const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
   const [mobileProductOpenId, setMobileProductOpenId] = useState<string | null>(null);
   const [navHidden, setNavHidden] = useState(false);
-  const navigate = useNavigate();
 
   // --- BRAND COLORS ---
   const ISL_GRAY = '#A3A3A3';
   const NAV_DARK = 'rgba(15, 23, 42, 0.56)';
   const TEXT_PRIMARY = '#1E293B';
   const TEXT_MUTED = '#64748B';
-
-  const ISL_LOGO_NEW = new URL('./public/logo-removebg-preview.png', import.meta.url).href;
-  const TECHCAL_LOGO = new URL('./public/techcal-logo-high-resolution.png', import.meta.url).href;
-  const ABOUT_IMAGE = new URL('./public/IMG_20230916_142015-scaled.jpg', import.meta.url).href;
-  const OFFICE_IMAGES = [
-    new URL('./public/office Pictures/IMG_20200630_123749.jpg', import.meta.url).href,
-    new URL('./public/office Pictures/IMG_20200630_123842.jpg', import.meta.url).href,
-    new URL('./public/office Pictures/IMG_20200630_123848.jpg', import.meta.url).href,
-    new URL('./public/office Pictures/IMG_20200630_123944.jpg', import.meta.url).href,
-    new URL('./public/office Pictures/IMG_20200630_124008.jpg', import.meta.url).href,
-    new URL('./public/office Pictures/IMG_20200630_124058.jpg', import.meta.url).href,
-    new URL('./public/office Pictures/IMG_20200630_124121.jpg', import.meta.url).href,
-    new URL('./public/office Pictures/IMG_20200630_124620.jpg', import.meta.url).href,
-    new URL('./public/office Pictures/IMG_20201028_155951.jpg', import.meta.url).href,
-    new URL('./public/office Pictures/IMG_20210318_110716.jpg', import.meta.url).href,
-  ];
 
 
   
@@ -255,83 +319,7 @@ export default function App() {
   }, []);
 
 
-   const LandingPage = () => {
-    useDocumentTitle('Integrity Scientific & Laboratory Equipment Trading LLC | NDT Equipment Supplier');
-
-    return (
-      <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
-
-        <HeroBackground />
-        <section id="news" className="pt-0 pb-16 px-6 bg-white border-t border-slate-100">
-          <div className="max-w-7xl mx-auto text-center">
-            <div className="bg-white rounded-[3rem] shadow-2xl border border-slate-100 py-14 px-6 mb-60 -mt-80 relative z-10">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <CounterItem target={35} label="Countries" />
-                <CounterItem target={56} label="Products" />
-                <CounterItem target={89} label="Projects" />
-                <CounterItem target={20} label="Years of Experience" />
-              </div>
-            </div>
-            <div className="flex justify-center mb-16">
-              <div className="inline-flex p-1.5 bg-slate-100 rounded-2xl border border-slate-200">
-                {['news', 'products'].map((tab) => (
-                  tab === 'news' ? (
-                    <button
-                      key={tab}
-                      onClick={() => setActiveProductTab('news')}
-                      className={`px-10 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeProductTab === tab ? 'bg-white shadow-md' : 'text-slate-400 hover:text-slate-600'}`}
-                      style={activeProductTab === tab ? { color: TEXT_PRIMARY } : {}}
-                    >
-                      {tab}
-                    </button>
-                  ) : (
-                    <Link
-                      key={tab}
-                      to="/products"
-                      onClick={() => setActiveProductTab('products')}
-                      className={`px-10 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeProductTab === tab ? 'bg-white shadow-md' : 'text-slate-400 hover:text-slate-600'}`}
-                      style={activeProductTab === tab ? { color: TEXT_PRIMARY } : {}}
-                    >
-                      {tab}
-                    </Link>
-                  )
-                ))}
-              </div>
-            </div>
-
-            {activeProductTab === 'products' ? (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
-                {partnerLogos.map((logo) => {
-                  const shouldFillLogo = logo.id === '3e-ndt' || logo.id === 'tpac' || logo.id === 'drtech';
-
-                  return (
-                    <Link
-                      to={`/product/${logo.id}`}
-                      key={logo.id}
-                      className={`group relative bg-[rgba(15,23,42,0.72)] border border-[rgba(15,23,42,0.72)] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center ${logo.id === 'drtech' ? 'drtech-logo-card' : ''}`}
-                    >
-                      <div className={`aspect-square w-full flex items-center justify-center px-4 py-4 ${logo.id === '3e-ndt' ? 'e3-logo-card' : ''} ${logo.id === 'tpac' ? 'tpac-logo-card' : ''} ${logo.id === 'drtech' ? 'drtech-logo-container' : 'logo-white-background'}`}>
-                        <img
-                          src={logo.url}
-                          alt={logo.name}
-                          className={`h-full w-full object-contain transition-transform duration-500 group-hover:scale-105 ${logo.id === 'drtech' ? 'drtech-logo-image' : ''} ${shouldFillLogo ? 'logo-fill-image' : ''}`}
-                        />
-                      </div>
-                      <div className="px-4 py-4 w-full">
-                        <div className="text-lg font-black uppercase tracking-[0.18em] text-white">{logo.name || ''}</div>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="py-20 text-slate-300 font-black uppercase tracking-[0.5em] text-sm italic">Updates Coming Soon</div>
-            )}
-          </div>
-        </section>
-      </div>
-    );
-  };
+   
 
   const AfterSaleServicesPage = () => {
     useDocumentTitle('After Sale Services | Integrity Scientific');
@@ -826,7 +814,7 @@ export default function App() {
       </nav>
 
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage activeProductTab={activeProductTab} setActiveProductTab={setActiveProductTab} />} />        
         <Route path="/product/:productId" element={<ProductDetail />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/after-sale-services" element={<AfterSaleServicesPage />} />
