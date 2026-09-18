@@ -14,3 +14,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </BrowserRouter>
   </React.StrictMode>,
 )
+
+const loader = document.getElementById('app-loader');
+if (loader) {
+  requestAnimationFrame(() => {
+    loader.classList.add('fade-out');
+    setTimeout(() => loader.remove(), 500);
+  });
+}

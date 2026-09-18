@@ -116,6 +116,70 @@ const offices = [
 
 const slugify = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
+function CounterItem({ target, label }: { target: number; label: string }) {
+  const [count, setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    let start = 0;
+    const duration = 1500;
+    const increment = target / (duration / 16);
+
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, [target]);
+
+  return (
+    <div className="flex flex-col items-center">
+      <div className="text-6xl md:text-7xl font-black text-blue-600 mb-2">
+        {count}
+      </div>
+      <div className="text-slate-500 font-bold uppercase tracking-[0.2em] text-sm text-center">
+        {label}
+      </div>
+      <div className="h-1 w-12 bg-slate-200 mt-4 rounded-full"></div>
+    </div>
+  );
+}
+function HeroBackground() {
+  const [backgroundIndex, setBackgroundIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setBackgroundIndex((currentIndex) => (currentIndex + 1) % BACKGROUND_IMAGES.length);
+    }, 5000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const currentBackground = BACKGROUND_IMAGES[backgroundIndex];
+
+  return (
+    <header
+      id="home"
+      className="hero-section relative pt-40 pb-16 px-6 overflow-hidden min-h-[70vh]"
+      style={{
+        backgroundImage: `linear-gradient(to bottom, rgba(15, 23, 42, 0.58), rgba(15, 23, 42, 0.42)), url(${currentBackground})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      <div className="absolute inset-0 bg-slate-900/10 backdrop-blur-[1px]"></div>
+    </header>
+  );
+
+ 
+
+}
+
 export default function App() {
   const navRef = React.useRef<HTMLElement>(null);
   const productMenuHoverRef = React.useRef(false);
@@ -126,7 +190,6 @@ export default function App() {
   const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
   const [mobileProductOpenId, setMobileProductOpenId] = useState<string | null>(null);
   const [navHidden, setNavHidden] = useState(false);
-  const [backgroundIndex, setBackgroundIndex] = useState(0);
   const navigate = useNavigate();
 
   // --- BRAND COLORS ---
@@ -150,6 +213,9 @@ export default function App() {
     new URL('./public/office Pictures/IMG_20201028_155951.jpg', import.meta.url).href,
     new URL('./public/office Pictures/IMG_20210318_110716.jpg', import.meta.url).href,
   ];
+
+
+  
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -188,35 +254,24 @@ export default function App() {
     };
   }, []);
 
-  useEffect(() => {
-    const backgroundTimer = window.setInterval(() => {
-      setBackgroundIndex((currentIndex) => (currentIndex + 1) % BACKGROUND_IMAGES.length);
-    }, 5000);
 
-    return () => window.clearInterval(backgroundTimer);
-  }, []);
-
-  const LandingPage = () => {
+   const LandingPage = () => {
     useDocumentTitle('Integrity Scientific & Laboratory Equipment Trading LLC | NDT Equipment Supplier');
-    const currentBackground = BACKGROUND_IMAGES[backgroundIndex];
 
     return (
       <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
 
-        <header
-          id="home"
-          className="hero-section relative pt-40 pb-16 px-6 overflow-hidden min-h-[70vh]"
-          style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(15, 23, 42, 0.58), rgba(15, 23, 42, 0.42)), url(${currentBackground})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed'
-          }}
-        >
-          <div className="absolute inset-0 bg-slate-900/10 backdrop-blur-[1px]"></div>
-        </header>
-        <section id="news" className="py-24 px-6 bg-white border-t border-slate-100">
+        <HeroBackground />
+        <section id="news" className="pt-0 pb-16 px-6 bg-white border-t border-slate-100">
           <div className="max-w-7xl mx-auto text-center">
+            <div className="bg-white rounded-[3rem] shadow-2xl border border-slate-100 py-14 px-6 mb-60 -mt-80 relative z-10">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <CounterItem target={35} label="Countries" />
+                <CounterItem target={56} label="Products" />
+                <CounterItem target={89} label="Projects" />
+                <CounterItem target={20} label="Years of Experience" />
+              </div>
+            </div>
             <div className="flex justify-center mb-16">
               <div className="inline-flex p-1.5 bg-slate-100 rounded-2xl border border-slate-200">
                 {['news', 'products'].map((tab) => (
@@ -524,39 +579,7 @@ export default function App() {
     );
   }, []);
 
-  const CounterItem = ({ target, label }: { target: number; label: string }) => {
-    const [count, setCount] = React.useState(0);
-
-    React.useEffect(() => {
-      let start = 0;
-      const duration = 2000;
-      const increment = target / (duration / 16);
-
-      const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-          setCount(target);
-          clearInterval(timer);
-        } else {
-          setCount(Math.floor(start));
-        }
-      }, 16);
-
-      return () => clearInterval(timer);
-    }, [target]);
-
-    return (
-      <div className="flex flex-col items-center">
-        <div className="text-6xl md:text-7xl font-black text-blue-600 mb-2">
-          {count}
-        </div>
-        <div className="text-slate-500 font-bold uppercase tracking-[0.2em] text-sm text-center">
-          {label}
-        </div>
-        <div className="h-1 w-12 bg-slate-200 mt-4 rounded-full"></div>
-      </div>
-    );
-  };
+  
 
   const AboutUsPage = () => {
     useDocumentTitle('About Us | Integrity Scientific');
@@ -649,9 +672,9 @@ export default function App() {
   };
 
   return (
-    <div
+        <div
       className="site-shell min-h-screen bg-white font-sans selection:bg-slate-200"
-      style={{ '--site-background-image': `linear-gradient(rgba(15, 23, 42, 0.84), rgba(15, 23, 42, 0.84)), url(${BACKGROUND_IMAGES[backgroundIndex]})` } as React.CSSProperties}
+      style={{ '--site-background-image': `linear-gradient(rgba(15, 23, 42, 0.84), rgba(15, 23, 42, 0.84)), url(${BACKGROUND_IMAGES[0]})` } as React.CSSProperties}
     >
 
       <ScrollManager />
