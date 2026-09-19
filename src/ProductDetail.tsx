@@ -455,6 +455,23 @@ const atline = new URL('./product/coatmaster/Atline.png', import.meta.url).href;
 
 
 
+const ProductCard = ({ title, desc, img, link }: { title: string; desc: string; img?: string; link: string }) => (
+  <div className="product-card group overflow-hidden rounded-3xl border border-[rgba(15,23,42,0.72)] bg-[rgba(15,23,42,0.72)] p-4 transition-all hover:shadow-lg flex flex-col">
+    {img && (
+      <a href={link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-3xl mb-4 bg-white">
+        <img src={img} alt={title} loading="lazy" decoding="async" className="h-56 w-full object-contain transition-transform group-hover:scale-105" />
+      </a>
+    )}
+    <div className="flex flex-col flex-grow">
+      <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
+      <p className="text-sm text-slate-300 leading-relaxed mb-6 flex-grow whitespace-pre-line">{desc}</p>
+      <a href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-[#0f6fff] px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-white transition hover:brightness-110 w-fit">
+        Read More
+      </a>
+    </div>
+  </div>
+);
+
 export default function ProductDetail() {
   const { productId } = useParams();
   const [balteauCategory, setBalteauCategory] = React.useState<'BALTOSPOT' | 'BALTOGRAPH' | 'BALTOMATIC' | 'BALTOSCOPE' | 'ACCESSORIES' | null>(null);
@@ -661,25 +678,6 @@ export default function ProductDetail() {
   }
 
 
-  // Reusable Card Component
-  const ProductCard = ({ title, desc, img, link, note }: { title: string, desc: string, img?: string, link: string, note?: string }) => (
-
-    <div className="product-card group overflow-hidden rounded-3xl border border-[rgba(15,23,42,0.72)] bg-[rgba(15,23,42,0.72)] p-4 transition-all hover:shadow-lg flex flex-col">
-      {img && (
-        <a href={link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-3xl mb-4 bg-white">
-          <img src={img} alt={title} loading="lazy" decoding="async" className="h-56 w-full object-contain transition-transform group-hover:scale-105" />
-        </a>
-      )}
-      <div className="flex flex-col flex-grow">
-        <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-        <p className="text-sm text-slate-300 leading-relaxed mb-6 flex-grow whitespace-pre-line">{desc}</p>
-        <a href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-[#0f6fff] px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-white transition hover:brightness-110 w-fit">
-          Read More
-        </a>
-      </div>
-    </div>
-  );
-
   return (
     <div className="min-h-screen bg-slate-50 pt-64 pb-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -699,7 +697,7 @@ export default function ProductDetail() {
             <>
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 mb-12">
                 <div onClick={() => setRohmannCategory('INSPECTION')} className={`cursor-pointer group rounded-3xl border-2 transition-all duration-300 ${rohmannCategory === 'INSPECTION' ? 'border-[#0f6fff] bg-blue-50' : 'border-transparent bg-slate-100'} ${rohmannCategory ? 'p-2' : 'p-6'}`}>
-                  <div className={`transition-all duration-500 h-14 mb-2 ${rohmannCategory ? 'h-14 mb-2' : 'h-44 mb-4'}`}><img src={inspectionIcon} alt="INSPECTION SYSTEM" className="w-full h-full object-contain" /></div>
+                  <div className={`transition-all duration-500 h-14 mb-2 ${rohmannCategory ? 'h-14 mb-2' : 'h-44 mb-4'}`}><img src={inspectionIcon} alt="INSPECTION SYSTEM" loading="lazy" decoding="async" className="w-full h-full object-contain" /></div>
                   <div className="text-center"><h2 className={`font-bold text-[#003349] transition-all duration-500 uppercase ${rohmannCategory ? 'text-[10px]' : 'text-xl'}`}>INSPECTION SYSTEM</h2></div>
                 </div>
                 <div onClick={() => setRohmannCategory('ACCESSORIES')} className={`cursor-pointer group rounded-3xl border-2 transition-all duration-300 ${rohmannCategory === 'ACCESSORIES' ? 'border-[#0f6fff] bg-blue-50' : 'border-transparent bg-slate-100'} ${rohmannCategory ? 'p-2' : 'p-6'}`}>
@@ -751,7 +749,7 @@ export default function ProductDetail() {
                       }`}
                   >
                     <div className={`product-category-frame transition-all duration-500 ${jirehEntered ? 'h-20 mb-3' : 'h-40 mb-4'}`}>
-                      <img src={cat.icon} alt={cat.name} className="max-w-full max-h-full object-contain" />
+                      <img src={cat.icon} alt={cat.name} loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
                     </div>
                     <div className={`text-center font-black uppercase transition-all duration-500 ${jirehEntered ? 'text-[10px]' : 'text-sm'}`}>
                       {cat.name}
@@ -998,7 +996,7 @@ This software is used for the inspection, data collection, and analysis. Once co
                       }`}
                   >
                     <div className={`product-category-frame transition-all duration-500 ${durrEntered ? 'h-20 mb-2' : 'h-40 mb-4'}`}>
-                      <img src={cat.icon} alt={cat.name} className="max-w-full max-h-full object-contain" />
+                      <img src={cat.icon} alt={cat.name} loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
                     </div>
                     <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 transition-all group-hover:text-white">
                       {cat.name}
@@ -1065,7 +1063,7 @@ This software is used for the inspection, data collection, and analysis. Once co
                   >
                     <div className={`product-category-frame transition-all duration-500 ${spectroEntered ? 'h-20 mb-3' : 'h-32 mb-4'}`}>
                       {cat.icon ? (
-                        <img src={cat.icon} alt={cat.name} className="max-w-full max-h-full object-contain" />
+                        <img src={cat.icon} alt={cat.name} loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
                       ) : (
                         <div className="flex h-full w-full items-center justify-center rounded-2xl bg-slate-200 text-slate-500 text-center px-4 text-xs uppercase font-bold">
                           No photo available
@@ -1423,11 +1421,11 @@ This software is used for the inspection, data collection, and analysis. Once co
             <>
               <div className="grid gap-6 md:grid-cols-2 mb-12">
                 <Link to="/product/fuji#ix-film" className={`group rounded-3xl border-2 transition-all duration-300 ${fujiCategory === 'IX_FILM' ? 'border-[#0f6fff] bg-blue-50' : 'border-transparent bg-slate-100'} p-6`}>
-                  <div className="h-44 mb-4"><img src={fujiFilmsCategoryImage} alt="IX-Film" className="w-full h-full object-contain rounded-2xl" /></div>
+                  <div className="h-44 mb-4"><img src={fujiFilmsCategoryImage} alt="IX-Film" loading="lazy" decoding="async" className="w-full h-full object-contain rounded-2xl" /></div>
                   <h2 className="fuji-category-title text-center text-xl font-bold">IX-FILM</h2>
                 </Link>
                 <Link to="/product/fuji#chemicals" className={`group rounded-3xl border-2 transition-all duration-300 ${fujiCategory === 'CHEMICALS' ? 'border-[#0f6fff] bg-blue-50' : 'border-transparent bg-slate-100'} p-6`}>
-                  <div className="h-44 mb-4"><img src={fujiChemicalsCategoryImage} alt="Chemicals" className="w-full h-full object-contain rounded-2xl" /></div>
+                  <div className="h-44 mb-4"><img src={fujiChemicalsCategoryImage} alt="Chemicals" loading="lazy" decoding="async" className="w-full h-full object-contain rounded-2xl" /></div>
                   <h2 className="fuji-category-title text-center text-xl font-bold">CHEMICALS</h2>
                 </Link>
               </div>
@@ -1515,6 +1513,8 @@ This software is used for the inspection, data collection, and analysis. Once co
                       <img
                         src={cat.icon}
                         alt={cat.name}
+                        loading="lazy"
+                        decoding="async"
                         className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-110"
                       />
                     </div>
@@ -1676,6 +1676,8 @@ This software is used for the inspection, data collection, and analysis. Once co
                       <img
                         src={cat.icon}
                         alt={cat.label}
+                        loading="lazy"
+                        decoding="async"
                         className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
@@ -1743,7 +1745,7 @@ This software is used for the inspection, data collection, and analysis. Once co
                       }`}
                   >
                     <div className={`product-category-frame ${mitcorpCategory ? 'h-20 mb-1' : 'h-40 mb-4'}`}>
-                      <img src={cat.icon} alt={cat.name} className="max-w-full max-h-full object-contain" />
+                      <img src={cat.icon} alt={cat.name} loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
                     </div>
                     <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 transition-all group-hover:text-white">{cat.name}</div>
                   </button>
@@ -1895,7 +1897,7 @@ This software is used for the inspection, data collection, and analysis. Once co
                     }`}
                 >
                   <div className={`product-category-frame transition-all duration-500 ${wohlerMainCat ? 'h-20 mb-1' : 'h-36 mb-4'}`}>
-                    <img src={wohlerMeasuringIcon} alt="Measuring Instruments" className="max-w-full max-h-full object-contain" />
+                    <img src={wohlerMeasuringIcon} alt="Measuring Instruments" loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
                   </div>
                   <span className={`block text-center font-black uppercase transition-all ${wohlerMainCat ? 'text-[8px]' : 'text-sm'}`}>
                     Measuring Instruments
@@ -1907,7 +1909,7 @@ This software is used for the inspection, data collection, and analysis. Once co
                     }`}
                 >
                   <div className={`product-category-frame transition-all duration-500 ${wohlerMainCat ? 'h-20 mb-1' : 'h-36 mb-4'}`}>
-                    <img src={wohlerInspectionIcon} alt="Inspection Systems" className="max-w-full max-h-full object-contain" />
+                    <img src={wohlerInspectionIcon} alt="Inspection Systems" loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
                   </div>
                   <span className={`block text-center font-black uppercase transition-all ${wohlerMainCat ? 'text-[8px]' : 'text-sm'}`}>
                     Inspection Systems
@@ -1919,7 +1921,7 @@ This software is used for the inspection, data collection, and analysis. Once co
                     }`}
                 >
                   <div className={`product-category-frame transition-all duration-500 ${wohlerMainCat ? 'h-20 mb-1' : 'h-36 mb-4'}`}>
-                    <img src={cleaningIcon} alt="Cleaning Tools" className="max-w-full max-h-full object-contain" />
+                    <img src={cleaningIcon} alt="Cleaning Tools" loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
                   </div>
                   <span className={`block text-center font-black uppercase transition-all ${wohlerMainCat ? 'text-[8px]' : 'text-sm'}`}>
                     Cleaning Tools

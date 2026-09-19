@@ -212,6 +212,35 @@
     background-color: #64748b !important;
 }
 
+.site-shell .site-theme-panel {
+    background-color: rgba(15, 23, 42, 0.82) !important;
+    border-color: rgb(148 163 184 / 0.28) !important;
+    color: #e2e8f0;
+}
+
+.site-shell .site-theme-panel :where(h2, h3, h4, p, li, span, label, a) {
+    color: #e2e8f0 !important;
+}
+
+.site-shell .site-theme-panel .text-slate-600,
+.site-shell .site-theme-panel .text-slate-500,
+.site-shell .site-theme-panel .text-slate-400,
+.site-shell .site-theme-panel .text-slate-300,
+.site-shell .site-theme-panel .text-slate-900,
+.site-shell .site-theme-panel .text-slate-800 {
+    color: #cbd5e1 !important;
+}
+
+.site-shell .site-theme-input {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgb(148 163 184 / 0.28) !important;
+    color: #f8fafc !important;
+}
+
+.site-shell .site-theme-input::placeholder {
+    color: #94a3b8 !important;
+}
+
 @layer components {
     .product-logo-card {
         content-visibility: auto;

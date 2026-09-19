@@ -13,9 +13,10 @@ import {
 } from 'lucide-react';
 
 import { useDocumentTitle } from './useDocumentTitle';
-import ProductDetail from './ProductDetail';
-import ProductsPage from './ProductsPage';
 import { partnerLogos } from './data/productLogos';
+
+const ProductDetail = React.lazy(() => import('./ProductDetail'));
+const ProductsPage = React.lazy(() => import('./ProductsPage'));
 
 
 function ScrollManager() {
@@ -110,8 +111,8 @@ const productMenu = [
 const offices = [
   { name: 'Main office (Dubai)', company: 'Integrity Scientific Laboratory Equipment LLC', address: 'Offices 12 & 13 Al Jaber Building, Nad Al Hamar, Dubai, UAE', extra: 'P.O.Box : 392998', phoneLabel: 'Phone', phone: '+971 4 4323551', mapQuery: 'Integrity Scientific Laboratory Equipment LLC, Al Jaber Building, Nad Al Hamar, Dubai, UAE' },
   { name: 'Abu Dhabi Office', company: 'Integrity Scientific Laboratory Equipment LLC', address: 'Muziad Mall, Abu Dhabi, UAE', phoneLabel: 'Phone', phone: '+971 2 6273561', mapQuery: 'Muziad Mall, Abu Dhabi, UAE' },
-  { name: 'Oman Office', company: 'Integrity Scientific & Laboratory Equipment LLC', address: 'Office No: 14, DRC Building, Ruwi, Muscat, Oman', phoneLabel: 'Mob', phone: '+968 93500515', mapQuery: 'DRC Building, Ruwi, Muscat, Oman', mapLink: 'https://maps.app.goo.gl/QEYs1DWv7aQ9qos18' },
-  { name: 'Saudi Arabia Office', company: 'Integrity Scientific & Laboratory Equipment LLC', address: '15th street, building 3149, Office 310, Dammam Saihat', extra: 'Short address: EMJC3149', phoneLabel: 'Tel', phone: '0138303573', mapQuery: '15th street, building 3149, Office 310, Dammam Saihat, Saudi Arabia', mapLink: 'https://maps.app.goo.gl/GAkHJea6dc9Eba7s7' },
+  { name: 'Oman Office', company: 'Integrity Scientific & Laboratory Equipment LLC', address: 'Office No: 14, DRC Building, Ruwi, Muscat, Oman', phoneLabel: 'Mob', phone: '+968 93500515', mapQuery: '23.5924877,58.5520255', mapLink: 'https://maps.app.goo.gl/QEYs1DWv7aQ9qos18' },
+  { name: 'Saudi Arabia Office', company: 'Integrity Scientific & Laboratory Equipment LLC', address: '15th street, building 3149, Office 310, Dammam Saihat', extra: 'Short address: EMJC3149', phoneLabel: 'Tel', phone: '0138303573', mapQuery: '26.466508,50.019625', mapLink: 'https://maps.app.goo.gl/GAkHJea6dc9Eba7s7' },
 ];
 
 const slugify = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -236,7 +237,7 @@ function WhatWeDoCarousel() {
           </div>
         </div>
         <div className="relative h-56 md:h-[420px] bg-slate-950 flex items-center justify-center">
-          <img src={slide.image} alt={slide.title} className="w-full h-full object-contain p-4" />
+          <img src={slide.image} alt={slide.title} decoding="async" className="w-full h-full object-contain p-4" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/40 md:from-[#0F172A]/60 to-transparent pointer-events-none"></div>
         </div>
       </div>
@@ -309,6 +310,8 @@ function LandingPage({ activeProductTab, setActiveProductTab }: { activeProductT
                       <img
                         src={logo.url}
                         alt={logo.name}
+                        loading="lazy"
+                        decoding="async"
                         className={`h-full w-full object-contain transition-transform duration-500 group-hover:scale-105 ${logo.id === 'drtech' ? 'drtech-logo-image' : ''} ${shouldFillLogo ? 'logo-fill-image' : ''}`}
                       />
                     </div>
@@ -367,11 +370,9 @@ export default function App() {
           lastScrolledState = pageIsScrolled;
           setNavHidden(pageIsScrolled);
         }
-        nav.classList.toggle('py-2', currentScrollY > 20);
-        nav.classList.toggle('py-3', currentScrollY <= 20);
         nav.classList.toggle('shadow-2xl', pageIsScrolled);
         nav.classList.toggle('bg-slate-900/98', pageIsScrolled);
-        nav.classList.toggle('bg-[#0F172A]', currentScrollY <= 20);
+        nav.classList.toggle('bg-[#0F172A]', !pageIsScrolled);
       }
     };
 
@@ -395,10 +396,10 @@ export default function App() {
       <section className="after-sale-page min-h-screen pt-64 pb-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col items-center gap-10 text-center mb-24 mt-16">
-            <img src={TECHCAL_LOGO} alt="Technical Logo" className="h-32 md:h-40 object-contain" />
+            <img src={TECHCAL_LOGO} alt="Technical Logo" loading="lazy" decoding="async" className="h-32 md:h-40 object-contain" />
           </div>
 
-          <div className="bg-slate-50 rounded-3xl border border-slate-200 p-10 shadow-sm">
+          <div className="site-theme-panel rounded-3xl border p-10 shadow-sm">
             <p className="text-base md:text-lg leading-relaxed text-slate-700">
               Our service team is committed to deliver the premium quality of calibration, repair and certification services through the accredited with Emirates International Accreditation Center (EIAC, formerly DAC) to meet ISO/IEC/17025 in order to ensure a high level of calibration and quality standards. Calibration is traceable through NPL, NIST, PTB, EMI or other international/ national standards institutes to the International Systems of Units (SI) or to accepted intrinsic standards of measurement.
             </p>
@@ -500,7 +501,6 @@ export default function App() {
       return offices.find((office) => office.name === savedOfficeName) ?? offices[0];
     });
     const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(selectedOffice.mapQuery)}&output=embed`;
-    const directionsUrl = selectedOffice.mapLink ?? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedOffice.mapQuery)}`;
 
     useEffect(() => {
       sessionStorage.setItem('selectedOfficeName', selectedOffice.name);
@@ -517,7 +517,7 @@ export default function App() {
 
         <div className="grid gap-16 items-start mb-20">
 
-          <div className="contact-form-card bg-white rounded-[2.5rem] p-10 shadow-2xl border border-slate-100 w-full max-w-5xl mx-auto">
+          <div className="contact-form-card site-theme-panel rounded-[2.5rem] p-10 shadow-2xl border w-full max-w-5xl mx-auto">
             <form action="https://formsubmit.co/info@islte.ae" method="POST" className="space-y-6">
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_next" value={window.location.href} />
@@ -525,22 +525,22 @@ export default function App() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[11px] font-black uppercase tracking-wider text-slate-400 ml-2">Your Name</label>
-                  <input type="text" name="name" placeholder="Name" required className="w-full bg-slate-50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-sky-500 transition-all outline-none" />
+                  <input type="text" name="name" placeholder="Name" required className="site-theme-input w-full rounded-2xl p-4 focus:ring-2 focus:ring-sky-500 transition-all outline-none" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[11px] font-black uppercase tracking-wider text-slate-400 ml-2">Your Email</label>
-                  <input type="email" name="email" placeholder="Email" required className="w-full bg-slate-50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-sky-500 transition-all outline-none" />
+                  <input type="email" name="email" placeholder="Email" required className="site-theme-input w-full rounded-2xl p-4 focus:ring-2 focus:ring-sky-500 transition-all outline-none" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label className="text-[11px] font-black uppercase tracking-wider text-slate-400 ml-2">Subject</label>
-                <input type="text" name="_subject" placeholder="Subject" required className="w-full bg-slate-50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-sky-500 transition-all outline-none" />
+                <input type="text" name="_subject" placeholder="Subject" required className="site-theme-input w-full rounded-2xl p-4 focus:ring-2 focus:ring-sky-500 transition-all outline-none" />
               </div>
 
               <div className="space-y-2">
                 <label className="text-[11px] font-black uppercase tracking-wider text-slate-400 ml-2">Your Message</label>
-                <textarea name="message" rows={6} placeholder="How can we help you?" required className="w-full bg-slate-50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-sky-500 transition-all resize-none outline-none"></textarea>
+                <textarea name="message" rows={6} placeholder="How can we help you?" required className="site-theme-input w-full rounded-2xl p-4 focus:ring-2 focus:ring-sky-500 transition-all resize-none outline-none"></textarea>
               </div>
 
               <button type="submit" className="w-full bg-sky-700 hover:bg-sky-600 text-white font-black uppercase tracking-[0.2em] py-5 rounded-2xl shadow-lg transition-all transform hover:-translate-y-1">
@@ -551,7 +551,7 @@ export default function App() {
 
           <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.72fr)] gap-8 lg:gap-10 items-start">
             <div className="grid gap-8">
-              <div onClick={() => setSelectedOffice(offices[0])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[0].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
+              <div onClick={() => setSelectedOffice(offices[0])} role="button" tabIndex={0} className={`site-theme-panel cursor-pointer p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[0].name ? 'border-sky-700 ring-2 ring-sky-500/50' : 'border-slate-500 hover:border-sky-400'}`}>
                 <h3 className="text-xl font-black text-sky-700 mb-4 uppercase tracking-tighter">Main office (Dubai)</h3>
                 <div className="text-slate-600 space-y-1 font-medium text-sm">
                   <p className="font-bold text-slate-900">Integrity Scientific Laboratory Equipment LLC</p>
@@ -562,7 +562,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div onClick={() => setSelectedOffice(offices[1])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[1].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
+              <div onClick={() => setSelectedOffice(offices[1])} role="button" tabIndex={0} className={`site-theme-panel cursor-pointer p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[1].name ? 'border-sky-700 ring-2 ring-sky-500/50' : 'border-slate-500 hover:border-sky-400'}`}>
                 <h3 className="text-xl font-black text-slate-800 mb-4 uppercase tracking-tighter">Abu Dhabi Office</h3>
                 <div className="text-slate-600 space-y-1 font-medium text-sm">
                   <p className="font-bold text-slate-900">Integrity Scientific Laboratory Equipment LLC</p>
@@ -572,7 +572,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div onClick={() => setSelectedOffice(offices[2])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[2].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
+              <div onClick={() => setSelectedOffice(offices[2])} role="button" tabIndex={0} className={`site-theme-panel cursor-pointer p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[2].name ? 'border-sky-700 ring-2 ring-sky-500/50' : 'border-slate-500 hover:border-sky-400'}`}>
                 <h3 className="text-xl font-black text-slate-800 mb-4 uppercase tracking-tighter">Oman Office</h3>
                 <div className="text-slate-600 space-y-1 font-medium text-sm">
                   <p className="font-bold text-slate-900">Integrity Scientific & Laboratory Equipment LLC</p>
@@ -581,7 +581,7 @@ export default function App() {
                   <p><span className="font-bold text-slate-800">Email:</span> info@islte.ae</p>
                 </div>
               </div>
-              <div onClick={() => setSelectedOffice(offices[3])} role="button" tabIndex={0} className={`cursor-pointer bg-white p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[3].name ? 'border-sky-700 ring-2 ring-sky-100' : 'border-slate-300 hover:border-sky-400'}`}>
+              <div onClick={() => setSelectedOffice(offices[3])} role="button" tabIndex={0} className={`site-theme-panel cursor-pointer p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[3].name ? 'border-sky-700 ring-2 ring-sky-500/50' : 'border-slate-500 hover:border-sky-400'}`}>
                 <h3 className="text-xl font-black text-slate-800 mb-4 uppercase tracking-tighter">Saudi Arabia Office</h3>
                 <div className="text-slate-600 space-y-1 font-medium text-sm">
                   <p className="font-bold text-slate-900">Integrity Scientific & Laboratory Equipment LLC</p>
@@ -593,41 +593,26 @@ export default function App() {
               </div>
             </div>
 
-            <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white h-[520px] lg:sticky lg:top-28 w-full">
-              <iframe
-                src={mapUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-
-              <div className="absolute top-10 left-10 z-10 bg-white/95 backdrop-blur-md p-8 rounded-[2.5rem] shadow-2xl max-w-sm border border-white/20 hidden md:block">
-                <div className="flex items-start gap-4">
-                  <div className="bg-sky-700 p-3 rounded-2xl shadow-lg">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-black text-slate-900 leading-none mb-2">Our Location</h4>
-                    <p className="text-sm text-slate-600 leading-relaxed font-medium">
-                      {selectedOffice.address}
-                    </p>
-                    <a
-                      href={directionsUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-block mt-4 text-sky-700 font-bold text-xs uppercase tracking-widest hover:text-sky-800 transition-colors"
-                    >
-                      Get Directions
-                    </a>
-                  </div>
-                </div>
+            <div className="space-y-4 lg:sticky lg:top-28">
+              <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white h-[520px] w-full">
+                <iframe
+                  src={mapUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
+              <a
+                href={selectedOffice.mapLink ?? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedOffice.mapQuery)}`}
+                target="_blank"
+                rel="noreferrer"
+                className="flex w-full items-center justify-center rounded-2xl bg-slate-800 px-6 py-4 text-xs font-black uppercase tracking-[0.2em] text-white transition hover:bg-slate-700"
+              >
+                Open in Google Maps
+              </a>
             </div>
           </div>
         </div>
@@ -642,8 +627,8 @@ export default function App() {
     return (
       <section className="about-page min-h-screen pt-64 pb-24 px-6 bg-slate-50">
         <div className="max-w-7xl mx-auto grid gap-12 lg:grid-cols-[1.05fr_0.95fr] items-center mb-24">
-          <div className="overflow-hidden rounded-[2rem] shadow-2xl bg-white">
-            <img src={ABOUT_IMAGE} alt="Integrity Scientific Office" className="w-full h-full object-cover" />
+          <div className="site-theme-panel overflow-hidden rounded-[2rem] shadow-2xl">
+            <img src={ABOUT_IMAGE} alt="Integrity Scientific Office" loading="lazy" decoding="async" className="w-full h-full object-cover" />
           </div>
 
           <div className="space-y-6">
@@ -654,7 +639,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <div className="site-theme-panel rounded-3xl border p-8 shadow-sm">
               <p className="text-base md:text-lg leading-8 text-slate-500 mb-6">
                 Integrity Scientific & Lab is a representative of prominent and highly professional companies which provide state-of-the-art equipment and technology in the following fields:
               </p>
@@ -677,7 +662,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <div className="site-theme-panel rounded-3xl border p-8 shadow-sm">
               <h3 className="text-2xl font-black tracking-tight text-slate-400 mb-6">What We Do</h3>
               <ul className="space-y-5 text-sm font-bold text-slate-500">
                 {[
@@ -698,7 +683,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto py-20 mb-24 bg-white rounded-[3rem] shadow-sm border border-slate-100">
+        <div className="site-theme-panel max-w-7xl mx-auto py-20 mb-24 rounded-[3rem] shadow-sm border">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 px-6">
             <CounterItem target={35} label="Countries" />
             <CounterItem target={56} label="Products" />
@@ -707,7 +692,7 @@ export default function App() {
           </div>
         </div>
 
-        <section className="py-24 px-6 bg-white rounded-[3rem]">
+        <section className="site-theme-panel py-24 px-6 rounded-[3rem]">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-4xl font-black tracking-tight text-slate-400 text-center mb-12">Office Pictures</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -716,6 +701,8 @@ export default function App() {
                   <img
                     src={src}
                     alt={`Office picture ${index + 1}`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
@@ -735,10 +722,10 @@ export default function App() {
 
       <ScrollManager />
 
-      <nav ref={navRef} className={`fixed top-0 left-0 right-0 w-full z-50 block py-3 bg-[rgba(15,23,42,0.52)] transition-all duration-500 ${navHidden ? '-translate-y-[110%] pointer-events-none' : 'translate-y-0'}`}>
+      <nav ref={navRef} className={`fixed top-0 left-0 right-0 w-full z-50 block py-5 bg-[rgba(15,23,42,0.52)] transition-all duration-500 ${navHidden ? '-translate-y-[110%] pointer-events-none' : 'translate-y-0'}`}>
         <div className="max-w-7xl mx-auto px-6 flex flex-nowrap justify-between items-center gap-6">
           <Link to="/" className="flex items-center gap-0 shrink-0">
-            <img src={ISL_LOGO_NEW} alt="Integrity Scientific" className="h-14 md:h-16 transition-all shrink-0" />
+            <img src={ISL_LOGO_NEW} alt="Integrity Scientific" className="h-16 md:h-20 transition-all shrink-0" />
             <div className="hidden xl:flex flex-col border-l border-white/10 pl-5 shrink-0">
               <span className="text-[13px] md:text-[15px] font-black uppercase tracking-[0.12em] text-slate-300 flex flex-col whitespace-nowrap">
                 <span>Integrity Scientific</span>
@@ -806,7 +793,7 @@ export default function App() {
           </div>
 
           <button
-            className="lg:hidden flex flex-col h-14 w-14 items-center justify-center rounded-full border border-white/15 bg-slate-950/90 text-white/80 hover:text-white focus:outline-none gap-1.5"
+            className="lg:hidden flex flex-col h-16 w-16 items-center justify-center rounded-full border border-white/15 bg-slate-950/90 text-white/80 hover:text-white focus:outline-none gap-1.5"
             type="button"
             onClick={() => setMobileNavOpen((open) => !open)}
             aria-label="Toggle mobile menu"
@@ -883,8 +870,8 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<LandingPage activeProductTab={activeProductTab} setActiveProductTab={setActiveProductTab} />} />
-        <Route path="/product/:productId" element={<ProductDetail />} />
-        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/product/:productId" element={<React.Suspense fallback={<div className="min-h-screen pt-64 flex items-center justify-center text-white">Loading product...</div>}><ProductDetail /></React.Suspense>} />
+        <Route path="/products" element={<React.Suspense fallback={<div className="min-h-screen pt-64 flex items-center justify-center text-white">Loading products...</div>}><ProductsPage /></React.Suspense>} />
         <Route path="/after-sale-services" element={<AfterSaleServicesPage />} />
         <Route path="/about" element={<AboutUsPage />} />
         <Route path="/career" element={<CareerSection />} />
