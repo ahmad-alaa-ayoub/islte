@@ -9,11 +9,7 @@ import {
   useNavigationType,
 } from 'react-router-dom';
 import {
-  ChevronRight,
-  Linkedin,
-  Mail,
-  Phone,
-  X,
+  X, Linkedin, Mail, Phone, ChevronRight, ChevronLeft
 } from 'lucide-react';
 
 import { useDocumentTitle } from './useDocumentTitle';
@@ -51,6 +47,7 @@ function ScrollManager() {
   return null;
 }
 
+const ndtPhoto = new URL('./product/E3 NDT/DR Panels/EXT1036BW.png', import.meta.url).href;
 
 const HERO_BG = new URL('./public/unnamed.jpg', import.meta.url).href;
 const BACKGROUND_IMAGES = [
@@ -165,7 +162,7 @@ function HeroBackground() {
   const currentBackground = BACKGROUND_IMAGES[backgroundIndex];
 
   return (
-       <header
+    <header
       id="home"
       className="hero-section relative pt-40 pb-16 px-6 overflow-hidden min-h-[70vh]"
       style={{
@@ -177,10 +174,89 @@ function HeroBackground() {
     >
       <div className="absolute inset-0 bg-slate-900/10 backdrop-blur-[1px]"></div>
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-[#0F172A]"></div>
+      <div className="relative z-10 w-full max-w-[96%] mx-auto pt-[10vh]">
+        <WhatWeDoCarousel />
+      </div>
     </header>
+  )
+}
 
- 
-    )
+const WHAT_WE_DO_SLIDES = [
+  {
+    image: ndtPhoto,
+    title: 'Your Trusted NDT Partner Since 2014',
+    description: 'Integrity Scientific & Laboratory Equipment Trading LLC was established to support the growing demands of Quality Control across Oil & Gas, Energy, Aviation and Laboratory industries, backed by over 20 years of team experience.',
+  },
+  {
+    image: BACKGROUND_IMAGES[2],
+    title: 'State-of-the-Art Equipment & Technology',
+    description: 'We represent prominent, highly professional manufacturers supplying advanced equipment across Oil & Gas, Power Generation, Petrochemicals, Aviation, Fabrication, Manufacturing, Security, and Research & Education.',
+  },
+  {
+    image: ABOUT_IMAGE,
+    title: 'Certified Calibration & After-Sale Support',
+    description: 'Our service team delivers premium calibration, repair and certification services, accredited by the Emirates International Accreditation Center (EIAC) to ISO/IEC 17025, traceable to NPL, NIST, PTB and EMI standards.',
+  },
+  {
+    image: OFFICE_IMAGES[0],
+    title: 'Regional Presence Across the Gulf',
+    description: 'With offices in Dubai, Abu Dhabi, Oman and Saudi Arabia, we bring local, responsive support to clients across the region, backed by decades of combined technical expertise.',
+  },
+  {
+    image: BACKGROUND_IMAGES[1],
+    title: 'Precision & Quality in Every Measurement',
+    description: 'From understanding customer needs to training manpower and providing after-sale support, we partner with our clients at every step of their inspection and quality assurance journey.',
+  },
+];
+
+function WhatWeDoCarousel() {
+  const [index, setIndex] = React.useState(0);
+
+  const goTo = (next: number) => {
+    setIndex((next + WHAT_WE_DO_SLIDES.length) % WHAT_WE_DO_SLIDES.length);
+  };
+
+  const slide = WHAT_WE_DO_SLIDES[index];
+
+  return (
+    <div className="relative bg-[rgba(15,23,42,0.85)] backdrop-blur-md rounded-[2.5rem] shadow-2xl border border-white/10 mb-16 z-10 overflow-hidden min-h-[420px] w-full">
+      <div className="grid md:grid-cols-2 items-stretch min-h-[420px]">
+        <div className="p-8 md:p-10 flex flex-col justify-center text-left">
+          <h3 className="text-xl md:text-2xl font-black text-white mb-3 leading-tight">{slide.title}</h3>
+          <p className="text-sm md:text-base text-slate-300 leading-relaxed">{slide.description}</p>
+          <div className="flex gap-2 mt-4">
+            {WHAT_WE_DO_SLIDES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all ${i === index ? 'w-8 bg-sky-500' : 'w-1.5 bg-white/20 hover:bg-white/40'}`}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="relative h-56 md:h-[420px] bg-slate-950 flex items-center justify-center">
+          <img src={slide.image} alt={slide.title} className="w-full h-full object-contain p-4" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/40 md:from-[#0F172A]/60 to-transparent pointer-events-none"></div>
+        </div>
+      </div>
+
+      <button
+        onClick={() => goTo(index - 1)}
+        aria-label="Previous"
+        className="absolute left-4 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-center rounded-full bg-slate-950/70 border border-white/10 text-white hover:bg-slate-900 transition-all"
+      >
+        <ChevronLeft size={20} />
+      </button>
+      <button
+        onClick={() => goTo(index + 1)}
+        aria-label="Next"
+        className="absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-center rounded-full bg-slate-950/70 border border-white/10 text-white hover:bg-slate-900 transition-all"
+      >
+        <ChevronRight size={20} />
+      </button>
+    </div>
+  );
 }
 
 
@@ -193,15 +269,7 @@ function LandingPage({ activeProductTab, setActiveProductTab }: { activeProductT
       <HeroBackground />
       <section id="news" className="pt-0 pb-16 px-6 bg-white">
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          <div className="bg-[rgba(15,23,42,0.85)] backdrop-blur-md rounded-[3rem] shadow-2xl border border-white/10 py-14 px-6 mb-16 -mt-80 relative z-10">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <CounterItem target={35} label="Countries" dark />
-              <CounterItem target={56} label="Products" dark />
-              <CounterItem target={89} label="Projects" dark />
-              <CounterItem target={20} label="Years of Experience" dark />
-            </div>
-          </div>
-          <div className="flex justify-center mb-16 mt-[200px]">
+          <div className="flex justify-center mb-16 mt-16">
             <div className="inline-flex p-1.5 bg-[rgba(15,23,42,0.85)] backdrop-blur-md rounded-2xl border border-white/10">
               {['news', 'products'].map((tab) => (
                 tab === 'news' ? (
@@ -279,7 +347,7 @@ export default function App() {
   const TEXT_MUTED = '#64748B';
 
 
-  
+
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -299,8 +367,8 @@ export default function App() {
           lastScrolledState = pageIsScrolled;
           setNavHidden(pageIsScrolled);
         }
-        nav.classList.toggle('py-4', currentScrollY > 20);
-        nav.classList.toggle('py-8', currentScrollY <= 20);
+        nav.classList.toggle('py-2', currentScrollY > 20);
+        nav.classList.toggle('py-3', currentScrollY <= 20);
         nav.classList.toggle('shadow-2xl', pageIsScrolled);
         nav.classList.toggle('bg-slate-900/98', pageIsScrolled);
         nav.classList.toggle('bg-[#0F172A]', currentScrollY <= 20);
@@ -319,7 +387,7 @@ export default function App() {
   }, []);
 
 
-   
+
 
   const AfterSaleServicesPage = () => {
     useDocumentTitle('After Sale Services | Integrity Scientific');
@@ -567,7 +635,7 @@ export default function App() {
     );
   }, []);
 
-  
+
 
   const AboutUsPage = () => {
     useDocumentTitle('About Us | Integrity Scientific');
@@ -586,7 +654,7 @@ export default function App() {
               </p>
             </div>
 
-                        <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
               <p className="text-base md:text-lg leading-8 text-slate-500 mb-6">
                 Integrity Scientific & Lab is a representative of prominent and highly professional companies which provide state-of-the-art equipment and technology in the following fields:
               </p>
@@ -660,17 +728,17 @@ export default function App() {
   };
 
   return (
-        <div
+    <div
       className="site-shell min-h-screen bg-white font-sans selection:bg-slate-200"
       style={{ '--site-background-image': `linear-gradient(rgba(15, 23, 42, 0.84), rgba(15, 23, 42, 0.84)), url(${BACKGROUND_IMAGES[0]})` } as React.CSSProperties}
     >
 
       <ScrollManager />
 
-      <nav ref={navRef} className={`fixed top-0 left-0 right-0 w-full z-50 block py-8 bg-[rgba(15,23,42,0.52)] transition-all duration-500 ${navHidden ? '-translate-y-[110%] pointer-events-none' : 'translate-y-0'}`}>
+      <nav ref={navRef} className={`fixed top-0 left-0 right-0 w-full z-50 block py-3 bg-[rgba(15,23,42,0.52)] transition-all duration-500 ${navHidden ? '-translate-y-[110%] pointer-events-none' : 'translate-y-0'}`}>
         <div className="max-w-7xl mx-auto px-6 flex flex-nowrap justify-between items-center gap-6">
           <Link to="/" className="flex items-center gap-0 shrink-0">
-            <img src={ISL_LOGO_NEW} alt="Integrity Scientific" className="h-20 md:h-28 transition-all shrink-0" />
+            <img src={ISL_LOGO_NEW} alt="Integrity Scientific" className="h-14 md:h-16 transition-all shrink-0" />
             <div className="hidden xl:flex flex-col border-l border-white/10 pl-5 shrink-0">
               <span className="text-[13px] md:text-[15px] font-black uppercase tracking-[0.12em] text-slate-300 flex flex-col whitespace-nowrap">
                 <span>Integrity Scientific</span>
@@ -814,7 +882,7 @@ export default function App() {
       </nav>
 
       <Routes>
-        <Route path="/" element={<LandingPage activeProductTab={activeProductTab} setActiveProductTab={setActiveProductTab} />} />        
+        <Route path="/" element={<LandingPage activeProductTab={activeProductTab} setActiveProductTab={setActiveProductTab} />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/after-sale-services" element={<AfterSaleServicesPage />} />
@@ -824,7 +892,7 @@ export default function App() {
       </Routes>
 
       <footer className="bg-[rgba(15,23,42,0.78)] text-white pt-24 relative">
-        <div className="max-w-4xl mx-auto px-8 pb-16 grid grid-cols-1 sm:grid-cols-2 gap-16 sm:gap-24">            
+        <div className="max-w-4xl mx-auto px-8 pb-16 grid grid-cols-1 sm:grid-cols-2 gap-16 sm:gap-24">
           <div className="text-left">
             <h3 className="text-x3 font-black uppercase tracking-[0.15em] mb-10 text-slate-500">Sectors</h3>
             <div className="grid grid-cols-1 gap-5 text-sm font-black uppercase tracking-[0.15em] text-slate-400">
@@ -863,7 +931,7 @@ export default function App() {
           </div>
         </div>
 
-                <div className="border-t border-white/5 py-10 text-center text-[9px] tracking-[0.5em] font-black text-slate-600 uppercase">
+        <div className="border-t border-white/5 py-10 text-center text-[9px] tracking-[0.5em] font-black text-slate-600 uppercase">
           2026 &copy; INTEGRITY SCIENTIFIC LABORATORY EQUIPMENT TRADING LLC
         </div>
       </footer>
