@@ -49,7 +49,7 @@ function ScrollManager() {
 }
 
 const ndtPhoto = new URL('./product/E3 NDT/DR Panels/EXT1036BW.png', import.meta.url).href;
-
+const logos = new URL('./public/fullProduct.png', import.meta.url).href;
 const HERO_BG = new URL('./public/unnamed.jpg', import.meta.url).href;
 const BACKGROUND_IMAGES = [
   HERO_BG,
@@ -165,15 +165,16 @@ function HeroBackground() {
   return (
     <header
       id="home"
-      className="hero-section relative pt-40 pb-16 px-6 overflow-hidden min-h-[70vh]"
+      className="hero-section relative pt-40 pb-16 px-6 overflow-hidden min-h-[70vh] bg-[#0F172A]"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(15, 23, 42, 0.58), rgba(15, 23, 42, 0.42)), url(${currentBackground})`,
+        backgroundColor: '#0F172A',
+        backgroundImage: 'none',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
+        backgroundAttachment: 'scroll'
       }}
     >
-      <div className="absolute inset-0 bg-slate-900/10 backdrop-blur-[1px]"></div>
+      <div className="absolute inset-0 bg-[#0F172A]"></div>
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-[#0F172A]"></div>
       <div className="relative z-10 w-full max-w-[96%] mx-auto pt-[10vh]">
         <WhatWeDoCarousel />
@@ -189,9 +190,9 @@ const WHAT_WE_DO_SLIDES = [
     description: 'Integrity Scientific & Laboratory Equipment Trading LLC was established to support the growing demands of Quality Control across Oil & Gas, Energy, Aviation and Laboratory industries, backed by over 20 years of team experience.',
   },
   {
-    image: BACKGROUND_IMAGES[2],
-    title: 'State-of-the-Art Equipment & Technology',
-    description: 'We represent prominent, highly professional manufacturers supplying advanced equipment across Oil & Gas, Power Generation, Petrochemicals, Aviation, Fabrication, Manufacturing, Security, and Research & Education.',
+    image: logos,
+    title: 'A Global Network of Trusted Manufacturers',
+    description: 'As the authorized regional representative for a wide range of world-class NDT and inspection manufacturers, we connect our clients across the Gulf with cutting-edge technology backed by proven engineering pedigrees — from ultrasonic and radiography systems to specialized inspection tools.',
   },
   {
     image: ABOUT_IMAGE,
@@ -212,15 +213,34 @@ const WHAT_WE_DO_SLIDES = [
 
 function WhatWeDoCarousel() {
   const [index, setIndex] = React.useState(0);
+  const navigate = useNavigate();
 
   const goTo = (next: number) => {
     setIndex((next + WHAT_WE_DO_SLIDES.length) % WHAT_WE_DO_SLIDES.length);
   };
 
+  const isProductsSlide = index === 1;
   const slide = WHAT_WE_DO_SLIDES[index];
 
+  const handleSlideClick = () => {
+    if (isProductsSlide) {
+      navigate('/products');
+    }
+  };
+
   return (
-    <div className="relative bg-[rgba(15,23,42,0.85)] backdrop-blur-md rounded-[2.5rem] shadow-2xl border border-white/10 mb-16 z-10 overflow-hidden min-h-[420px] w-full">
+    <div
+      className={`relative bg-[rgba(15,23,42,0.85)] backdrop-blur-md rounded-[2.5rem] shadow-2xl border border-white/10 mb-16 z-10 overflow-hidden min-h-[420px] w-full ${isProductsSlide ? 'cursor-pointer' : ''}`}
+      onClick={handleSlideClick}
+      role={isProductsSlide ? 'button' : undefined}
+      tabIndex={isProductsSlide ? 0 : -1}
+      onKeyDown={(event) => {
+        if (isProductsSlide && (event.key === 'Enter' || event.key === ' ')) {
+          event.preventDefault();
+          navigate('/products');
+        }
+      }}
+    >
       <div className="grid md:grid-cols-2 items-stretch min-h-[420px]">
         <div className="p-8 md:p-10 flex flex-col justify-center text-left">
           <h3 className="text-xl md:text-2xl font-black text-white mb-3 leading-tight">{slide.title}</h3>
@@ -229,7 +249,10 @@ function WhatWeDoCarousel() {
             {WHAT_WE_DO_SLIDES.map((_, i) => (
               <button
                 key={i}
-                onClick={() => goTo(i)}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  goTo(i);
+                }}
                 aria-label={`Go to slide ${i + 1}`}
                 className={`h-1.5 rounded-full transition-all ${i === index ? 'w-8 bg-sky-500' : 'w-1.5 bg-white/20 hover:bg-white/40'}`}
               />
@@ -243,14 +266,20 @@ function WhatWeDoCarousel() {
       </div>
 
       <button
-        onClick={() => goTo(index - 1)}
+        onClick={(event) => {
+          event.stopPropagation();
+          goTo(index - 1);
+        }}
         aria-label="Previous"
         className="absolute left-4 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-center rounded-full bg-slate-950/70 border border-white/10 text-white hover:bg-slate-900 transition-all"
       >
         <ChevronLeft size={20} />
       </button>
       <button
-        onClick={() => goTo(index + 1)}
+        onClick={(event) => {
+          event.stopPropagation();
+          goTo(index + 1);
+        }}
         aria-label="Next"
         className="absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-center rounded-full bg-slate-950/70 border border-white/10 text-white hover:bg-slate-900 transition-all"
       >
@@ -270,7 +299,7 @@ function LandingPage({ activeProductTab, setActiveProductTab }: { activeProductT
       <HeroBackground />
       <section id="news" className="pt-0 pb-16 px-6 bg-white">
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          <div className="flex justify-center mb-16 mt-16">
+          <div className="flex justify-center mb-6 mt-16 pt-6 border-t border-white/80">
             <div className="inline-flex p-1.5 bg-[rgba(15,23,42,0.85)] backdrop-blur-md rounded-2xl border border-white/10">
               {['news', 'products'].map((tab) => (
                 tab === 'news' ? (
@@ -716,13 +745,13 @@ export default function App() {
 
   return (
     <div
-      className="site-shell min-h-screen bg-white font-sans selection:bg-slate-200"
-      style={{ '--site-background-image': `linear-gradient(rgba(15, 23, 42, 0.84), rgba(15, 23, 42, 0.84)), url(${BACKGROUND_IMAGES[0]})` } as React.CSSProperties}
+      className="site-shell min-h-screen bg-[#0F172A] font-sans selection:bg-slate-200"
+      style={{ backgroundColor: '#0F172A', backgroundImage: 'none' } as React.CSSProperties}
     >
 
       <ScrollManager />
 
-      <nav ref={navRef} className={`fixed top-0 left-0 right-0 w-full z-50 block py-5 bg-[rgba(15,23,42,0.52)] transition-all duration-500 ${navHidden ? '-translate-y-[110%] pointer-events-none' : 'translate-y-0'}`}>
+      <nav ref={navRef} className={`fixed top-0 left-0 right-0 w-full z-50 block py-5 bg-[rgba(15,23,42,0.52)] border-b border-white/80 transition-all duration-500 ${navHidden ? '-translate-y-[110%] pointer-events-none' : 'translate-y-0'}`}>
         <div className="max-w-7xl mx-auto px-6 flex flex-nowrap justify-between items-center gap-6">
           <Link to="/" className="flex items-center gap-0 shrink-0">
             <img src={ISL_LOGO_NEW} alt="Integrity Scientific" className="h-16 md:h-20 transition-all shrink-0" />

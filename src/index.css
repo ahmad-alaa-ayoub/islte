@@ -63,11 +63,11 @@
 }
 
 .site-shell {
-    background-image: var(--site-background-image);
+    background-image: none !important;
     background-position: center;
     background-size: cover;
     background-attachment: scroll;
-    background-color: transparent !important;
+    background-color: #0f172a !important;
 }
 
 .site-shell>section,
