@@ -234,12 +234,12 @@ function WhatWeDoCarousel() {
   }, []);
 
   React.useEffect(() => {
-    const timer = window.setInterval(() => {
+    const timer = window.setTimeout(() => {
       setIndex((currentIndex) => (currentIndex + 1) % WHAT_WE_DO_SLIDES.length);
-    }, 10000);
+    }, 7000);
 
-    return () => window.clearInterval(timer);
-  }, []);
+    return () => window.clearTimeout(timer);
+  }, [index]);
 
   const goTo = (next: number) => {
     setIndex((next + WHAT_WE_DO_SLIDES.length) % WHAT_WE_DO_SLIDES.length);
