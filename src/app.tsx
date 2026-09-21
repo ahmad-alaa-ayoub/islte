@@ -236,7 +236,7 @@ function WhatWeDoCarousel() {
   React.useEffect(() => {
     const timer = window.setInterval(() => {
       setIndex((currentIndex) => (currentIndex + 1) % WHAT_WE_DO_SLIDES.length);
-    }, 5000);
+    }, 10000);
 
     return () => window.clearInterval(timer);
   }, []);
@@ -470,17 +470,7 @@ export default function App() {
     return (
       <section className="after-sale-page min-h-screen pt-64 pb-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col items-center gap-10 text-center mb-24 mt-16">
-            <img src={TECHCAL_LOGO} alt="Technical Logo" loading="lazy" decoding="async" className="h-32 md:h-40 object-contain" />
-          </div>
-
-          <div className="site-theme-panel rounded-3xl border p-10 shadow-sm mb-12">
-            <p className="text-base md:text-lg leading-relaxed text-slate-700">
-              {AFTER_SALE_SERVICE_DESCRIPTION}
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-3 mb-12">
             {AFTER_SERVICE_IMAGES.map((image, index) => (
               <div key={image} className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-sm">
                 <img
@@ -492,6 +482,12 @@ export default function App() {
                 />
               </div>
             ))}
+          </div>
+
+          <div className="site-theme-panel rounded-3xl border p-10 shadow-sm">
+            <p className="text-base md:text-lg leading-relaxed text-slate-700">
+              {AFTER_SALE_SERVICE_DESCRIPTION}
+            </p>
           </div>
         </div>
       </section>
