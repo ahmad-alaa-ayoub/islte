@@ -215,6 +215,13 @@ function WhatWeDoCarousel() {
   const [index, setIndex] = React.useState(0);
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+    WHAT_WE_DO_SLIDES.forEach(({ image }) => {
+      const preloadedImage = new Image();
+      preloadedImage.src = image;
+    });
+  }, []);
+
   const goTo = (next: number) => {
     setIndex((next + WHAT_WE_DO_SLIDES.length) % WHAT_WE_DO_SLIDES.length);
   };
@@ -260,7 +267,15 @@ function WhatWeDoCarousel() {
           </div>
         </div>
         <div className="relative h-56 md:h-[420px] bg-slate-950 flex items-center justify-center">
-          <img src={slide.image} alt={slide.title} decoding="async" className="w-full h-full object-contain p-4" />
+          <img
+            key={slide.image}
+            src={slide.image}
+            alt={slide.title}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+            className="w-full h-full object-contain p-4"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/40 md:from-[#0F172A]/60 to-transparent pointer-events-none"></div>
         </div>
       </div>
