@@ -50,6 +50,8 @@ function ScrollManager() {
 
 const ndtPhoto = new URL('./product/E3 NDT/DR Panels/EXT1036BW.png', import.meta.url).href;
 const logos = new URL('./public/fullProduct.png', import.meta.url).href;
+const calib = new URL('./public/calibration.jpeg', import.meta.url).href;
+
 const HERO_BG = new URL('./public/unnamed.jpg', import.meta.url).href;
 const BACKGROUND_IMAGES = [
   HERO_BG,
@@ -189,7 +191,7 @@ const WHAT_WE_DO_SLIDES = [
   {
     image: ndtPhoto,
     title: 'Your Trusted NDT Partner Since 2014',
-    description: 'Integrity Scientific & Laboratory Equipment Trading LLC was established to support the growing demands of Quality Control across Oil & Gas, Energy, Aviation and Laboratory industries, backed by over 20 years of team experience.',
+    description: 'ISL Equipment Trading LLC was established to support the growing demands of Quality Control across Oil & Gas, Energy, Aviation and Laboratory industries, backed by over 20 years of team experience.',
   },
   {
     image: logos,
@@ -197,7 +199,7 @@ const WHAT_WE_DO_SLIDES = [
     description: 'As the authorized regional representative for a wide range of world-class NDT and inspection manufacturers, we connect our clients across the Gulf with cutting-edge technology backed by proven engineering pedigrees — from ultrasonic and radiography systems to specialized inspection tools.',
   },
   {
-    image: ABOUT_IMAGE,
+    image: calib,
     title: 'Certified Calibration & After-Sale Support',
     description: 'Our service team delivers premium calibration, repair and certification services, accredited by the Emirates International Accreditation Center (EIAC) to ISO/IEC 17025, traceable to NPL, NIST, PTB and EMI standards.',
   },
@@ -222,6 +224,14 @@ function WhatWeDoCarousel() {
       const preloadedImage = new Image();
       preloadedImage.src = image;
     });
+  }, []);
+
+  React.useEffect(() => {
+    const timer = window.setInterval(() => {
+      setIndex((currentIndex) => (currentIndex + 1) % WHAT_WE_DO_SLIDES.length);
+    }, 5000);
+
+    return () => window.clearInterval(timer);
   }, []);
 
   const goTo = (next: number) => {
