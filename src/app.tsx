@@ -187,6 +187,13 @@ function HeroBackground() {
   )
 }
 
+const AFTER_SALE_SERVICE_DESCRIPTION = 'Our service team delivers premium calibration, repair and certification services, accredited by the Emirates International Accreditation Center (EIAC) to ISO/IEC 17025, traceable to NPL, NIST, PTB and EMI standards.';
+const AFTER_SERVICE_IMAGES = [
+  new URL('./public/afterService/1.jpeg', import.meta.url).href,
+  new URL('./public/afterService/2.jpeg', import.meta.url).href,
+  new URL('./public/afterService/3.jpeg', import.meta.url).href,
+];
+
 const WHAT_WE_DO_SLIDES = [
   {
     image: ndtPhoto,
@@ -201,7 +208,7 @@ const WHAT_WE_DO_SLIDES = [
   {
     image: calib,
     title: 'Certified Calibration & After-Sale Support',
-    description: 'Our service team delivers premium calibration, repair and certification services, accredited by the Emirates International Accreditation Center (EIAC) to ISO/IEC 17025, traceable to NPL, NIST, PTB and EMI standards.',
+    description: AFTER_SALE_SERVICE_DESCRIPTION,
   },
   {
     image: OFFICE_IMAGES[0],
@@ -239,24 +246,36 @@ function WhatWeDoCarousel() {
   };
 
   const isProductsSlide = index === 1;
+  const isAfterSaleServicesSlide = index === 2;
+  const isContactUsSlide = index === 3;
   const slide = WHAT_WE_DO_SLIDES[index];
 
   const handleSlideClick = () => {
     if (isProductsSlide) {
       navigate('/products');
+      return;
+    }
+
+    if (isAfterSaleServicesSlide) {
+      navigate('/after-sale-services');
+      return;
+    }
+
+    if (isContactUsSlide) {
+      navigate('/contact');
     }
   };
 
   return (
     <div
-      className={`relative bg-[rgba(15,23,42,0.85)] backdrop-blur-md rounded-[2.5rem] shadow-2xl border border-white/10 mb-16 z-10 overflow-hidden min-h-[420px] w-full ${isProductsSlide ? 'cursor-pointer' : ''}`}
+      className={`relative bg-[rgba(15,23,42,0.85)] backdrop-blur-md rounded-[2.5rem] shadow-2xl border border-white/10 mb-16 z-10 overflow-hidden min-h-[420px] w-full ${isProductsSlide || isAfterSaleServicesSlide || isContactUsSlide ? 'cursor-pointer' : ''}`}
       onClick={handleSlideClick}
-      role={isProductsSlide ? 'button' : undefined}
-      tabIndex={isProductsSlide ? 0 : -1}
+      role={isProductsSlide || isAfterSaleServicesSlide || isContactUsSlide ? 'button' : undefined}
+      tabIndex={isProductsSlide || isAfterSaleServicesSlide || isContactUsSlide ? 0 : -1}
       onKeyDown={(event) => {
-        if (isProductsSlide && (event.key === 'Enter' || event.key === ' ')) {
+        if ((isProductsSlide || isAfterSaleServicesSlide || isContactUsSlide) && (event.key === 'Enter' || event.key === ' ')) {
           event.preventDefault();
-          navigate('/products');
+          handleSlideClick();
         }
       }}
     >
@@ -455,10 +474,24 @@ export default function App() {
             <img src={TECHCAL_LOGO} alt="Technical Logo" loading="lazy" decoding="async" className="h-32 md:h-40 object-contain" />
           </div>
 
-          <div className="site-theme-panel rounded-3xl border p-10 shadow-sm">
+          <div className="site-theme-panel rounded-3xl border p-10 shadow-sm mb-12">
             <p className="text-base md:text-lg leading-relaxed text-slate-700">
-              Our service team is committed to deliver the premium quality of calibration, repair and certification services through the accredited with Emirates International Accreditation Center (EIAC, formerly DAC) to meet ISO/IEC/17025 in order to ensure a high level of calibration and quality standards. Calibration is traceable through NPL, NIST, PTB, EMI or other international/ national standards institutes to the International Systems of Units (SI) or to accepted intrinsic standards of measurement.
+              {AFTER_SALE_SERVICE_DESCRIPTION}
             </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {AFTER_SERVICE_IMAGES.map((image, index) => (
+              <div key={image} className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-sm">
+                <img
+                  src={image}
+                  alt={`After Sale Service ${index + 1}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-72 w-full object-cover transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
