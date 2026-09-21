@@ -110,7 +110,9 @@ const productMenu = [
 
 const offices = [
   { name: 'Main office (Dubai)', company: 'Integrity Scientific Laboratory Equipment LLC', address: 'Offices 12 & 13 Al Jaber Building, Nad Al Hamar, Dubai, UAE', extra: 'P.O.Box : 392998', phoneLabel: 'Phone', phone: '+971 4 4323551', mapQuery: 'Integrity Scientific Laboratory Equipment LLC, Al Jaber Building, Nad Al Hamar, Dubai, UAE' },
-  { name: 'Abu Dhabi Office', company: 'Integrity Scientific Laboratory Equipment LLC', address: 'Muziad Mall, Abu Dhabi, UAE', phoneLabel: 'Phone', phone: '+971 2 6273561', mapQuery: 'Muziad Mall, Abu Dhabi, UAE' },
+  {
+    name: 'Abu Dhabi Office', company: 'Integrity Scientific Laboratory Equipment LLC', address: 'Office 8, Floor 9, Tower 3, Mazyad Mall, Zone 1, Mohammed Bin Zayed City, Abu Dhabi, UAE', phoneLabel: 'Phone', phone: '+971 2 6273561', mapQuery: '24.3731249,54.5379408', mapZoom: 17
+  },
   { name: 'Oman Office', company: 'Integrity Scientific & Laboratory Equipment LLC', address: 'Office No: 14, DRC Building, Ruwi, Muscat, Oman', phoneLabel: 'Mob', phone: '+968 93500515', mapQuery: '23.5924877,58.5520255', mapLink: 'https://maps.app.goo.gl/QEYs1DWv7aQ9qos18' },
   { name: 'Saudi Arabia Office', company: 'Integrity Scientific & Laboratory Equipment LLC', address: '15th street, building 3149, Office 310, Dammam Saihat', extra: 'Short address: EMJC3149', phoneLabel: 'Tel', phone: '0138303573', mapQuery: '26.466508,50.019625', mapLink: 'https://maps.app.goo.gl/GAkHJea6dc9Eba7s7' },
 ];
@@ -544,7 +546,7 @@ export default function App() {
       const savedOfficeName = sessionStorage.getItem('selectedOfficeName');
       return offices.find((office) => office.name === savedOfficeName) ?? offices[0];
     });
-    const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(selectedOffice.mapQuery)}&output=embed`;
+    const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(selectedOffice.mapQuery)}&output=embed${selectedOffice.mapZoom ? `&z=${selectedOffice.mapZoom}` : ''}`;
 
     useEffect(() => {
       sessionStorage.setItem('selectedOfficeName', selectedOffice.name);
