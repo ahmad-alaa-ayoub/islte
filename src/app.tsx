@@ -49,7 +49,7 @@ function ScrollManager() {
 }
 
 const ndtPhoto = new URL('./product/E3 NDT/DR Panels/EXT1036BW.png', import.meta.url).href;
-const logos = new URL('./public/fullProduct.png', import.meta.url).href;
+const logos = new URL('./public/1.jpeg', import.meta.url).href;
 const calib = new URL('./public/calibration.jpeg', import.meta.url).href;
 
 const HERO_BG = new URL('./public/unnamed.jpg', import.meta.url).href;
