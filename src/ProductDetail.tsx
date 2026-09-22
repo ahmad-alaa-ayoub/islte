@@ -43,7 +43,7 @@ const accessoriesImage = new URL('./product/VALLEN SYSTEME/Acessories-ohne-Tromm
 
 // BALTEAU product photos are not included in the local asset set yet.
 const missingBalteauImage: string | undefined = undefined;
-const llxSeriesImage = missingBalteauImage;
+const llxSeriesImage = new URL('./product/balteau/LLX160-web.png', import.meta.url).href;
 const ceramSeriesImage = missingBalteauImage;
 const gfSeriesImage = missingBalteauImage;
 const crawlerSeriesImage = missingBalteauImage;
@@ -61,8 +61,8 @@ const fixed = missingBalteauImage;
 const baltospotIcon = new URL('./product/balteau/llxSeries.png', import.meta.url).href;
 const baltographIcon = new URL('./product/balteau/graph.png', import.meta.url).href;
 const baltomaticIcon = new URL('./product/balteau/matics.png', import.meta.url).href;
-const baltoscopeIcon = new URL('./product/balteau/scope.png', import.meta.url).href; lteau = missingBalteauImage;
-const accessoriesIconBalteau = new URL('./product/balteau/accessories.png', import.meta.url).href;
+const baltoscopeIcon = new URL('./product/balteau/scope.png', import.meta.url).href;
+const accessoriesIconBalteau = new URL('./product/balteau/acce.png', import.meta.url).href;
 // JOHNSON & ALLEN
 const mpiImage = new URL('./product/JOHNSON & ALLEN/J.jpg', import.meta.url).href;
 const dpiImage = new URL('./product/JOHNSON & ALLEN/dpi-equipment-574693e9808e9.jpg', import.meta.url).href;

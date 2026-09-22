@@ -919,7 +919,20 @@ export default function App() {
       </Routes>
 
       <footer className="bg-[rgba(15,23,42,0.78)] text-white pt-24 relative">
-        <div className="max-w-4xl mx-auto px-8 pb-16 grid grid-cols-1 sm:grid-cols-2 gap-16 sm:gap-24">
+        <div className="max-w-7xl mx-auto px-8 pb-16 grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 lg:gap-20">
+          <div className="text-left">
+            <h3 className="text-x3 font-black uppercase tracking-[0.15em] mb-10 text-slate-500">About Integrity Scientific</h3>
+            <p className="text-sm leading-7 text-slate-400">
+              Established in 2014, ISL supports quality control teams across Oil &amp; Gas, Energy, Aviation, Laboratories and other demanding industries.
+            </p>
+            <p className="mt-5 text-sm leading-7 text-slate-400">
+              Our experienced team helps customers understand their needs, choose state-of-the-art inspection technology, train their people and receive dependable after-sale support.
+            </p>
+            <p className="mt-5 text-sm leading-7 text-slate-400">
+              We supply NDT equipment for ultrasonic testing, flaw detection, thickness measurement, phased array UT, digital radiography, visual inspection, videoscope inspection and laboratory quality control across Dubai, Abu Dhabi, Oman and Saudi Arabia.
+            </p>
+          </div>
+
           <div className="text-left">
             <h3 className="text-x3 font-black uppercase tracking-[0.15em] mb-10 text-slate-500">Sectors</h3>
             <div className="grid grid-cols-1 gap-5 text-sm font-black uppercase tracking-[0.15em] text-slate-400">
