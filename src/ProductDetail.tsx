@@ -41,27 +41,28 @@ const atexImage = new URL('./product/VALLEN SYSTEME/ATEX-Sensors.jpg', import.me
 const sensorsImage = new URL('./product/VALLEN SYSTEME/VS900-M-Beitrag-300x270.png', import.meta.url).href;
 const accessoriesImage = new URL('./product/VALLEN SYSTEME/Acessories-ohne-Trommel.png', import.meta.url).href;
 
-// BALTEAU NDT
-const llxSeriesImage = new URL('./product/BALTOSPOT/LLX225DA-MainSquare__FitMaxWzIwMDAsMjAwMF0.png', import.meta.url).href;
-const ceramSeriesImage = new URL('./product/BALTOSPOT/Ceram35P-1.png', import.meta.url).href;
-const gfSeriesImage = new URL('./product/BALTOSPOT/GFC205.png', import.meta.url).href;
-const crawlerSeriesImage = new URL('./product/BALTOSPOT/GFC300C-web.png', import.meta.url).href;
-const xldSeriesImage = new URL('./product/BALTOSPOT/XLD160-2.png', import.meta.url).href;
-const xsdSeriesImage = new URL('./product/BALTOSPOT/XSD160-1.png', import.meta.url).href;
-const xmdSeriesImage = new URL('./product/BALTOSPOT/XMD225-1.png', import.meta.url).href;
-const AIS = new URL('./product/BALTOSPOT/AIS.png', import.meta.url).href;
-const tubesImage = new URL('./product/BALTOSPOT/TSC200.png', import.meta.url).href;
-const flatPanelImage = new URL('./product/BALTOSPOT/NDT-1012MA-7-e1697207004215.png', import.meta.url).href;
-const softwareSuiteImage = new URL('./product/BALTOSPOT/IPS012.png', import.meta.url).href;
-const phantomImage = new URL('./product/BALTOSPOT/Mire.png', import.meta.url).href;
-const standsImage = new URL('./product/BALTOSPOT/Support-on-wheels.png', import.meta.url).href;
-const fixed = new URL('./product/BALTOSPOT/Ring-Lead-Screen.png', import.meta.url).href;
+// BALTEAU product photos are not included in the local asset set yet.
+const missingBalteauImage: string | undefined = undefined;
+const llxSeriesImage = new URL('./product/balteau/Acessories-ohne-Trommel.png', import.meta.url).href;
+const ceramSeriesImage = missingBalteauImage;
+const gfSeriesImage = missingBalteauImage;
+const crawlerSeriesImage = missingBalteauImage;
+const xldSeriesImage = missingBalteauImage;
+const xsdSeriesImage = missingBalteauImage;
+const xmdSeriesImage = missingBalteauImage;
+const AIS = missingBalteauImage;
+const tubesImage = missingBalteauImage;
+const flatPanelImage = missingBalteauImage;
+const softwareSuiteImage = missingBalteauImage;
+const phantomImage = missingBalteauImage;
+const standsImage = missingBalteauImage;
+const fixed = missingBalteauImage;
 // BALTEAU Category Icons
-const baltospotIcon = new URL('./product/BALTOSPOT/icon-baltospot-colors.png', import.meta.url).href;
-const baltographIcon = new URL('./product/BALTOSPOT/icon-baltograph-colors.png', import.meta.url).href;
-const baltomaticIcon = new URL('./product/BALTOSPOT/icon-baltomatic-colors.png', import.meta.url).href;
-const baltoscopeIcon = new URL('./product/BALTOSPOT/icon-baltoscope-colors.png', import.meta.url).href;
-const accessoriesIconBalteau = new URL('./product/BALTOSPOT/icon-accessories-colors.png', import.meta.url).href;
+const baltospotIcon = missingBalteauImage;
+const baltographIcon = missingBalteauImage;
+const baltomaticIcon = missingBalteauImage;
+const baltoscopeIcon = missingBalteauImage;
+const accessoriesIconBalteau = missingBalteauImage;
 
 // JOHNSON & ALLEN
 const mpiImage = new URL('./product/JOHNSON & ALLEN/J.jpg', import.meta.url).href;
@@ -183,16 +184,16 @@ const rm400Img = new URL('./product/WOHLER/p_173.jpg', import.meta.url).href;
 const pu100Img = new URL('./product/WOHLER/p_178.jpg', import.meta.url).href;
 
 //mitcorp
-const mitcorpXSeriesIcon = new URL('./product/MITCORP/X3000-photo_departed.png', import.meta.url).href;
-const mitcorpPrSeriesIcon = new URL('./product/MITCORP/PRSL300T_00.jpg', import.meta.url).href;
-const mitcorpX3000Img = new URL('./product/MITCORP/X3000-photo_departed.png', import.meta.url).href;
-const mitcorpX750Img = new URL('./product/MITCORP/X750-01.jpg.webp', import.meta.url).href;
-const mitcorpX2000Img = new URL('./product/MITCORP/X2000-HD-Featured-Image-1000x773.jpg', import.meta.url).href;
-const mitcorpX600PlusImg = new URL('./product/MITCORP/X600_4W_02-1-150x150.jpg', import.meta.url).href;
-const mitcorpX600HdImg = new URL('./product/MITCORP/X600_主圖合成.jpg', import.meta.url).href;
-const mitcorpPrsl300tImg = new URL('./product/MITCORP/PRSL300T_00.jpg', import.meta.url).href;
-const mitcorpPrm2830Img = new URL('./product/MITCORP/X600-2830-e1767321155172.jpg', import.meta.url).href;
-const mitcorpPs10hdImg = new URL('./product/MITCORP/PS10HD_00.jpg', import.meta.url).href;
+const mitcorpXSeriesIcon = new URL('./product/mitcorp/X3000-photo_departed.png', import.meta.url).href;
+const mitcorpPrSeriesIcon = new URL('./product/mitcorp/PRSL300T_00.jpg', import.meta.url).href;
+const mitcorpX3000Img = new URL('./product/mitcorp/X3000-photo_departed.png', import.meta.url).href;
+const mitcorpX750Img = new URL('./product/mitcorp/X750-01.jpg.webp', import.meta.url).href;
+const mitcorpX2000Img = new URL('./product/mitcorp/X2000-HD-Featured-Image-1000x773.jpg', import.meta.url).href;
+const mitcorpX600PlusImg = new URL('./product/mitcorp/X600_4W_02-1-150x150.jpg', import.meta.url).href;
+const mitcorpX600HdImg = new URL('./product/mitcorp/X600_主圖合成.jpg', import.meta.url).href;
+const mitcorpPrsl300tImg = new URL('./product/mitcorp/PRSL300T_00.jpg', import.meta.url).href;
+const mitcorpPrm2830Img = new URL('./product/mitcorp/X600-2830-e1767321155172.jpg', import.meta.url).href;
+const mitcorpPs10hdImg = new URL('./product/mitcorp/PS10HD_00.jpg', import.meta.url).href;
 
 // JIREH
 const jirehManualIcon = new URL('./product/jireh/JIREH-Manual-Scanner-STIX-Flange1.jpg', import.meta.url).href;
@@ -461,6 +462,11 @@ const ProductCard = ({ title, desc, img, link }: { title: string; desc: string; 
       <a href={link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-3xl mb-4 bg-white">
         <img src={img} alt={title} loading="lazy" decoding="async" className="h-56 w-full object-contain transition-transform group-hover:scale-105" />
       </a>
+    )}
+    {!img && (
+      <div className="mb-4 flex h-56 items-center justify-center rounded-3xl border border-dashed border-slate-600 bg-slate-900/50 px-6 text-center text-sm font-bold uppercase tracking-[0.14em] text-slate-400">
+        Product image unavailable
+      </div>
     )}
     <div className="flex flex-col flex-grow">
       <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
@@ -1510,13 +1516,17 @@ This software is used for the inspection, data collection, and analysis. Once co
                   >
                     <div className={`product-category-frame transition-all duration-500 ${balteauEntered ? 'h-20 mb-3' : 'h-40 mb-4'
                       }`}>
-                      <img
-                        src={cat.icon}
-                        alt={cat.name}
-                        loading="lazy"
-                        decoding="async"
-                        className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-110"
-                      />
+                      {cat.icon ? (
+                        <img
+                          src={cat.icon}
+                          alt={cat.name}
+                          loading="lazy"
+                          decoding="async"
+                          className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                        />
+                      ) : (
+                        <span className="px-4 text-center text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Product images unavailable</span>
+                      )}
                     </div>
                     <span className={`block text-center font-black transition-all duration-500 leading-tight ${balteauEntered ? 'text-[10px]' : 'text-sm'
                       }`}>

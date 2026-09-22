@@ -198,7 +198,7 @@ const WHAT_WE_DO_SLIDES = [
   {
     image: ndtPhoto,
     title: 'Your Trusted NDT Partner Since 2014',
-    description: 'ISL Equipment Trading LLC was established to support the growing demands of Quality Control across Oil & Gas, Energy, Aviation and Laboratory industries, backed by over 20 years of team experience.',
+    description: 'our team brings more than 1 decades of hands-on NDT experience, combining world-class inspection technology with engineers who don\'t just sell, they solve.With a strong presence across the UAE, Oman, and KSA, we help Oil & Gas, Energy, Aviation, and Laboratory teams make faster, safer, and more confident quality decisions.',
   },
   {
     image: logos,
@@ -236,7 +236,7 @@ function WhatWeDoCarousel() {
   React.useEffect(() => {
     const timer = window.setTimeout(() => {
       setIndex((currentIndex) => (currentIndex + 1) % WHAT_WE_DO_SLIDES.length);
-    }, 7000);
+    }, 5000);
 
     return () => window.clearTimeout(timer);
   }, [index]);
@@ -280,10 +280,10 @@ function WhatWeDoCarousel() {
       }}
     >
       <div className="grid md:grid-cols-2 items-stretch min-h-[420px]">
-        <div className="p-8 md:p-10 flex flex-col justify-center text-left">
-          <h3 className="text-xl md:text-2xl font-black text-white mb-3 leading-tight">{slide.title}</h3>
-          <p className="text-sm md:text-base text-slate-300 leading-relaxed">{slide.description}</p>
-          <div className="flex gap-2 mt-4">
+        <div className="p-10 md:p-14 lg:p-16 flex flex-col justify-start pt-14 md:pt-20 text-left">
+          <h3 className="text-2xl md:text-3xl font-black text-white mb-6 leading-tight">{slide.title}</h3>
+          <p className="text-base md:text-lg text-slate-300 leading-8 max-w-xl">{slide.description}</p>
+          <div className="flex gap-3 mt-10">
             {WHAT_WE_DO_SLIDES.map((_, i) => (
               <button
                 key={i}
