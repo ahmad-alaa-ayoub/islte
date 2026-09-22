@@ -48,10 +48,10 @@ function ScrollManager() {
   return null;
 }
 
-const ndtPhoto = new URL('./product/E3 NDT/DR Panels/EXT1036BW.png', import.meta.url).href;
+const ndtPhoto = new URL('./public/ndtProduct.png', import.meta.url).href;
 const logos = new URL('./public/1.jpeg', import.meta.url).href;
 const calib = new URL('./public/calibration.jpeg', import.meta.url).href;
-
+const station = new URL('./public/sunset.jpg', import.meta.url).href;
 const HERO_BG = new URL('./public/unnamed.jpg', import.meta.url).href;
 const BACKGROUND_IMAGES = [
   HERO_BG,
@@ -216,7 +216,7 @@ const WHAT_WE_DO_SLIDES = [
     description: 'With offices in Dubai, Abu Dhabi, Oman and Saudi Arabia, we bring local, responsive support to clients across the region, backed by decades of combined technical expertise.',
   },
   {
-    image: BACKGROUND_IMAGES[1],
+    image: station,
     title: 'Precision & Quality in Every Measurement',
     description: 'From understanding customer needs to training manpower and providing after-sale support, we partner with our clients at every step of their inspection and quality assurance journey.',
   },
@@ -297,7 +297,10 @@ function WhatWeDoCarousel() {
             ))}
           </div>
         </div>
-        <div className="relative h-56 md:h-[420px] bg-slate-950 flex items-center justify-center">
+        <div
+          className="relative overflow-hidden bg-slate-950"
+          style={{ aspectRatio: '4 / 3' }}
+        >
           <img
             key={slide.image}
             src={slide.image}
@@ -305,7 +308,7 @@ function WhatWeDoCarousel() {
             loading="eager"
             decoding="async"
             fetchPriority="high"
-            className="w-full h-full object-contain p-4"
+            className="w-full h-full object-cover object-center p-4"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/40 md:from-[#0F172A]/60 to-transparent pointer-events-none"></div>
         </div>
