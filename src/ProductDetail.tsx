@@ -62,7 +62,7 @@ const baltospotIcon = new URL('./product/balteau/llxSeries.png', import.meta.url
 const baltographIcon = new URL('./product/balteau/graph.png', import.meta.url).href;
 const baltomaticIcon = new URL('./product/balteau/matics.png', import.meta.url).href;
 const baltoscopeIcon = new URL('./product/balteau/scope.png', import.meta.url).href; lteau = missingBalteauImage;
-
+const accessoriesIconBalteau = new URL('./product/balteau/accessories.png', import.meta.url).href;
 // JOHNSON & ALLEN
 const mpiImage = new URL('./product/JOHNSON & ALLEN/J.jpg', import.meta.url).href;
 const dpiImage = new URL('./product/JOHNSON & ALLEN/dpi-equipment-574693e9808e9.jpg', import.meta.url).href;
