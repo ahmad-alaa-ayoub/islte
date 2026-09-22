@@ -62,18 +62,7 @@ const BACKGROUND_IMAGES = [
 const ISL_LOGO_NEW = new URL('./public/logo-removebg-preview.png', import.meta.url).href;
 const TECHCAL_LOGO = new URL('./public/techcal-logo-high-resolution.png', import.meta.url).href;
 const ABOUT_IMAGE = new URL('./public/IMG_20230916_142015-scaled.jpg', import.meta.url).href;
-const OFFICE_IMAGES = [
-  new URL('./public/office Pictures/IMG_20200630_123749.jpg', import.meta.url).href,
-  new URL('./public/office Pictures/IMG_20200630_123842.jpg', import.meta.url).href,
-  new URL('./public/office Pictures/IMG_20200630_123848.jpg', import.meta.url).href,
-  new URL('./public/office Pictures/IMG_20200630_123944.jpg', import.meta.url).href,
-  new URL('./public/office Pictures/IMG_20200630_124008.jpg', import.meta.url).href,
-  new URL('./public/office Pictures/IMG_20200630_124058.jpg', import.meta.url).href,
-  new URL('./public/office Pictures/IMG_20200630_124121.jpg', import.meta.url).href,
-  new URL('./public/office Pictures/IMG_20200630_124620.jpg', import.meta.url).href,
-  new URL('./public/office Pictures/IMG_20201028_155951.jpg', import.meta.url).href,
-  new URL('./public/office Pictures/IMG_20210318_110716.jpg', import.meta.url).href,
-];
+
 
 const navItems = [
   { label: 'Home', href: '/' },
@@ -170,7 +159,7 @@ function HeroBackground() {
   return (
     <header
       id="home"
-      className="hero-section relative pt-40 pb-16 px-6 overflow-hidden min-h-[70vh] bg-[#0F172A]"
+      className="hero-section relative pt-28 md:pt-40 pb-10 md:pb-16 px-4 md:px-6 overflow-hidden min-h-0 md:min-h-[70vh] bg-[#0F172A]"
       style={{
         backgroundColor: '#0F172A',
         backgroundImage: 'none',
@@ -181,7 +170,7 @@ function HeroBackground() {
     >
       <div className="absolute inset-0 bg-[#0F172A]"></div>
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-[#0F172A]"></div>
-      <div className="relative z-10 w-full max-w-[96%] mx-auto pt-[10vh]">
+      <div className="relative z-10 w-full max-w-[96%] mx-auto pt-6 md:pt-[10vh]">
         <WhatWeDoCarousel />
       </div>
     </header>
@@ -252,7 +241,7 @@ function WhatWeDoCarousel() {
       className="relative bg-[rgba(15,23,42,0.85)] backdrop-blur-md rounded-[2.5rem] shadow-2xl border border-white/10 mb-16 z-10 overflow-hidden min-h-[420px] w-full"
     >
       <div className="grid md:grid-cols-2 items-stretch min-h-[420px]">
-        <div className="p-10 md:p-14 lg:p-16 flex flex-col justify-start pt-14 md:pt-20 text-left">
+        <div className="p-6 md:p-14 lg:p-16 flex flex-col justify-start pt-8 md:pt-20 text-left">
           <h3 className="text-2xl md:text-3xl font-black text-white mb-6 leading-tight">{slide.title}</h3>
           <p className="text-base md:text-lg text-slate-300 leading-8 max-w-xl">{slide.description}</p>
           <div className="flex gap-3 mt-10">
@@ -734,19 +723,9 @@ export default function App() {
 
         <section className="site-theme-panel py-24 px-6 rounded-[3rem]">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl font-black tracking-tight text-slate-400 text-center mb-12">Office Pictures</h2>
+            <h2 className="text-4xl font-black tracking-tight text-slate-400 text-center mb-12"></h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {OFFICE_IMAGES.map((src, index) => (
-                <div key={index} className="overflow-hidden rounded-3xl shadow-2xl bg-slate-100 group">
-                  <img
-                    src={src}
-                    alt={`Office picture ${index + 1}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
-              ))}
+
             </div>
           </div>
         </section>

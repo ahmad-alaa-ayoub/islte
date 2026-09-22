@@ -44,19 +44,19 @@ const accessoriesImage = new URL('./product/VALLEN SYSTEME/Acessories-ohne-Tromm
 // BALTEAU product photos are not included in the local asset set yet.
 const missingBalteauImage: string | undefined = undefined;
 const llxSeriesImage = new URL('./product/balteau/LLX160-web.png', import.meta.url).href;
-const ceramSeriesImage = missingBalteauImage;
-const gfSeriesImage = missingBalteauImage;
-const crawlerSeriesImage = missingBalteauImage;
-const xldSeriesImage = missingBalteauImage;
-const xsdSeriesImage = missingBalteauImage;
-const xmdSeriesImage = missingBalteauImage;
-const AIS = missingBalteauImage;
-const tubesImage = missingBalteauImage;
-const flatPanelImage = missingBalteauImage;
-const softwareSuiteImage = missingBalteauImage;
-const phantomImage = missingBalteauImage;
-const standsImage = missingBalteauImage;
-const fixed = missingBalteauImage;
+const ceramSeriesImage = new URL('./product/balteau/cream.png', import.meta.url).href;
+const gfSeriesImage = new URL('./product/balteau/gf.png', import.meta.url).href;
+const crawlerSeriesImage = new URL('./product/balteau/cr.png', import.meta.url).href;
+const xldSeriesImage = new URL('./product/balteau/xl.png', import.meta.url).href;
+const xsdSeriesImage = new URL('./product/balteau/xs.png', import.meta.url).href;
+const xmdSeriesImage = new URL('./product/balteau/xm.png', import.meta.url).href;
+const AIS = new URL('./product/balteau/ais.png', import.meta.url).href;
+const tubesImage = new URL('./product/balteau/ts.png', import.meta.url).href;
+const flatPanelImage = new URL('./product/balteau/flat-panel.png', import.meta.url).href;
+const softwareSuiteImage = new URL('./product/balteau/software-suite.png', import.meta.url).href;
+const phantomImage = new URL('./product/balteau/phantom.png', import.meta.url).href;
+const standsImage = new URL('./product/balteau/stands.png', import.meta.url).href;
+const fixed = new URL('./product/balteau/fixed.png', import.meta.url).href;
 // BALTEAU Category Icons
 const baltospotIcon = new URL('./product/balteau/llxSeries.png', import.meta.url).href;
 const baltographIcon = new URL('./product/balteau/graph.png', import.meta.url).href;
@@ -455,14 +455,14 @@ const atline = new URL('./product/coatmaster/Atline.png', import.meta.url).href;
 
 
 
-const ProductCard = ({ title, desc, img, link }: { title: string; desc: string; img?: string; link: string }) => (
-  <div className="product-card group overflow-hidden rounded-3xl border border-[rgba(15,23,42,0.72)] bg-[rgba(15,23,42,0.72)] p-4 transition-all hover:shadow-lg flex flex-col">
+const ProductCard = ({ title, desc, img, link, hideImage = false }: { title: string; desc: string; img?: string; link: string; hideImage?: boolean }) => (
+  <div className={`product-card group overflow-hidden rounded-3xl border border-[rgba(15,23,42,0.72)] bg-[rgba(15,23,42,0.72)] p-4 transition-all hover:shadow-lg flex flex-col ${hideImage ? 'self-start' : ''}`}>
     {img && (
       <a href={link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-3xl mb-4 bg-white">
         <img src={img} alt={title} loading="lazy" decoding="async" className="h-56 w-full object-contain transition-transform group-hover:scale-105" />
       </a>
     )}
-    {!img && (
+    {!img && !hideImage && (
       <div className="mb-4 flex h-56 items-center justify-center rounded-3xl border border-dashed border-slate-600 bg-slate-900/50 px-6 text-center text-sm font-bold uppercase tracking-[0.14em] text-slate-400">
         Product image unavailable
       </div>
@@ -792,16 +792,19 @@ export default function ProductDetail() {
             <>
               <div className="grid gap-4 mb-10 transition-all duration-500 grid-cols-1 md:grid-cols-3">
                 {([
-                  { id: 'BENDABLE', name: 'Bendable & Curved panel' },
-                  { id: 'STATIC', name: 'Static series' },
-                  { id: 'HIGH_RESOLUTION', name: 'High Resolution & Frame Rate' },
+                  { id: 'BENDABLE', name: 'Bendable & Curved panel', icon: drtechExt1043Image },
+                  { id: 'STATIC', name: 'Static series', icon: drtechExt4357uhImage },
+                  { id: 'HIGH_RESOLUTION', name: 'High Resolution & Frame Rate', icon: drtechExt4343rImage },
                 ] as const).map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => setDrtechCategory(cat.id)}
                     className={`group rounded-2xl border-2 transition-all duration-300 p-6 ${drtechCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'}`}
                   >
-                    <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 transition-all group-hover:text-white">
+                    <div className="product-category-frame h-40 mb-4 bg-white rounded-xl">
+                      <img src={cat.icon} alt={cat.name} loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
+                    </div>
+                    <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-slate-700 transition-all group-hover:text-white">
                       {cat.name}
                     </div>
                   </button>
@@ -846,17 +849,20 @@ export default function ProductDetail() {
             <>
               <div className="grid gap-4 mb-10 transition-all duration-500 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                 {([
-                  { id: 'IRIS_9000_PLUS', name: 'IRIS 9000 PLUS' },
-                  { id: 'SOFTWARE', name: 'Software' },
-                  { id: 'PROBES', name: 'Probes' },
-                  { id: 'ACCESSORIES', name: 'Accessories' },
+                  { id: 'IRIS_9000_PLUS', name: 'IRIS 9000 PLUS', icon: IRIS9000PLUS },
+                  { id: 'SOFTWARE', name: 'Software', icon: B_scan },
+                  { id: 'PROBES', name: 'Probes', icon: IRIS_Probes },
+                  { id: 'ACCESSORIES', name: 'Accessories', icon: WATER_FILTER_ASSEMBLY },
                 ] as const).map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => setIrisCategory(cat.id)}
                     className={`group rounded-2xl border-2 transition-all duration-300 p-6 ${irisCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'}`}
                   >
-                    <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 transition-all group-hover:text-white">
+                    <div className="product-category-frame h-40 mb-4 bg-white rounded-xl">
+                      <img src={cat.icon} alt={cat.name} loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
+                    </div>
+                    <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-slate-700 transition-all group-hover:text-white">
                       {cat.name}
                     </div>
                   </button>
@@ -899,16 +905,19 @@ This software is used for the inspection, data collection, and analysis. Once co
             <>
               <div className="grid gap-4 mb-10 transition-all duration-500 grid-cols-1 md:grid-cols-3">
                 {([
-                  { id: 'INSTRUMENT', name: 'Instrument' },
-                  { id: 'SOFTWARE', name: 'Software' },
-                  { id: 'ACCESSORIES', name: 'Accessories' },
+                  { id: 'INSTRUMENT', name: 'Instrument', icon: Explorer },
+                  { id: 'SOFTWARE', name: 'Software', icon: prelude },
+                  { id: 'ACCESSORIES', name: 'Accessories', icon: inputsAndOutputsManagement },
                 ] as const).map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => setTpacCategory(cat.id)}
                     className={`group rounded-2xl border-2 transition-all duration-300 p-6 ${tpacCategory === cat.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'}`}
                   >
-                    <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-white/70 transition-all group-hover:text-white">
+                    <div className="product-category-frame h-40 mb-4 bg-white rounded-xl">
+                      <img src={cat.icon} alt={cat.name} loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
+                    </div>
+                    <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-slate-700 transition-all group-hover:text-white">
                       {cat.name}
                     </div>
                   </button>
@@ -919,16 +928,19 @@ This software is used for the inspection, data collection, and analysis. Once co
                 <>
                   <div className="grid gap-4 mb-10 transition-all duration-500 grid-cols-1 md:grid-cols-3">
                     {([
-                      { id: 'PAUT', name: 'PAUT (Explorer line)' },
-                      { id: 'MULTI_CHANNEL', name: 'Multi-channel UT (Pilot Line)' },
-                      { id: 'OPEN_PLATFORM', name: 'Open Platform (Pioneer Line)' },
+                      { id: 'PAUT', name: 'PAUT (Explorer line)', icon: Explorer },
+                      { id: 'MULTI_CHANNEL', name: 'Multi-channel UT (Pilot Line)', icon: pilotPlus },
+                      { id: 'OPEN_PLATFORM', name: 'Open Platform (Pioneer Line)', icon: product.logo },
                     ] as const).map((sub) => (
                       <button
                         key={sub.id}
                         onClick={() => setTpacSubCategory(sub.id)}
                         className={`group rounded-2xl border-2 transition-all duration-300 p-5 ${tpacSubCategory === sub.id ? 'border-[#0f6fff] bg-blue-50 shadow-sm' : 'border-slate-100 bg-slate-50 hover:bg-slate-100'}`}
                       >
-                        <div className="text-center text-[10px] font-black uppercase tracking-[0.2em] leading-relaxed text-white/70 transition-all group-hover:text-white">
+                        <div className="product-category-frame h-32 mb-3 bg-white rounded-xl">
+                          <img src={sub.icon} alt={sub.name} loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
+                        </div>
+                        <div className="text-center text-[10px] font-black uppercase tracking-[0.2em] leading-relaxed text-slate-700 transition-all group-hover:text-white">
                           {sub.name}
                         </div>
                       </button>
@@ -1240,23 +1252,28 @@ This software is used for the inspection, data collection, and analysis. Once co
           {/* --- DANATRONICS --- */}
           {product.id === 'danatronics' && (
             <>
-              <div className="flex flex-wrap gap-4 mb-8">
+              <div className="grid gap-4 mb-10 transition-all duration-500 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
                 {[
-                  { id: 'flaw-detectors', name: 'Flaw Detectors' },
-                  { id: 'corrosion-thickness-gage', name: 'Corrosion Thickness Gage' },
-                  { id: 'precision-thickness-gage', name: 'Precision Thickness Gage' },
-                  { id: 'hall-effect-gage', name: 'Hall Effect Gage' },
-                  { id: 'transducers', name: 'Transducers' },
+                  { id: 'flaw-detectors', name: 'Flaw Detectors', icon: echoFdImg },
+                  { id: 'corrosion-thickness-gage', name: 'Corrosion Thickness Gage', icon: echo9Img },
+                  { id: 'precision-thickness-gage', name: 'Precision Thickness Gage', icon: echo7Img },
+                  { id: 'hall-effect-gage', name: 'Hall Effect Gage', icon: mtg99Img },
+                  { id: 'transducers', name: 'Transducers', icon: dualElementTransducersImg },
                 ].map((cat) => (
                   <Link
                     key={cat.id}
                     to={`/product/danatronics#${cat.id}`}
-                    className={`px-6 py-3 rounded-full border-2 transition-all text-[11px] font-black uppercase tracking-[0.2em] leading-none ${danatronicsCategory === cat.id.toUpperCase().replace(/-/g, '_')
-                      ? 'bg-[#003349] text-white border-[#003349]'
-                      : 'bg-slate-50 text-white/70 border-slate-100 hover:border-[#003349] hover:text-white'
+                    className={`group rounded-2xl border-2 transition-all duration-300 p-5 ${danatronicsCategory === cat.id.toUpperCase().replace(/-/g, '_')
+                      ? 'border-[#0f6fff] bg-blue-50 shadow-sm'
+                      : 'border-slate-100 bg-slate-50 hover:bg-slate-100'
                       }`}
                   >
-                    {cat.name}
+                    <div className="product-category-frame h-28 mb-3 bg-white rounded-xl">
+                      <img src={cat.icon} alt={cat.name} loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
+                    </div>
+                    <div className="text-center text-[10px] font-black uppercase tracking-[0.2em] leading-relaxed text-slate-700 transition-all group-hover:text-white">
+                      {cat.name}
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -1305,22 +1322,27 @@ This software is used for the inspection, data collection, and analysis. Once co
           {/* --- DOLPHITECH --- */}
           {product.id === 'dolphitech' && (
             <>
-              <div className="flex flex-wrap gap-4 mb-8">
+              <div className="grid gap-4 mb-10 transition-all duration-500 grid-cols-2 md:grid-cols-4">
                 {[
-                  { id: 'maut-core-units', name: 'MAUT Core Units' },
-                  { id: 'maut-transducers', name: 'MAUT Transducers (TRMs)' },
-                  { id: 'accessories', name: 'Accessories' },
-                  { id: 'scanning-tools', name: 'Scanning Tools' },
+                  { id: 'maut-core-units', name: 'MAUT Core Units', icon: dolphitechDolphicam2Img },
+                  { id: 'maut-transducers', name: 'MAUT Transducers (TRMs)', icon: dolphitechMxttuImg },
+                  { id: 'accessories', name: 'Accessories', icon: dolphitechDelayLinesImg },
+                  { id: 'scanning-tools', name: 'Scanning Tools', icon: dolphitechRapidMapperImg },
                 ].map((cat) => (
                   <Link
                     key={cat.id}
                     to={`/product/dolphitech#${cat.id}`}
-                    className={`px-6 py-3 rounded-full border-2 transition-all text-[11px] font-black uppercase tracking-[0.2em] leading-none ${dolphitechCategory === cat.id.toUpperCase().replace(/-/g, '_')
-                      ? 'bg-[#003349] text-white border-[#003349]'
-                      : 'bg-slate-50 text-white/70 border-slate-100 hover:border-[#003349] hover:text-white'
+                    className={`group rounded-2xl border-2 transition-all duration-300 p-5 ${dolphitechCategory === cat.id.toUpperCase().replace(/-/g, '_')
+                      ? 'border-[#0f6fff] bg-blue-50 shadow-sm'
+                      : 'border-slate-100 bg-slate-50 hover:bg-slate-100'
                       }`}
                   >
-                    {cat.name}
+                    <div className="product-category-frame h-28 mb-3 bg-white rounded-xl">
+                      <img src={cat.icon} alt={cat.name} loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
+                    </div>
+                    <div className="text-center text-[10px] font-black uppercase tracking-[0.2em] leading-relaxed text-slate-700 transition-all group-hover:text-white">
+                      {cat.name}
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -1380,20 +1402,25 @@ This software is used for the inspection, data collection, and analysis. Once co
           {/* --- proceq --- */}
           {product.id === 'proceq' && (
             <>
-              <div className="flex flex-wrap gap-4 mb-8">
+              <div className="grid gap-4 mb-10 transition-all duration-500 grid-cols-2">
                 {[
-                  { id: 'flaw-detectors', name: 'Flaw Detectors' },
-                  { id: 'portable-hardness-tester', name: 'Portable Hardness Tester' }
+                  { id: 'flaw-detectors', name: 'Flaw Detectors', icon: UT8000 },
+                  { id: 'portable-hardness-tester', name: 'Portable Hardness Tester', icon: Equotip }
                 ].map((cat) => (
                   <Link
                     key={cat.id}
                     to={`/product/proceq#${cat.id}`}
-                    className={`px-6 py-3 rounded-full border-2 transition-all text-[11px] font-black uppercase tracking-[0.2em] leading-none ${proceqCategory === cat.name
-                      ? 'bg-[#003349] text-white border-[#003349]'
-                      : 'bg-slate-50 text-white/70 border-slate-100 hover:border-[#003349] hover:text-white'
+                    className={`group rounded-2xl border-2 transition-all duration-300 p-6 ${proceqCategory === cat.name
+                      ? 'border-[#0f6fff] bg-blue-50 shadow-sm'
+                      : 'border-slate-100 bg-slate-50 hover:bg-slate-100'
                       }`}
                   >
-                    {cat.name}
+                    <div className="product-category-frame h-40 mb-4 bg-white rounded-xl">
+                      <img src={cat.icon} alt={cat.name} loading="lazy" decoding="async" className="max-w-full max-h-full object-contain" />
+                    </div>
+                    <div className="text-center text-[11px] font-black uppercase tracking-[0.2em] leading-none text-slate-700 transition-all group-hover:text-white">
+                      {cat.name}
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -1621,7 +1648,7 @@ This software is used for the inspection, data collection, and analysis. Once co
                       title="Digitizer"
                       link="https://www.balteau-ndt.com/baltoscope/?serie=30-digitizer"
                       desc="High definition scanning of films to improve service quality and extend inspection capabilities."
-                      note="No image available"
+                      hideImage
                     />
                     <ProductCard
                       title="Phantom"
