@@ -897,10 +897,10 @@ export default function App() {
         <Route path="/contact" element={<ContactUsPage />} />
       </Routes>
 
-      <footer className="bg-[rgba(15,23,42,0.78)] text-white pt-24 relative">
-        <div className="max-w-7xl mx-auto px-8 pb-16 grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12 lg:gap-20">
+      <footer className="bg-[rgba(15,23,42,0.78)] text-white pt-14 md:pt-24 relative">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 pb-12 md:pb-16 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 lg:gap-20">
           <div className="text-left">
-            <h3 className="text-x3 font-black uppercase tracking-[0.15em] mb-10 text-slate-500">About Integrity Scientific</h3>
+            <h3 className="text-lg md:text-xl font-black uppercase tracking-[0.15em] mb-6 md:mb-10 text-slate-500">About Integrity Scientific</h3>
             <p className="text-sm leading-7 text-slate-400">
               Established in 2014, ISL supports quality control teams across Oil &amp; Gas, Energy, Aviation, Laboratories and other demanding industries.
             </p>
@@ -913,7 +913,7 @@ export default function App() {
           </div>
 
           <div className="text-left">
-            <h3 className="text-x3 font-black uppercase tracking-[0.15em] mb-10 text-slate-500">Sectors</h3>
+            <h3 className="text-lg md:text-xl font-black uppercase tracking-[0.15em] mb-6 md:mb-10 text-slate-500">Sectors</h3>
             <div className="grid grid-cols-1 gap-5 text-sm font-black uppercase tracking-[0.15em] text-slate-400">
               {[
                 'Oil & Gas',
@@ -932,17 +932,17 @@ export default function App() {
           </div>
 
           <div className="flex flex-col items-start">
-            <h3 className="text-x1 font-black uppercase tracking-[0.12em] mb-10 text-slate-500">Stay in touch</h3>
+            <h3 className="text-lg md:text-xl font-black uppercase tracking-[0.12em] mb-6 md:mb-10 text-slate-500">Stay in touch</h3>
             <div className="space-y-4 w-full flex flex-col items-start">
-              <a href="#" className="flex items-center gap-3 w-56 px-5 py-3 bg-[#0077B5] rounded-lg hover:brightness-110 transition-all">
+              <a href="#" className="flex items-center gap-3 w-full max-w-xs px-5 py-3 bg-[#0077B5] rounded-lg hover:brightness-110 transition-all">
                 <Linkedin size={20} className="text-white" />
                 <span className="text-sm font-black text-white">ISLTE</span>
               </a>
-              <a href="mailto:info@islte.ae" className="flex items-center gap-3 w-56 px-5 py-3 bg-[#D93025] rounded-lg hover:brightness-110 transition-all">
+              <a href="mailto:info@islte.ae" className="flex items-center gap-3 w-full max-w-xs px-5 py-3 bg-[#D93025] rounded-lg hover:brightness-110 transition-all">
                 <Mail size={20} className="text-white" />
                 <span className="text-sm font-black text-white">info@islte.ae</span>
               </a>
-              <a href="tel:0097144323551" className="flex items-center gap-3 w-56 px-5 py-3 bg-[#00695C] rounded-lg hover:brightness-110 transition-all">
+              <a href="tel:0097144323551" className="flex items-center gap-3 w-full max-w-xs px-5 py-3 bg-[#00695C] rounded-lg hover:brightness-110 transition-all">
                 <Phone size={20} className="text-white" />
                 <span className="text-sm font-black text-white">+97144323551</span>
               </a>
@@ -950,7 +950,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="border-t border-white/5 py-10 text-center text-[9px] tracking-[0.5em] font-black text-slate-600 uppercase">
+        <div className="border-t border-white/5 py-8 md:py-10 px-6 text-center text-[8px] md:text-[9px] tracking-[0.15em] md:tracking-[0.5em] leading-relaxed font-black text-slate-600 uppercase">
           2026 &copy; INTEGRITY SCIENTIFIC LABORATORY EQUIPMENT TRADING LLC
         </div>
       </footer>
