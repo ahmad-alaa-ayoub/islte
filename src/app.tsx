@@ -5,7 +5,6 @@ import {
   Route,
   Routes,
   useLocation,
-  useNavigate,
   useNavigationType,
 } from 'react-router-dom';
 import {
@@ -49,9 +48,11 @@ function ScrollManager() {
 }
 
 const ndtPhoto = new URL('./public/ndtProduct.png', import.meta.url).href;
-const logos = new URL('./public/1.jpeg', import.meta.url).href;
+const logos = new URL('./public/CWG002-NAVIC1.width-1000.png', import.meta.url).href;
 const calib = new URL('./public/calibration.jpeg', import.meta.url).href;
-const station = new URL('./public/sunset.jpg', import.meta.url).href;
+const station = new URL('./public/GDF01203.jpg', import.meta.url).href;
+const Roh = new URL('./public/Inspection.jpg', import.meta.url).href;
+
 const HERO_BG = new URL('./public/unnamed.jpg', import.meta.url).href;
 const BACKGROUND_IMAGES = [
   HERO_BG,
@@ -211,7 +212,7 @@ const WHAT_WE_DO_SLIDES = [
     description: AFTER_SALE_SERVICE_DESCRIPTION,
   },
   {
-    image: OFFICE_IMAGES[0],
+    image: Roh,
     title: 'Regional Presence Across the Gulf',
     description: 'With offices in Dubai, Abu Dhabi, Oman and Saudi Arabia, we bring local, responsive support to clients across the region, backed by decades of combined technical expertise.',
   },
@@ -224,7 +225,6 @@ const WHAT_WE_DO_SLIDES = [
 
 function WhatWeDoCarousel() {
   const [index, setIndex] = React.useState(0);
-  const navigate = useNavigate();
 
   React.useEffect(() => {
     WHAT_WE_DO_SLIDES.forEach(({ image }) => {
@@ -245,39 +245,11 @@ function WhatWeDoCarousel() {
     setIndex((next + WHAT_WE_DO_SLIDES.length) % WHAT_WE_DO_SLIDES.length);
   };
 
-  const isProductsSlide = index === 1;
-  const isAfterSaleServicesSlide = index === 2;
-  const isContactUsSlide = index === 3;
   const slide = WHAT_WE_DO_SLIDES[index];
-
-  const handleSlideClick = () => {
-    if (isProductsSlide) {
-      navigate('/products');
-      return;
-    }
-
-    if (isAfterSaleServicesSlide) {
-      navigate('/after-sale-services');
-      return;
-    }
-
-    if (isContactUsSlide) {
-      navigate('/contact');
-    }
-  };
 
   return (
     <div
-      className={`relative bg-[rgba(15,23,42,0.85)] backdrop-blur-md rounded-[2.5rem] shadow-2xl border border-white/10 mb-16 z-10 overflow-hidden min-h-[420px] w-full ${isProductsSlide || isAfterSaleServicesSlide || isContactUsSlide ? 'cursor-pointer' : ''}`}
-      onClick={handleSlideClick}
-      role={isProductsSlide || isAfterSaleServicesSlide || isContactUsSlide ? 'button' : undefined}
-      tabIndex={isProductsSlide || isAfterSaleServicesSlide || isContactUsSlide ? 0 : -1}
-      onKeyDown={(event) => {
-        if ((isProductsSlide || isAfterSaleServicesSlide || isContactUsSlide) && (event.key === 'Enter' || event.key === ' ')) {
-          event.preventDefault();
-          handleSlideClick();
-        }
-      }}
+      className="relative bg-[rgba(15,23,42,0.85)] backdrop-blur-md rounded-[2.5rem] shadow-2xl border border-white/10 mb-16 z-10 overflow-hidden min-h-[420px] w-full"
     >
       <div className="grid md:grid-cols-2 items-stretch min-h-[420px]">
         <div className="p-10 md:p-14 lg:p-16 flex flex-col justify-start pt-14 md:pt-20 text-left">
@@ -314,26 +286,6 @@ function WhatWeDoCarousel() {
         </div>
       </div>
 
-      <button
-        onClick={(event) => {
-          event.stopPropagation();
-          goTo(index - 1);
-        }}
-        aria-label="Previous"
-        className="absolute left-4 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-center rounded-full bg-slate-950/70 border border-white/10 text-white hover:bg-slate-900 transition-all"
-      >
-        <ChevronLeft size={20} />
-      </button>
-      <button
-        onClick={(event) => {
-          event.stopPropagation();
-          goTo(index + 1);
-        }}
-        aria-label="Next"
-        className="absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 flex items-center justify-center rounded-full bg-slate-950/70 border border-white/10 text-white hover:bg-slate-900 transition-all"
-      >
-        <ChevronRight size={20} />
-      </button>
     </div>
   );
 }
