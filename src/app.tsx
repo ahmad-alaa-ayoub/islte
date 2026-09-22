@@ -335,7 +335,7 @@ function LandingPage({ activeProductTab, setActiveProductTab }: { activeProductT
                       />
                     </div>
                     <div className="px-4 py-4 w-full">
-                      <div className="text-lg font-black uppercase tracking-[0.18em] text-white">{logo.name || ''}</div>
+                      <div className="text-sm sm:text-lg font-black uppercase tracking-[0.05em] sm:tracking-[0.18em] text-white break-words">{logo.name || ''}</div>
                     </div>
                   </Link>
                 );
