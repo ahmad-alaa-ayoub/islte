@@ -905,13 +905,9 @@ export default function App() {
           <div className="text-left">
             <h3 className="text-lg md:text-xl font-black uppercase tracking-[0.15em] mb-6 md:mb-10 text-slate-500">About Integrity Scientific</h3>
             <p className="text-sm leading-7 text-slate-400">
-              Established in 2014, ISL supports quality control teams across Oil &amp; Gas, Energy, Aviation, Laboratories and other demanding industries.
-            </p>
-            <p className="mt-5 text-sm leading-7 text-slate-400">
-              Our experienced team helps customers understand their applications, choose state-of-the-art inspection technology, train their people and receive dependable after-sale support.
-            </p>
-            <p className="mt-5 text-sm leading-7 text-slate-400">
-              We supply NDT equipment for ultrasonic testing, flaw detection, thickness measurement, phased array UT, digital radiography, visual inspection, videoscope inspection and laboratory quality control across Dubai, Abu Dhabi, Oman and Saudi Arabia.
+              Established in 2014, ISL is a specialized supplier of NDT and inspection solutions across the UAE, Oman and Saudi Arabia.
+              We provide equipment for ultrasonic testing, flaw detection, thickness measurement, phased array UT, digital radiography, visual inspection, videoscope inspection and laboratory quality control, serving industries including Oil & Gas, Energy, Aviation and Manufacturing.
+              Our experienced team works closely with customers to understand their applications, select the right technology, train their personnel and provide reliable after-sales support.
             </p>
           </div>
 
