@@ -667,7 +667,8 @@ export default function App() {
               <p className="mt-4 text-base md:text-lg leading-8 text-slate-500">
                 Established in 2014, ISL is a specialized supplier of NDT and inspection solutions across the UAE, Oman and Saudi Arabia.
                 We provide equipment for ultrasonic testing, flaw detection, thickness measurement, phased array UT, digital radiography, visual inspection, videoscope inspection and laboratory quality control, serving industries including Oil & Gas, Energy, Aviation and Manufacturing.
-                Our experienced team works closely with customers to understand their applications, select the right technology, train their personnel and provide reliable after-sales support.              </p>
+                Our experienced team works closely with customers to understand their applications, select the right technology, train their personnel and provide reliable after-sales support.
+              </p>
             </div>
 
             <div className="site-theme-panel rounded-3xl border p-8 shadow-sm">
