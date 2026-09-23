@@ -52,6 +52,7 @@ const logos = new URL('./public/CWG002-NAVIC1.width-1000.png', import.meta.url).
 const calib = new URL('./public/calibration.jpeg', import.meta.url).href;
 const station = new URL('./public/GDF01203.jpg', import.meta.url).href;
 const Roh = new URL('./public/Inspection.jpg', import.meta.url).href;
+const ATLINE = new URL('./public/Atline.png', import.meta.url).href;
 
 const HERO_BG = new URL('./public/unnamed.jpg', import.meta.url).href;
 const BACKGROUND_IMAGES = [
@@ -657,20 +658,21 @@ export default function App() {
       <section className="about-page min-h-screen pt-64 pb-24 px-6 bg-slate-50">
         <div className="max-w-7xl mx-auto grid gap-12 lg:grid-cols-[1.05fr_0.95fr] items-center mb-24">
           <div className="site-theme-panel overflow-hidden rounded-[2rem] shadow-2xl">
-            <img src={ABOUT_IMAGE} alt="Integrity Scientific Office" loading="lazy" decoding="async" className="w-full h-full object-cover" />
+            <img src={ATLINE} alt="Integrity Scientific Office" loading="lazy" decoding="async" className="w-full h-full object-cover" />
           </div>
 
           <div className="space-y-6">
             <div className="text-left">
               <h2 className="text-4xl font-black tracking-tight text-slate-400">Who we are</h2>
               <p className="mt-4 text-base md:text-lg leading-8 text-slate-500">
-                Integrity Scientific & Laboratory Equipment Trading LLC. was established in 2014 to support the increasing needs and demands of Quality Control in the fields of Oil & Gas, Energy, Aviation and Laboratories industries. Integrity Scientific & Laboratory relies on the extensive 20 Years experience of its team. It has enabled us to better understand the needs of our clients for high quality Products and constant customer support.
-              </p>
+                Established in 2014, ISL is a specialized supplier of NDT and inspection solutions across the UAE, Oman and Saudi Arabia.
+                We provide equipment for ultrasonic testing, flaw detection, thickness measurement, phased array UT, digital radiography, visual inspection, videoscope inspection and laboratory quality control, serving industries including Oil & Gas, Energy, Aviation and Manufacturing.
+                Our experienced team works closely with customers to understand their applications, select the right technology, train their personnel and provide reliable after-sales support.              </p>
             </div>
 
             <div className="site-theme-panel rounded-3xl border p-8 shadow-sm">
               <p className="text-base md:text-lg leading-8 text-slate-500 mb-6">
-                Integrity Scientific & Lab is a representative of prominent and highly professional companies which provide state-of-the-art equipment and technology in the following fields:
+                ISL provide state-of-the-art equipment and technology in the following fields:
               </p>
               <div className="grid gap-3 sm:grid-cols-2">
                 {[
@@ -905,7 +907,7 @@ export default function App() {
               Established in 2014, ISL supports quality control teams across Oil &amp; Gas, Energy, Aviation, Laboratories and other demanding industries.
             </p>
             <p className="mt-5 text-sm leading-7 text-slate-400">
-              Our experienced team helps customers understand their needs, choose state-of-the-art inspection technology, train their people and receive dependable after-sale support.
+              Our experienced team helps customers understand their applications, choose state-of-the-art inspection technology, train their people and receive dependable after-sale support.
             </p>
             <p className="mt-5 text-sm leading-7 text-slate-400">
               We supply NDT equipment for ultrasonic testing, flaw detection, thickness measurement, phased array UT, digital radiography, visual inspection, videoscope inspection and laboratory quality control across Dubai, Abu Dhabi, Oman and Saudi Arabia.
