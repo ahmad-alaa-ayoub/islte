@@ -52,7 +52,7 @@ const logos = new URL('./public/CWG002-NAVIC1.width-1000.png', import.meta.url).
 const calib = new URL('./public/calibration.jpeg', import.meta.url).href;
 const station = new URL('./public/GDF01203.jpg', import.meta.url).href;
 const Roh = new URL('./public/Inspection.jpg', import.meta.url).href;
-const ATLINE = new URL('./public/Atline.png', import.meta.url).href;
+const ATLINE = new URL('./public/meeting.jpg', import.meta.url).href;
 
 const HERO_BG = new URL('./public/unnamed.jpg', import.meta.url).href;
 const BACKGROUND_IMAGES = [
@@ -76,7 +76,7 @@ const navItems = [
 ];
 
 const productMenu = [
-  { id: 'trm_0_7_mhz.jpg', label: 'Spectro', href: '/product/spectro', subcategories: ['Radiometers', 'Aerospace', 'NDT Supplies'] },
+  { id: 'trm_0_7_mhz.jpg', label: 'Spectro-UV', href: '/product/spectro UV', subcategories: ['Radiometers', 'Aerospace', 'NDT Supplies'] },
   { id: 'fuji', label: 'FujiFilm', href: '/product/fuji', subcategories: ['IX-Film', 'Chemicals'] },
   { id: 'jireh', label: 'JIREH', href: '/product/jireh', subcategories: ['Manual Weld & Corrosion Scanning', 'Automated Crawlers'] },
   { id: '3e-ndt', label: '3E NDT', href: '/product/3e-ndt', subcategories: [] },
@@ -86,13 +86,13 @@ const productMenu = [
   { id: 'TPAC', label: 'TPAC', href: '/product/TPAC.jpg', subcategories: ['Instrument', 'Software', 'Accessories'] },
   { id: 'vallen-systeme', label: 'VALLEN SYSTEME', href: '/product/vallen-systeme', subcategories: [] },
   { id: 'rohmann', label: 'ROHMANN', href: '/product/rohmann', subcategories: ['Inspection Systems', 'Accessories'] },
-  { id: 'mitcorp', label: 'MITCORP', href: '/product/mitcorp', subcategories: ['X-SERIES INDUSTRIAL VIDEOSCOPES', 'PR-SERIES PIPE INSPECTION VIDEOSCOPES'] },
+  { id: 'mitcorp', label: 'Mitcorp', href: '/product/mitcorp', subcategories: ['X-SERIES INDUSTRIAL VIDEOSCOPES', 'PR-SERIES PIPE INSPECTION VIDEOSCOPES'] },
   { id: 'gb-inspection', label: 'GB INSPECTION', href: '/product/gb-inspection', subcategories: [] },
-  { id: 'wohler', label: 'WOHLER', href: '/product/wohler', subcategories: ['Measuring Instruments', 'Inspection Systems', 'Cleaning Tools'] },
+  { id: 'wohler', label: 'WÖHLER', href: '/product/wohler', subcategories: ['Measuring Instruments', 'Inspection Systems', 'Cleaning Tools'] },
   { id: 'johnson-allen', label: 'JOHNSON & ALLEN', href: '/product/johnson-allen', subcategories: [] },
-  { id: 'echo', label: 'ECHO Ultrasonics', href: '/product/echo', subcategories: ['High Temperature', 'Intermediate & Low Temp', 'Specialty Application'] },
+  { id: 'echo', label: 'ECHO ultrasonics', href: '/product/echo', subcategories: ['High Temperature', 'Intermediate & Low Temp', 'Specialty Application'] },
   { id: 'danatronics', label: 'DANATRONICS', href: '/product/danatronics', subcategories: ['Flaw Detectors', 'Corrosion Thickness Gage', 'Precision Thickness Gage', 'Hall Effect Gage', 'Transducers'] },
-  { id: 'dolphitech', label: 'Dolphitech', href: '/product/dolphitech', subcategories: ['MAUT Core Units', 'MAUT Transducers (TRMs)', 'Accessories', 'Scanning Tools'] },
+  { id: 'dolphitech', label: 'dolphitech', href: '/product/dolphitech', subcategories: ['MAUT Core Units', 'MAUT Transducers (TRMs)', 'Accessories', 'Scanning Tools'] },
   { id: 'ekoscan', label: 'Ekoscan', href: '/product/ekoscan', subcategories: [] },
   { id: 'balteau', label: 'BALTEAU NDT', href: '/product/balteau', subcategories: ['BALTOSPOT', 'BALTOGRAPH', 'BALTOMATIC', 'BALTOSCOPE', 'ACCESSORIES'] },
   { id: 'proceq', label: 'proceq', href: '/product/proceq', subcategories: ['Flaw Detectors', 'Portable Hardness Tester'] },
@@ -336,7 +336,7 @@ function LandingPage({ activeProductTab, setActiveProductTab }: { activeProductT
                       />
                     </div>
                     <div className="px-4 py-4 w-full">
-                      <div className="text-sm sm:text-lg font-black uppercase tracking-[0.05em] sm:tracking-[0.18em] text-white break-words">{logo.name || ''}</div>
+                      <div className="text-sm sm:text-lg font-black tracking-[0.05em] sm:tracking-[0.18em] text-white break-words" style={{ textTransform: 'none' }}>{logo.name || ''}</div>
                     </div>
                   </Link>
                 );
@@ -587,8 +587,8 @@ export default function App() {
                   <p className="font-bold text-slate-900">Integrity Scientific Laboratory Equipment LLC</p>
                   <p>Offices 12 & 13 Al Jaber Building, Nad Al Hamar, Dubai, UAE</p>
                   <p>P.O.Box : 392998</p>
-                  <p className="pt-2"><span className="font-bold text-sky-700">Phone:</span> +971 4 4323551</p>
-                  <p><span className="font-bold text-sky-700">Email:</span> info@islte.ae</p>
+                  <p className="pt-2"><span className="font-bold text-sky-700">Phone:</span> <a href="tel:+97144323551" className="hover:text-sky-700 transition-colors">+971 4 4323551</a></p>
+                  <p><span className="font-bold text-sky-700">Email:</span> <a href="mailto:info@islte.ae" className="hover:text-sky-700 transition-colors">info@islte.ae</a></p>
                 </div>
               </div>
 
@@ -597,8 +597,8 @@ export default function App() {
                 <div className="text-slate-600 space-y-1 font-medium text-sm">
                   <p className="font-bold text-slate-900">Integrity Scientific Laboratory Equipment LLC</p>
                   <p>Office number 8, floor 9, tower 3, Mazyad mall, zone 1, Mohammed Bin Zayed city, Abu Dhabi, UAE</p>
-                  <p className="pt-2"><span className="font-bold text-slate-800">Phone:</span> +971 2 6273561</p>
-                  <p><span className="font-bold text-slate-800">Email:</span> info@islte.ae</p>
+                  <p className="pt-2"><span className="font-bold text-slate-800">Phone:</span> <a href="tel:+97126273561" className="hover:text-sky-700 transition-colors">+971 2 6273561</a></p>
+                  <p><span className="font-bold text-slate-800">Email:</span> <a href="mailto:info@islte.ae" className="hover:text-sky-700 transition-colors">info@islte.ae</a></p>
                 </div>
               </div>
 
@@ -607,8 +607,8 @@ export default function App() {
                 <div className="text-slate-600 space-y-1 font-medium text-sm">
                   <p className="font-bold text-slate-900">Integrity Scientific & Laboratory Equipment LLC</p>
                   <p>Office No: 14, DRC Building, Ruwi, Muscat, Oman</p>
-                  <p className="pt-2"><span className="font-bold text-slate-800">Mob:</span> +968 93500515</p>
-                  <p><span className="font-bold text-slate-800">Email:</span> info@islte.ae</p>
+                  <p className="pt-2"><span className="font-bold text-slate-800">Mob:</span> <a href="tel:+96893500515" className="hover:text-sky-700 transition-colors">+968 93500515</a></p>
+                  <p><span className="font-bold text-slate-800">Email:</span> <a href="mailto:info@islte.ae" className="hover:text-sky-700 transition-colors">info@islte.ae</a></p>
                 </div>
               </div>
               <div onClick={() => setSelectedOffice(offices[3])} role="button" tabIndex={0} className={`site-theme-panel cursor-pointer p-8 rounded-[2rem] border-l-8 shadow-sm transition-all ${selectedOffice.name === offices[3].name ? 'border-sky-700 ring-2 ring-sky-500/50' : 'border-slate-500 hover:border-sky-400'}`}>
@@ -617,8 +617,8 @@ export default function App() {
                   <p className="font-bold text-slate-900">Integrity Scientific & Laboratory Equipment LLC</p>
                   <p>15th street, building 3149, Office 310, Dammam Saihat </p>
                   <p>Short address: EMJC3149</p>
-                  <p className="pt-2"><span className="font-bold text-slate-800">Tel:</span> 0138303573</p>
-                  <p><span className="font-bold text-slate-800">Email:</span> info@islte.ae</p>
+                  <p className="pt-2"><span className="font-bold text-slate-800">Tel:</span> <a href="tel:+966138303573" className="hover:text-sky-700 transition-colors">0138303573</a></p>
+                  <p><span className="font-bold text-slate-800">Email:</span> <a href="mailto:info@islte.ae" className="hover:text-sky-700 transition-colors">info@islte.ae</a></p>
                 </div>
               </div>
             </div>
@@ -777,7 +777,7 @@ export default function App() {
                 Products
               </Link>
 
-              <div className={`${desktopProductsOpen ? 'block' : 'hidden'} absolute right-0 top-full mt-0 pt-3 min-w-[260px] max-h-[calc(100vh-7rem)] overflow-y-auto rounded-3xl bg-slate-950/95 border border-slate-800 p-4 shadow-2xl`}>
+              <div className={`${desktopProductsOpen ? 'block' : 'hidden'} absolute right-0 top-full mt-0 pt-3 min-w-[260px] max-h-[calc(100vh-7rem)] overflow-y-auto rounded-3xl bg-[#0F172A] border border-slate-800 p-4 shadow-2xl`}>
                 <div className="space-y-2">
                   {productMenu.map((item) => (
                     <div
@@ -787,7 +787,7 @@ export default function App() {
                     >
                       <Link to={item.href} className="block rounded-2xl px-3 py-2 text-sm font-black text-white hover:bg-slate-900 hover:text-white transition-all">{item.label}</Link>
                       {hoveredProduct === item.label && (
-                        <div className="absolute left-full top-0 ml-2 min-w-[200px] rounded-3xl bg-slate-950/95 border border-slate-800 p-3 shadow-2xl">
+                        <div className="absolute left-full top-0 ml-2 min-w-[200px] rounded-3xl bg-[#0F172A] border border-slate-800 p-3 shadow-2xl">
                           <div className="space-y-2">
                             {item.subcategories.map((sub) => (
                               <Link key={sub} to={`${item.href}#${slugify(sub)}`} className="block rounded-2xl px-3 py-2 text-[11px] text-slate-400 hover:bg-slate-900 hover:text-white transition-all">{sub}</Link>
@@ -933,7 +933,7 @@ export default function App() {
           <div className="flex flex-col items-start">
             <h3 className="text-lg md:text-xl font-black uppercase tracking-[0.12em] mb-6 md:mb-10 text-slate-500">Stay in touch</h3>
             <div className="space-y-4 w-full flex flex-col items-start">
-              <a href="#" className="flex items-center gap-3 w-full max-w-xs px-5 py-3 bg-[#0077B5] rounded-lg hover:brightness-110 transition-all">
+              <a href="https://www.linkedin.com/company/islte" target="_blank" rel="noreferrer" className="flex items-center gap-3 w-full max-w-xs px-5 py-3 bg-[#0077B5] rounded-lg hover:brightness-110 transition-all">
                 <Linkedin size={20} className="text-white" />
                 <span className="text-sm font-black text-white">ISLTE</span>
               </a>
@@ -941,9 +941,9 @@ export default function App() {
                 <Mail size={20} className="text-white" />
                 <span className="text-sm font-black text-white">info@islte.ae</span>
               </a>
-              <a href="tel:0097144323551" className="flex items-center gap-3 w-full max-w-xs px-5 py-3 bg-[#00695C] rounded-lg hover:brightness-110 transition-all">
+              <a href="tel:+97144323551" className="flex items-center gap-3 w-full max-w-xs px-5 py-3 bg-[#00695C] rounded-lg hover:brightness-110 transition-all">
                 <Phone size={20} className="text-white" />
-                <span className="text-sm font-black text-white">+97144323551</span>
+                <span className="text-sm font-black text-white">+971 4 4323551</span>
               </a>
             </div>
           </div>

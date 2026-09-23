@@ -50,7 +50,7 @@ export default function ProductsPage() {
                   </div>
                 </Link>
                 <div className="px-4 py-4 w-full">
-                  <div className="text-lg font-black uppercase tracking-[0.18em] text-white">{logo.name}</div>
+                  <div className="text-lg font-black tracking-[0.18em] text-white" style={{ textTransform: 'none' }}>{logo.name}</div>
                   <Link
                     to={`/product/${logo.id}`}
                     onClick={rememberScrollPosition}
