@@ -8,7 +8,7 @@ export const partnerLogos = [
   { id: 'jireh', name: 'JIREH', url: assetUrl('JIREH.jpg') },
   { id: 'fuji', name: 'FujiFilm', url: assetUrl('fuji.png') },
   { id: '3e-ndt', name: '3E NDT', url: assetUrl('logo4.png') },
-  { id: 'durr-ndt', name: 'DURR NDT', url: assetUrl('DUR.jpg') },
+  { id: 'durr-ndt', name: 'DÜRR NDT', url: assetUrl('DUR.jpg') },
   { id: 'drtech', name: 'DRTECH', url: assetUrl('DRTECH.jpg') },
   { id: 'iris', name: 'IRIS', url: assetUrl('IRIS.png') },
   { id: 'tpac', name: 'TPAC', url: assetUrl('TPAC.jpg') },
