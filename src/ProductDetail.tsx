@@ -2,6 +2,7 @@
 import React from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { productsData } from './data/products';
+import { partnerLogos } from './data/productLogos';
 import { ChevronLeft } from 'lucide-react';
 import { useDocumentTitle } from './useDocumentTitle';
 
@@ -508,7 +509,7 @@ export default function ProductDetail() {
 
   const location = useLocation();
   const product = productsData.find(p => p.id === productId);
-
+  const brandLogo = partnerLogos.find(l => l.id.toLowerCase() === (productId || '').toLowerCase())?.url;
   React.useEffect(() => {
     const slug = decodeURIComponent(location.hash?.replace('#', '') || '');
     if (!product || !slug) return;
@@ -691,6 +692,21 @@ export default function ProductDetail() {
         </Link>
 
         <div className="product-detail-panel bg-[rgba(15,23,42,0.78)] rounded-3xl p-8 md:p-12 shadow-sm border border-[rgba(15,23,42,0.72)]">
+          {product.logo && (
+            <div
+              className="mb-10 flex h-40 w-64 items-center justify-center rounded-2xl p-5 shadow-sm"
+              style={{ backgroundColor: '#ffffff' }}
+            >
+              <img
+                src={product.logo}
+                alt={product.name || product.id}
+                loading="eager"
+                decoding="async"
+                className="h-full w-full object-contain"
+              />
+            </div>
+          )}
+
           <p className="text-xl text-slate-300 leading-relaxed mb-10 whitespace-pre-line">
             {product.description}
           </p>

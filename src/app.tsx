@@ -324,6 +324,7 @@ function LandingPage({ activeProductTab, setActiveProductTab }: { activeProductT
                   <Link
                     to={`/product/${logo.id}`}
                     key={logo.id}
+                    aria-label={logo.name}
                     className={`group relative bg-[rgba(15,23,42,0.72)] border border-[rgba(15,23,42,0.72)] rounded-3xl overflow-hidden hover:shadow-2xl hover:border-sky-700 transition-all flex flex-col items-center text-center ${logo.id === 'drtech' ? 'drtech-logo-card' : ''}`}
                   >
                     <div className={`aspect-square w-full flex items-center justify-center px-4 py-4 ${logo.id === '3e-ndt' ? 'e3-logo-card' : ''} ${logo.id === 'tpac' ? 'tpac-logo-card' : ''} ${logo.id === 'drtech' ? 'drtech-logo-container' : 'logo-white-background'}`}>
@@ -334,9 +335,6 @@ function LandingPage({ activeProductTab, setActiveProductTab }: { activeProductT
                         decoding="async"
                         className={`h-full w-full object-contain transition-transform duration-500 group-hover:scale-105 ${logo.id === 'drtech' ? 'drtech-logo-image' : ''} ${shouldFillLogo ? 'logo-fill-image' : ''}`}
                       />
-                    </div>
-                    <div className="px-4 py-4 w-full">
-                      <div className="text-sm sm:text-lg font-black tracking-[0.05em] sm:tracking-[0.18em] text-white break-words" style={{ textTransform: 'none' }}>{logo.name || ''}</div>
                     </div>
                   </Link>
                 );
