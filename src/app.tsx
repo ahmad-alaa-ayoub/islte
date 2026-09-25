@@ -655,7 +655,7 @@ export default function App() {
   const AboutUsPage = () => {
     useDocumentTitle('About Us | Integrity Scientific');
     return (
-      <section className="about-page min-h-screen pt-64 pb-24 px-6 bg-slate-50">
+      <section className="about-page min-h-screen pt-28 md:pt-64 pb-16 md:pb-24 px-6 bg-slate-50">
         <div className="max-w-7xl mx-auto grid gap-12 lg:grid-cols-[1.05fr_0.95fr] items-center mb-24">
           <div className="site-theme-panel overflow-hidden rounded-[2rem] shadow-2xl">
             <img src={ATLINE} alt="Integrity Scientific Office" loading="lazy" decoding="async" className="w-full h-full object-cover" />
@@ -715,7 +715,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="site-theme-panel max-w-7xl mx-auto py-20 mb-24 rounded-[3rem] shadow-sm border">
+        <div className="site-theme-panel max-w-7xl mx-auto py-10 md:py-20 mb-16 md:mb-24 rounded-[3rem] shadow-sm border">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 px-6">
             <CounterItem target={35} label="Countries" />
             <CounterItem target={56} label="Products" />
